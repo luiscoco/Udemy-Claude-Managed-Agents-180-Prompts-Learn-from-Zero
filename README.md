@@ -54,8 +54,8 @@ This repository is the student companion to **Claude Managed Agents: 180 Practic
 Install **Node.js 24 or later**, including npm, and use a modern browser. Git is optional if you download the ZIP through GitHub's **Code → Download ZIP** menu.
 
 ```shell
-git clone https://github.com/luiscoco/Udemy-Claude-Managed-Agents-180-Practical-Applications.git
-cd Udemy-Claude-Managed-Agents-180-Practical-Applications
+git clone https://github.com/luiscoco/Udemy-Claude-Managed-Agents-180-Prompts-Learn-from-Zero.git
+cd Udemy-Claude-Managed-Agents-180-Prompts-Learn-from-Zero
 npm run setup -- 1
 npm start -- 1
 ```
@@ -145,7 +145,7 @@ The lockfiles preserve the course dependency versions. Provider APIs and preview
 
 ## Questions, fixes and responsible sharing
 
-For an application problem, [open an issue](https://github.com/luiscoco/Udemy-Claude-Managed-Agents-180-Practical-Applications/issues/new/choose) with the lesson number, Node.js version and reproducible steps. Share sanitised errors only. After the Udemy course launches, use its Q&A for course-content questions.
+For an application problem, [open an issue](https://github.com/luiscoco/Udemy-Claude-Managed-Agents-180-Prompts-Learn-from-Zero/issues/new/choose) with the lesson number, Node.js version and reproducible steps. Share sanitised errors only. After the Udemy course launches, use its Q&A for course-content questions.
 
 If the labs help you, consider starring the repository so you can find it again and sharing its link with another developer.
 
