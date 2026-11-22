@@ -1,0 +1,54 @@
+{
+  "number": 15,
+  "section": "2. Agent definitions, models, and versions",
+  "title": "Resource management",
+  "prompt": "Create, retrieve, and list agents, using metadata to associate them with application features.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const agent = await client.beta.agents.create({\n  name: \"Project reviewer\",\n  model: modelId,\n  metadata: { project: \"course-demo\" }\n});\nconst saved = await client.beta.agents.retrieve(agent.id);\nconsole.log(saved.id, saved.version);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/agent-setup"
+  ],
+  "specification": "prompt-015-resource-management-prompt.txt",
+  "fields": [
+    {
+      "key": "team",
+      "label": "Feature metadata",
+      "value": "reports"
+    }
+  ],
+  "actions": [
+    {
+      "id": "create",
+      "label": "Create tagged agents",
+      "op": "agent.catalog"
+    },
+    {
+      "id": "list",
+      "label": "List matching feature metadata",
+      "op": "agent.list"
+    },
+    {
+      "id": "retrieve",
+      "label": "Retrieve selected agent",
+      "op": "agent.retrieve"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "create"
+    },
+    {
+      "action": "list"
+    },
+    {
+      "action": "retrieve"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Create, retrieve, and list agents, using metadata to associate them with application features."
+}

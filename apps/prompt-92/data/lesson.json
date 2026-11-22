@@ -1,0 +1,54 @@
+{
+  "number": 92,
+  "section": "11. Built-in and custom skills",
+  "title": "PDF workflows",
+  "prompt": "Attach the PDF skill and process a sample PDF into a checked, downloadable deliverable.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "skills:\n  - type: anthropic\n    skill_id: pdf",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/skills"
+  ],
+  "specification": "prompt-092-pdf-workflows-v3-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "attach",
+      "label": "Attach pdf skill fixture",
+      "op": "skill.attach",
+      "args": {
+        "format": "pdf"
+      }
+    },
+    {
+      "id": "create",
+      "label": "Create the checked fixture deliverable",
+      "op": "artifact.generate",
+      "args": {
+        "format": "pdf"
+      }
+    },
+    {
+      "id": "verify",
+      "label": "Verify its source facts",
+      "op": "artifact.verify"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "attach"
+    },
+    {
+      "action": "create"
+    },
+    {
+      "action": "verify"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Attach the PDF skill and process a sample PDF into a checked, downloadable deliverable."
+}

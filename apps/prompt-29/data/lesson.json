@@ -1,0 +1,50 @@
+{
+  "number": 29,
+  "section": "4. Sessions and lifecycle management",
+  "title": "Session overrides",
+  "prompt": "Override an agent’s model and tools for one session, demonstrating replacement semantics without modifying the reusable agent.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const session = await client.beta.sessions.create({\n  agent: {\n    type: \"agent_with_overrides\",\n    id: agentId,\n    model: { id: modelId, effort: { type: \"high\" } },\n    tools: [{ type: \"agent_toolset_20260401\" }]\n  },\n  environment_id: environmentId\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/sessions",
+    "https://platform.claude.com/docs/en/managed-agents/session-operations",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-029-session-overrides-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "snapshot",
+      "label": "Inspect reusable agent",
+      "op": "agent.retrieve"
+    },
+    {
+      "id": "override",
+      "label": "Create session overrides",
+      "op": "session.override"
+    },
+    {
+      "id": "verify",
+      "label": "Compare parent and session",
+      "op": "session.overrideInspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "snapshot"
+    },
+    {
+      "action": "override"
+    },
+    {
+      "action": "verify"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Override an agent’s model and tools for one session, demonstrating replacement semantics without modifying the reusable agent."
+}

@@ -1,0 +1,51 @@
+{
+  "number": 142,
+  "section": "17. Outcomes and automated grading",
+  "title": "Independent verification",
+  "prompt": "Retrieve the final artifacts and verify objective requirements separately from the grader’s assessment.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "import { writeFile } from \"node:fs/promises\";\nconst response = await client.files.download(outputFileId);\nawait writeFile(\"stock-summary.json\",\n  Buffer.from(await response.arrayBuffer()));",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/define-outcomes"
+  ],
+  "specification": "prompt-142-independent-verification-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "artifact",
+      "label": "Retrieve a claimed passing artifact",
+      "op": "outcome.verify",
+      "args": {
+        "bad": true
+      }
+    },
+    {
+      "id": "independent",
+      "label": "Independently recompute the total",
+      "op": "outcome.independent"
+    },
+    {
+      "id": "fixed",
+      "label": "Verify a corrected artifact",
+      "op": "outcome.verify"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "artifact"
+    },
+    {
+      "action": "independent"
+    },
+    {
+      "action": "fixed"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Retrieve the final artifacts and verify objective requirements separately from the grader’s assessment."
+}

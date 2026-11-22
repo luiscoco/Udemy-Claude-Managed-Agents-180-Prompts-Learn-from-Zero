@@ -1,0 +1,48 @@
+{
+  "number": 97,
+  "section": "12. Files, multimodal inputs, and GitHub",
+  "title": "Input mounting",
+  "prompt": "Upload a file, mount it at a predictable sandbox path, and have the agent verify its contents.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "import { createReadStream } from \"node:fs\";\nconst file = await client.files.upload({\n  file: createReadStream(\"data.csv\")\n});\nconst session = await client.beta.sessions.create({\n  agent: agentId,\n  environment_id: environmentId,\n  resources: [{\n    type: \"file\", file_id: file.id,\n    mount_path: \"/data.csv\"\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/files"
+  ],
+  "specification": "prompt-097-input-mounting-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "upload",
+      "label": "Upload the source fixture",
+      "op": "file.upload"
+    },
+    {
+      "id": "mount",
+      "label": "Mount at the requested path",
+      "op": "file.mount"
+    },
+    {
+      "id": "verify",
+      "label": "Compare contents and hash",
+      "op": "file.verify"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "upload"
+    },
+    {
+      "action": "mount"
+    },
+    {
+      "action": "verify"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Upload a file, mount it at a predictable sandbox path, and have the agent verify its contents."
+}

@@ -1,0 +1,60 @@
+{
+  "number": 22,
+  "section": "3. Cloud environments and sandbox capabilities",
+  "title": "Network restrictions",
+  "prompt": "Configure limited networking and test allowed hosts, blocked destinations, and documented wildcard behaviour.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "name: restricted-network\nconfig:\n  type: cloud\n  networking:\n    type: limited\n    allowed_hosts:\n      - api.example.com\n      - \"*.example.org\"",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/environments"
+  ],
+  "specification": "prompt-022-network-restrictions-prompt.txt",
+  "fields": [
+    {
+      "key": "host",
+      "label": "Destination host",
+      "value": "api.example.test"
+    }
+  ],
+  "actions": [
+    {
+      "id": "request",
+      "label": "Test the selected destination",
+      "op": "network.check"
+    },
+    {
+      "id": "apex",
+      "label": "Test wildcard apex",
+      "op": "network.check",
+      "args": {
+        "host": "docs.example.test"
+      }
+    },
+    {
+      "id": "subdomain",
+      "label": "Test wildcard subdomain",
+      "op": "network.check",
+      "args": {
+        "host": "api.docs.example.test"
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "request"
+    },
+    {
+      "action": "apex"
+    },
+    {
+      "action": "subdomain"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Configure limited networking and test allowed hosts, blocked destinations, and documented wildcard behaviour."
+}

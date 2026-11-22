@@ -1,0 +1,60 @@
+{
+  "number": 116,
+  "section": "13. Persistent memory",
+  "title": "Multiple stores",
+  "prompt": "Attach several stores at session creation and verify current limits and restrictions on later attachment changes.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "resources:\n  - type: memory_store\n    memory_store_id: STANDARDS_STORE_ID\n    access: read_only\n  - type: memory_store\n    memory_store_id: PROJECT_STORE_ID\n    access: read_only\n  - type: memory_store\n    memory_store_id: USER_STORE_ID\n    access: read_write",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/memory"
+  ],
+  "specification": "prompt-116-multiple-stores-prompt.txt",
+  "fields": [
+    {
+      "key": "count",
+      "label": "Requested fixture store count",
+      "value": 2
+    },
+    {
+      "key": "capacity",
+      "label": "Injected fixture limit",
+      "value": 2
+    }
+  ],
+  "actions": [
+    {
+      "id": "attach",
+      "label": "Validate store attachments at creation",
+      "op": "memory.attach"
+    },
+    {
+      "id": "change",
+      "label": "Try a later attachment change",
+      "op": "memory.attach",
+      "args": {
+        "later": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "attach"
+    },
+    {
+      "action": "attach",
+      "input": {
+        "count": 3
+      }
+    },
+    {
+      "action": "change"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Attach several stores at session creation and verify current limits and restrictions on later attachment changes."
+}

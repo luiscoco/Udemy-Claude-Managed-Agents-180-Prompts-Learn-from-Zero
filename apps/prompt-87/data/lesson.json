@@ -1,0 +1,56 @@
+{
+  "number": 87,
+  "section": "10. Vaults, OAuth, and credential management",
+  "title": "Rotation and revocation",
+  "prompt": "Rotate, archive, and delete disposable credentials while observing their effects on an existing session.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.vaults.credentials.update(credentialId, {\n  vault_id: vaultId,\n  auth: { type: \"static_bearer\", token: replacementToken }\n});\nawait client.beta.vaults.credentials.archive(credentialId, {\n  vault_id: vaultId\n});\nawait client.beta.vaults.credentials.delete(credentialId, {\n  vault_id: vaultId\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/vaults"
+  ],
+  "specification": "prompt-087-rotation-and-revocation-v2-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "register",
+      "label": "Create disposable credential",
+      "op": "vault.credential"
+    },
+    {
+      "id": "rotate",
+      "label": "Rotate credential version",
+      "op": "vault.rotate"
+    },
+    {
+      "id": "archive",
+      "label": "Archive the credential",
+      "op": "vault.archive"
+    },
+    {
+      "id": "delete",
+      "label": "Delete the disposable credential",
+      "op": "vault.delete"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "register"
+    },
+    {
+      "action": "rotate"
+    },
+    {
+      "action": "archive"
+    },
+    {
+      "action": "delete"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Rotate, archive, and delete disposable credentials while observing their effects on an existing session."
+}

@@ -1,0 +1,46 @@
+{
+  "number": 117,
+  "section": "14. Dreams and memory consolidation — research preview",
+  "title": "Availability check",
+  "prompt": "Check whether Dreams is enabled for my account and identify its current model, API, and access requirements.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const page = await client.beta.dreams.list({ limit: 1 });\nconsole.log(page.data.length);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/dreams"
+  ],
+  "specification": "prompt-117-dreams-availability-check-prompt.txt",
+  "fields": [
+    {
+      "key": "enabled",
+      "label": "Injected creation access",
+      "value": false
+    }
+  ],
+  "actions": [
+    {
+      "id": "probe",
+      "label": "Run a read-access fixture probe",
+      "op": "dream.probe"
+    },
+    {
+      "id": "create",
+      "label": "Check creation entitlement separately",
+      "op": "dream.entitlement"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "probe"
+    },
+    {
+      "action": "create"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Check whether Dreams is enabled for my account and identify its current model, API, and access requirements."
+}

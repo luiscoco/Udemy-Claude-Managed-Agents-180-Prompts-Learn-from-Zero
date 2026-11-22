@@ -1,0 +1,53 @@
+{
+  "number": 35,
+  "section": "4. Sessions and lifecycle management",
+  "title": "Session browsing",
+  "prompt": "Build a paginated session browser that retrieves status, configuration, and metadata for a selected session.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const page = await client.beta.sessions.list({\n  limit: 10,\n  agent_id: agentId\n});\nfor (const session of page.data) {\n  console.log(session.id, session.status);\n}\nconst nextPage = page.next_page;\nconst selected = await client.beta.sessions.retrieve(sessionId);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/sessions",
+    "https://platform.claude.com/docs/en/managed-agents/session-operations",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-035-session-browsing-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "page",
+      "label": "Fetch a session page",
+      "op": "pagination.sessions"
+    },
+    {
+      "id": "next",
+      "label": "Fetch next page",
+      "op": "pagination.sessions",
+      "args": {
+        "next": true
+      }
+    },
+    {
+      "id": "select",
+      "label": "Inspect selected session",
+      "op": "session.inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "page"
+    },
+    {
+      "action": "next"
+    },
+    {
+      "action": "select"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Build a paginated session browser that retrieves status, configuration, and metadata for a selected session."
+}

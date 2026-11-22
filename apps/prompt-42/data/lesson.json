@@ -1,0 +1,42 @@
+{
+  "number": 42,
+  "section": "5. Events, streaming, and reconnection",
+  "title": "Response deltas",
+  "prompt": "Render incremental response previews, then reconcile them with the authoritative completed agent message.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "if (event.type === \"event_delta\" &&\n    event.delta.type === \"content_delta\") {\n  const key = event.event_id + \":\" + event.delta.index;\n  preview.set(key,\n    (preview.get(key) ?? \"\") + event.delta.content.text);\n}\nif (event.type === \"agent.message\") {\n  finalMessages.set(event.id, event.content);\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/event-deltas",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming",
+    "https://platform.claude.com/docs/en/managed-agents/reference"
+  ],
+  "specification": "prompt-042-response-deltas-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "preview",
+      "label": "Receive response deltas",
+      "op": "events.delta"
+    },
+    {
+      "id": "final",
+      "label": "Reconcile completed message",
+      "op": "events.authoritative"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "preview"
+    },
+    {
+      "action": "final"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Render incremental response previews, then reconcile them with the authoritative completed agent message."
+}

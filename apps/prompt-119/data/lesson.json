@@ -1,0 +1,65 @@
+{
+  "number": 119,
+  "section": "14. Dreams and memory consolidation — research preview",
+  "title": "Review before adoption",
+  "prompt": "Compare the Dream’s output with its input, then attach the reviewed output store to future sessions.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const dream = await client.beta.dreams.retrieve(dreamId);\nif (dream.status !== \"completed\") {\n  throw new Error(\"Dream is not complete\");\n}\nconst output = dream.outputs.find(\n  item => item.type === \"memory_store\"\n);\nif (!output) throw new Error(\"Output store unavailable\");\nconsole.log(output.memory_store_id);",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "yaml",
+      "code": "resources:\n  - type: memory_store\n    memory_store_id: REVIEWED_OUTPUT_STORE_ID\n    access: read_only",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/dreams"
+  ],
+  "specification": "prompt-119-review-before-adoption-prompt.txt",
+  "fields": [
+    {
+      "key": "approved",
+      "label": "Output reviewed",
+      "value": false
+    }
+  ],
+  "actions": [
+    {
+      "id": "dream",
+      "label": "Generate candidate memory",
+      "op": "dream.run"
+    },
+    {
+      "id": "diff",
+      "label": "Compare input and output",
+      "op": "dream.diff"
+    },
+    {
+      "id": "adopt",
+      "label": "Adopt the reviewed output",
+      "op": "dream.adopt"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "dream"
+    },
+    {
+      "action": "diff"
+    },
+    {
+      "action": "adopt"
+    },
+    {
+      "action": "adopt",
+      "input": {
+        "approved": true
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Compare the Dream’s output with its input, then attach the reviewed output store to future sessions."
+}

@@ -1,0 +1,48 @@
+{
+  "number": 168,
+  "section": "21. Self-hosted sandboxes and cloud-platform variants",
+  "title": "Self-hosted resources",
+  "prompt": "Stage files and repositories yourself and demonstrate supported memory synchronization without assuming cloud-only resource mounting.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 168.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'host.stage':\n        r.staged = { files: ['/inputs/report.txt'], repositories: [{ commit: 'a'.repeat(40), path: '/repos/app' }], memorySync: 'Explicit local fixture adapter' };\n        accept(r.staged);\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-memory"
+  ],
+  "specification": "prompt-168-self-hosted-resources-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "stage",
+      "label": "Stage files and repository snapshots",
+      "op": "host.stage"
+    },
+    {
+      "id": "memory",
+      "label": "Synchronize supported memory fixture",
+      "op": "memory.read"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect saved state",
+      "op": "inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "stage"
+    },
+    {
+      "action": "memory"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Stage files and repositories yourself and demonstrate supported memory synchronization without assuming cloud-only resource mounting."
+}

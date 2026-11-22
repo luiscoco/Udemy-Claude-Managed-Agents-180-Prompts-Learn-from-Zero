@@ -1,0 +1,51 @@
+{
+  "number": 73,
+  "section": "9. Permission policies and human approval",
+  "title": "Policy comparison",
+  "prompt": "Compare always_allow, always_ask, and auto using harmless tool calls and their resulting events.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 73.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'approval.policy':\n        accept({ policy: p.policy, decision: p.policy === 'always_allow' ? 'allowed' : p.policy === 'always_ask' ? 'requires_action' : 'fixture evaluator allows read only', actualServiceEvaluatorInvoked: false });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/permission-policies"
+  ],
+  "specification": "prompt-073-policy-comparison-v2-prompt.txt",
+  "fields": [
+    {
+      "key": "policy",
+      "label": "Permission policy",
+      "value": "always_ask",
+      "options": [
+        "always_allow",
+        "always_ask",
+        "auto"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "evaluate",
+      "label": "Evaluate harmless tool call",
+      "op": "approval.policy"
+    },
+    {
+      "id": "compare",
+      "label": "Compare three fixture policies",
+      "op": "approval.compare"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "evaluate"
+    },
+    {
+      "action": "compare"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Compare always_allow, always_ask, and auto using harmless tool calls and their resulting events."
+}

@@ -1,0 +1,41 @@
+{
+  "number": 20,
+  "section": "3. Cloud environments and sandbox capabilities",
+  "title": "Runtime inspection",
+  "prompt": "Inspect the sandbox’s available languages, packages, and utilities, then choose suitable tools for a data-processing task.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 20.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'runtime.inspect':\n        accept({ runtime: 'Node.js 24 local classroom backend', sandbox: 'in-memory virtual file namespace', tools: ['read', 'write', 'glob', 'grep'], providerContainerInspected: false });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference",
+    "https://platform.claude.com/docs/en/managed-agents/environments"
+  ],
+  "specification": "prompt-020-runtime-inspection-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "inspect",
+      "label": "Inspect runtime fixture",
+      "op": "runtime.inspect"
+    },
+    {
+      "id": "process",
+      "label": "Process the sample inventory",
+      "op": "file.process"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "inspect"
+    },
+    {
+      "action": "process"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Inspect the sandbox’s available languages, packages, and utilities, then choose suitable tools for a data-processing task."
+}

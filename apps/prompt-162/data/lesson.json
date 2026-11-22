@@ -1,0 +1,49 @@
+{
+  "number": 162,
+  "section": "20. Observability, usage, and budgets",
+  "title": "Cost experiments",
+  "prompt": "Measure how prompt caching, model selection, effort settings, and task design affect the cost of repeated work.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const session = await client.beta.sessions.retrieve(\n  completedSessionId\n);\nconsole.log(session.id, session.agent);\nconsole.log(session.usage, session.stats);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/session-observability"
+  ],
+  "specification": "prompt-162-cost-experiments-prompt.txt",
+  "fields": [
+    {
+      "key": "trials",
+      "label": "Trials",
+      "value": 3
+    }
+  ],
+  "actions": [
+    {
+      "id": "experiment",
+      "label": "Run repeated fixture cost experiments",
+      "op": "benchmark.run",
+      "args": {
+        "axis": "cache and effort"
+      }
+    },
+    {
+      "id": "score",
+      "label": "Compare fixture costs and quality",
+      "op": "benchmark.score"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "experiment"
+    },
+    {
+      "action": "score"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Measure how prompt caching, model selection, effort settings, and task design affect the cost of repeated work."
+}

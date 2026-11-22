@@ -1,0 +1,51 @@
+{
+  "number": 126,
+  "section": "15. Multiagent coordination and advisors",
+  "title": "Shared resources",
+  "prompt": "Demonstrate separate agent contexts and shared sandbox resources, preventing conflicting writes to the same files.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const task = \"Researcher writes only /workspace/research/. \" +\n  \"Analyst writes only /workspace/analysis/. Reviewer reads \" +\n  \"their reports and writes /workspace/review/. Only the \" +\n  \"coordinator writes /workspace/final.md. Treat shared \" +\n  \"inputs as read-only and report any ownership conflict.\";",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration"
+  ],
+  "specification": "prompt-126-shared-resources-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "threads",
+      "label": "Create shared sandbox writers",
+      "op": "thread.create"
+    },
+    {
+      "id": "write",
+      "label": "Acquire a shared-path write lease",
+      "op": "thread.write"
+    },
+    {
+      "id": "conflict",
+      "label": "Try a competing writer",
+      "op": "thread.write",
+      "args": {
+        "conflict": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "threads"
+    },
+    {
+      "action": "write"
+    },
+    {
+      "action": "conflict"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Demonstrate separate agent contexts and shared sandbox resources, preventing conflicting writes to the same files."
+}

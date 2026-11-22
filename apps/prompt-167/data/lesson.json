@@ -1,0 +1,48 @@
+{
+  "number": 167,
+  "section": "21. Self-hosted sandboxes and cloud-platform variants",
+  "title": "Worker operations",
+  "prompt": "Implement on-demand worker startup, queue monitoring, and graceful shutdown that preserves required state.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 167.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'host.queue':\n        r.queue = [{ id: 'job-1', status: 'queued' }, { id: 'job-2', status: 'queued' }];\n        accept({ queue: r.queue, workerRunning: false });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-operations"
+  ],
+  "specification": "prompt-167-worker-operations-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "queue",
+      "label": "Queue fixture sessions",
+      "op": "host.queue"
+    },
+    {
+      "id": "start",
+      "label": "Start an on-demand worker",
+      "op": "host.claim"
+    },
+    {
+      "id": "stop",
+      "label": "Drain and preserve state on shutdown",
+      "op": "host.shutdown"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "queue"
+    },
+    {
+      "action": "start"
+    },
+    {
+      "action": "stop"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Implement on-demand worker startup, queue monitoring, and graceful shutdown that preserves required state."
+}

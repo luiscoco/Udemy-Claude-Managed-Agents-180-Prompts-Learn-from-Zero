@@ -1,0 +1,48 @@
+{
+  "number": 65,
+  "section": "8. MCP integrations",
+  "title": "First MCP server",
+  "prompt": "Connect a remote MCP server using its documented URL and inspect the tools available to the agent.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "mcp_servers:\n  - type: url\n    name: github\n    url: https://api.githubcopilot.com/mcp/\ntools:\n  - type: mcp_toolset\n    mcp_server_name: github",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/mcp-connector"
+  ],
+  "specification": "prompt-065-first-mcp-server-v2-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "connect",
+      "label": "Connect the MCP fixture",
+      "op": "mcp.connect"
+    },
+    {
+      "id": "discover",
+      "label": "Inspect discovered tools",
+      "op": "mcp.discover"
+    },
+    {
+      "id": "read",
+      "label": "Run a read-only MCP tool",
+      "op": "mcp.read"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "connect"
+    },
+    {
+      "action": "discover"
+    },
+    {
+      "action": "read"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Connect a remote MCP server using its documented URL and inspect the tools available to the agent."
+}

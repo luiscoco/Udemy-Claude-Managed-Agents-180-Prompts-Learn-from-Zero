@@ -1,0 +1,56 @@
+{
+  "number": 121,
+  "section": "15. Multiagent coordination and advisors",
+  "title": "Orchestration configuration",
+  "prompt": "Configure the current multiagent type and explicitly choose whether subagents, workflows, and an advisor are enabled.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "multiagent:\n  type: multiagent_20261001\n  subagents:\n    type: enabled\n    inline_agents: { type: enabled }\n  workflows:\n    type: disabled\n  advisor:\n    type: enabled\n    model: claude-opus-5-5",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration"
+  ],
+  "specification": "prompt-121-orchestration-configuration-prompt.txt",
+  "fields": [
+    {
+      "key": "subagents",
+      "label": "Subagents enabled",
+      "value": true
+    },
+    {
+      "key": "workflows",
+      "label": "Workflows enabled",
+      "value": false
+    },
+    {
+      "key": "advisor",
+      "label": "Advisor enabled",
+      "value": true
+    }
+  ],
+  "actions": [
+    {
+      "id": "configure",
+      "label": "Resolve explicit orchestration settings",
+      "op": "orchestration.configure"
+    },
+    {
+      "id": "snapshot",
+      "label": "Inspect a fresh session snapshot",
+      "op": "session.overrideInspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "configure"
+    },
+    {
+      "action": "snapshot"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Configure the current multiagent type and explicitly choose whether subagents, workflows, and an advisor are enabled."
+}

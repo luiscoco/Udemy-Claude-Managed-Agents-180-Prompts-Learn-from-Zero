@@ -1,0 +1,57 @@
+{
+  "number": 31,
+  "section": "4. Sessions and lifecycle management",
+  "title": "Status handling",
+  "prompt": "Build a session-status handler that distinguishes idle, running, rescheduling, and terminated states.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const session = await client.beta.sessions.retrieve(sessionId);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/sessions",
+    "https://platform.claude.com/docs/en/managed-agents/session-operations",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-031-status-handling-prompt.txt",
+  "fields": [
+    {
+      "key": "status",
+      "label": "Session status",
+      "value": "running",
+      "options": [
+        "idle",
+        "running",
+        "rescheduling",
+        "terminated"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "handle",
+      "label": "Handle selected status",
+      "op": "session.status"
+    },
+    {
+      "id": "future",
+      "label": "Handle an unfamiliar value",
+      "op": "session.status",
+      "args": {
+        "status": "future_status"
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "handle"
+    },
+    {
+      "action": "future"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Build a session-status handler that distinguishes idle, running, rescheduling, and terminated states."
+}

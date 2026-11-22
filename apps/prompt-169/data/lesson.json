@@ -1,0 +1,53 @@
+{
+  "number": 169,
+  "section": "21. Self-hosted sandboxes and cloud-platform variants",
+  "title": "AWS integration",
+  "prompt": "Adapt the application to Claude Platform on AWS and document its authentication and Managed Agents feature differences.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 169.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'cloud.capabilities':\n        r.cloud = { provider: p.provider, capabilities: ['cloud sessions'], source: 'Injected classroom capability table; consult current provider documentation' };\n        accept(r.cloud);\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws"
+  ],
+  "specification": "prompt-169-aws-integration-prompt.txt",
+  "fields": [
+    {
+      "key": "feature",
+      "label": "Requested fixture feature",
+      "value": "cloud sessions",
+      "options": [
+        "cloud sessions",
+        "preview feature"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "configure",
+      "label": "Select AWS capability fixture",
+      "op": "cloud.capabilities",
+      "args": {
+        "provider": "AWS"
+      }
+    },
+    {
+      "id": "validate",
+      "label": "Validate selected feature requirements",
+      "op": "cloud.validate"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "configure"
+    },
+    {
+      "action": "validate"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Adapt the application to Claude Platform on AWS and document its authentication and Managed Agents feature differences."
+}

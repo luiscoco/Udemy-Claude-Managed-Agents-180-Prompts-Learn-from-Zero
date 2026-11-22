@@ -1,0 +1,54 @@
+{
+  "number": 113,
+  "section": "13. Persistent memory",
+  "title": "Restoring content",
+  "prompt": "Recover an earlier memory version by retrieving its content and writing it back through the documented API.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const stores = client.beta.memoryStores;\nconst prior = await stores.memoryVersions.retrieve(versionId, {\n  memory_store_id: storeId\n});\nif (prior.content == null) {\n  throw new Error(\"Version content unavailable\");\n}\nconst current = await stores.memories.retrieve(memoryId, {\n  memory_store_id: storeId\n});\nawait stores.memories.update(memoryId, {\n  memory_store_id: storeId,\n  content: prior.content,\n  precondition: {\n    type: \"content_sha256\",\n    content_sha256: current.content_sha256\n  }\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/memory"
+  ],
+  "specification": "prompt-113-restoring-content-prompt.txt",
+  "fields": [
+    {
+      "key": "access",
+      "label": "Access",
+      "value": "read_write"
+    }
+  ],
+  "actions": [
+    {
+      "id": "edit",
+      "label": "Create a changed version",
+      "op": "memory.write"
+    },
+    {
+      "id": "restore",
+      "label": "Restore earlier content through a new write",
+      "op": "memory.restore"
+    },
+    {
+      "id": "audit",
+      "label": "Compare retained versions",
+      "op": "memory.history"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "edit"
+    },
+    {
+      "action": "restore"
+    },
+    {
+      "action": "audit"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Recover an earlier memory version by retrieving its content and writing it back through the documented API."
+}

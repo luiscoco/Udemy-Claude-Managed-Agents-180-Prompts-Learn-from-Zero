@@ -1,0 +1,62 @@
+{
+  "number": 150,
+  "section": "19. Webhooks and event-driven integrations",
+  "title": "Signature verification",
+  "prompt": "Verify webhook signatures using the raw request body and reject invalid or stale deliveries.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 150.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'webhook.sign': {\n        const id = 'delivery_fixture_1';\n        const timestamp = Math.floor(Date.now() / 1000);\n        const body = JSON.stringify({ type: 'session.status_idled', data: { id: 'demo_session' } });\n        const signature = createHmac('sha256', 'synthetic-webhook-secret').update(`${id}.${timestamp}.${body}`).digest('hex');\n        r.delivery = { id, timestamp, body, signature };\n        accept({ delivery: r.delivery, algorithm: 'HMAC-SHA256 over id.timestamp.rawBody', key: 'Synthetic classroom key' });\n        break;\n    }\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/webhooks"
+  ],
+  "specification": "prompt-150-signature-verification-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "sign",
+      "label": "Sign the raw fixture body",
+      "op": "webhook.sign"
+    },
+    {
+      "id": "verify",
+      "label": "Verify signature and timestamp",
+      "op": "webhook.verify"
+    },
+    {
+      "id": "tamper",
+      "label": "Reject a modified body",
+      "op": "webhook.verify",
+      "args": {
+        "tamper": true
+      }
+    },
+    {
+      "id": "stale",
+      "label": "Reject a stale delivery",
+      "op": "webhook.verify",
+      "args": {
+        "stale": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "sign"
+    },
+    {
+      "action": "verify"
+    },
+    {
+      "action": "tamper"
+    },
+    {
+      "action": "stale"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Verify webhook signatures using the raw request body and reject invalid or stale deliveries."
+}

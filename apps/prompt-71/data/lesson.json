@@ -1,0 +1,53 @@
+{
+  "number": 71,
+  "section": "8. MCP integrations",
+  "title": "Private MCP tunnels — preview",
+  "prompt": "If my account has access, connect a private MCP server through a tunnel and verify authentication.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "mcp_servers:\n  - type: url\n    name: private_docs\n    url: https://docs.YOUR_TUNNEL_DOMAIN_HERE/mcp\ntools:\n  - type: mcp_toolset\n    mcp_server_name: private_docs",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview",
+    "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/console"
+  ],
+  "specification": "prompt-071-private-mcp-tunnels-prompt.txt",
+  "fields": [
+    {
+      "key": "enabled",
+      "label": "Injected preview access",
+      "value": false
+    }
+  ],
+  "actions": [
+    {
+      "id": "probe",
+      "label": "Probe private-tunnel fixture access",
+      "op": "access.probe"
+    },
+    {
+      "id": "connect",
+      "label": "Connect a permitted tunnel fixture",
+      "op": "access.connect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "probe"
+    },
+    {
+      "action": "connect"
+    },
+    {
+      "action": "connect",
+      "input": {
+        "enabled": true
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "If my account has access, connect a private MCP server through a tunnel and verify authentication."
+}

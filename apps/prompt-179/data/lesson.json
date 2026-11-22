@@ -1,0 +1,51 @@
+{
+  "number": 179,
+  "section": "22. Application patterns, testing, and complete projects",
+  "title": "Research assistant project",
+  "prompt": "Build a research assistant combining web tools, files, persistent memory, source citations, budgets, and live progress.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 179.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'project.research':\n        ensureMemory(s);\n        r.retrieved = [{ source: '/inputs/report.txt', text: s.files['/inputs/report.txt'] }];\n        r.budget = { cap: 125, consumed: 20 };\n        accept({ sources: r.retrieved, preference: r.memory.content, budget: r.budget, costProvenance: 'Synthetic fixture' });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/overview"
+  ],
+  "specification": "prompt-179-research-assistant-project-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "research",
+      "label": "Retrieve sources and retain preferences",
+      "op": "project.research"
+    },
+    {
+      "id": "verify",
+      "label": "Verify citations and budget state",
+      "op": "retrieval.answer"
+    },
+    {
+      "id": "report",
+      "label": "Prepare the research report fixture",
+      "op": "artifact.generate",
+      "args": {
+        "format": "pdf"
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "research"
+    },
+    {
+      "action": "verify"
+    },
+    {
+      "action": "report"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Build a research assistant combining web tools, files, persistent memory, source citations, budgets, and live progress."
+}

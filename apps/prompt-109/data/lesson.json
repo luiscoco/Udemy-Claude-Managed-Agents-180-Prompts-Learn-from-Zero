@@ -1,0 +1,40 @@
+{
+  "number": 109,
+  "section": "13. Persistent memory",
+  "title": "Memory discovery",
+  "prompt": "Read returned memory mount paths and provide instructions telling the agent when to consult each store.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 109.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'memory.mount':\n        accept({ mount: '/memory/demo-store', pathsDiscoveredFromResponse: true, hardcodedProviderPathAssumed: false });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/memory"
+  ],
+  "specification": "prompt-109-memory-discovery-v2-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "mount",
+      "label": "Inspect returned memory mount paths",
+      "op": "memory.mount"
+    },
+    {
+      "id": "consult",
+      "label": "Consult the mounted preference",
+      "op": "memory.read"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "mount"
+    },
+    {
+      "action": "consult"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Read returned memory mount paths and provide instructions telling the agent when to consult each store."
+}

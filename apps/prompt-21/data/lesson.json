@@ -1,0 +1,52 @@
+{
+  "number": 21,
+  "section": "3. Cloud environments and sandbox capabilities",
+  "title": "Dependencies",
+  "prompt": "Preinstall pinned Python and Node dependencies in an environment and verify the package-manager networking they require.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "name: data-tools\nconfig:\n  type: cloud\n  packages:\n    pip:\n      - sqlalchemy==2.0.30\n    npm:\n      - express@4.18.0\n  networking:\n    type: limited\n    allow_package_managers: true",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/environments"
+  ],
+  "specification": "prompt-021-dependencies-prompt.txt",
+  "fields": [
+    {
+      "key": "allowPackages",
+      "label": "Allow package-manager networking",
+      "value": false
+    }
+  ],
+  "actions": [
+    {
+      "id": "validate",
+      "label": "Validate dependency networking",
+      "op": "environment.packages"
+    },
+    {
+      "id": "verify",
+      "label": "Inspect pinned versions",
+      "op": "environment.packageVersions"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "validate"
+    },
+    {
+      "action": "validate",
+      "input": {
+        "allowPackages": true
+      }
+    },
+    {
+      "action": "verify"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Preinstall pinned Python and Node dependencies in an environment and verify the package-manager networking they require."
+}

@@ -1,0 +1,45 @@
+{
+  "number": 28,
+  "section": "4. Sessions and lifecycle management",
+  "title": "Initial events",
+  "prompt": "Create a session and start its first task atomically with initial_events, then retrieve the recorded initial events.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const session = await client.beta.sessions.create({\n  agent: agentId,\n  environment_id: environmentId,\n  initial_events: [{\n    type: \"user.message\",\n    content: [{ type: \"text\", text: \"Explain this project.\" }]\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/sessions",
+    "https://platform.claude.com/docs/en/managed-agents/session-operations",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-028-initial-events-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "create",
+      "label": "Create with initial events",
+      "op": "session.create",
+      "args": {
+        "initial": true
+      }
+    },
+    {
+      "id": "history",
+      "label": "Read recorded initial events",
+      "op": "session.history"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "create"
+    },
+    {
+      "action": "history"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Create a session and start its first task atomically with initial_events, then retrieve the recorded initial events."
+}

@@ -1,0 +1,50 @@
+{
+  "number": 54,
+  "section": "6. Built-in tools and web access",
+  "title": "Web fetching",
+  "prompt": "Fetch an approved URL, configure a content-token limit, and handle failed or rejected retrievals.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "{\n  type: \"web_fetch\",\n  name: \"web_fetch\",\n  enabled: true,\n  allowed_domains: [\"example.com\"],\n  max_content_tokens: 8000\n}",
+      "label": "TypeScript configuration fragment"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions",
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-054-web-fetching-prompt.txt",
+  "fields": [
+    {
+      "key": "limit",
+      "label": "Content character limit in this fixture",
+      "value": 120
+    }
+  ],
+  "actions": [
+    {
+      "id": "fetch",
+      "label": "Fetch approved local content fixture",
+      "op": "web.fetch"
+    },
+    {
+      "id": "blocked",
+      "label": "Test an unapproved URL",
+      "op": "web.fetch",
+      "args": {
+        "blocked": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "fetch"
+    },
+    {
+      "action": "blocked"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Fetch an approved URL, configure a content-token limit, and handle failed or rejected retrievals."
+}

@@ -1,0 +1,59 @@
+{
+  "number": 175,
+  "section": "22. Application patterns, testing, and complete projects",
+  "title": "Operational resilience",
+  "prompt": "Handle rate limits, retries, request timeouts, and application deadlines without duplicating side effects or losing session state.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "import Anthropic from \"@anthropic-ai/sdk\";\n\nconst client = new Anthropic({\n  maxRetries: 1,\n  timeout: 20000,\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/api/errors"
+  ],
+  "specification": "prompt-175-operational-resilience-prompt.txt",
+  "fields": [
+    {
+      "key": "maxAttempts",
+      "label": "Maximum attempts",
+      "value": 3
+    },
+    {
+      "key": "eventId",
+      "label": "Side-effect ID",
+      "value": "operation-1"
+    }
+  ],
+  "actions": [
+    {
+      "id": "retry",
+      "label": "Recover from transient fixture failures",
+      "op": "tool.retry"
+    },
+    {
+      "id": "write",
+      "label": "Commit an idempotent side effect",
+      "op": "tool.idempotent"
+    },
+    {
+      "id": "replay",
+      "label": "Replay the same side effect",
+      "op": "tool.idempotent"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "retry"
+    },
+    {
+      "action": "write"
+    },
+    {
+      "action": "replay"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Handle rate limits, retries, request timeouts, and application deadlines without duplicating side effects or losing session state."
+}

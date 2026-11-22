@@ -1,0 +1,43 @@
+{
+  "number": 83,
+  "section": "10. Vaults, OAuth, and credential management",
+  "title": "OAuth lifecycle",
+  "prompt": "Configure supported MCP OAuth credentials, validate connectivity, and handle refresh failures.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const validation = await\n  client.beta.vaults.credentials.mcpOAuthValidate(\n    credentialId, { vault_id: vaultId }\n  );\nconsole.log(validation.status);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/vaults"
+  ],
+  "specification": "prompt-083-oauth-lifecycle-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "expired",
+      "label": "Observe expired OAuth fixture",
+      "op": "vault.oauth"
+    },
+    {
+      "id": "refresh",
+      "label": "Refresh the credential fixture",
+      "op": "vault.oauth",
+      "args": {
+        "refresh": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "expired"
+    },
+    {
+      "action": "refresh"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Configure supported MCP OAuth credentials, validate connectivity, and handle refresh failures."
+}

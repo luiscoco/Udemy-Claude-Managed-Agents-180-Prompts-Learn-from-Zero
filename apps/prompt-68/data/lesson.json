@@ -1,0 +1,40 @@
+{
+  "number": 68,
+  "section": "8. MCP integrations",
+  "title": "Multiple servers",
+  "prompt": "Combine two MCP servers so the agent can retrieve information from one and prepare an action in another.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "mcp_servers:\n  - type: url\n    name: github\n    url: https://api.githubcopilot.com/mcp/\n  - type: url\n    name: linear\n    url: https://mcp.linear.app/mcp/readonly\ntools:\n  - type: mcp_toolset\n    mcp_server_name: github\n  - type: mcp_toolset\n    mcp_server_name: linear",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/mcp-connector"
+  ],
+  "specification": "prompt-068-multiple-servers-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "connect",
+      "label": "Connect retrieval and action fixtures",
+      "op": "mcp.multiple"
+    },
+    {
+      "id": "prepare",
+      "label": "Prepare an action from retrieved data",
+      "op": "mcp.prepare"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "connect"
+    },
+    {
+      "action": "prepare"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Combine two MCP servers so the agent can retrieve information from one and prepare an action in another."
+}

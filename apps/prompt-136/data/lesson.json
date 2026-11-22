@@ -1,0 +1,51 @@
+{
+  "number": 136,
+  "section": "16. Session threads and dynamic workflows",
+  "title": "Workflow limits",
+  "prompt": "Exercise documented workflow concurrency and lifetime limits, including their interaction with the shared session budget.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const task = \"Use disposable inputs for a small workflow. \" +\n  \"Set a short run lifetime and report any timeout. \" +\n  \"Describe how the plan respects concurrency and agent \" +\n  \"limits. Stop further test work if the shared budget pauses it.\";",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/workflow-runs"
+  ],
+  "specification": "prompt-136-workflow-limits-prompt.txt",
+  "fields": [
+    {
+      "key": "capacity",
+      "label": "Injected workflow concurrency limit",
+      "value": 2
+    },
+    {
+      "key": "amount",
+      "label": "Budget in whole USD cents",
+      "value": "125"
+    }
+  ],
+  "actions": [
+    {
+      "id": "start",
+      "label": "Apply fixture concurrency and budget limits",
+      "op": "workflow.limits"
+    },
+    {
+      "id": "stop",
+      "label": "Inspect the shared budget result",
+      "op": "budget.scope"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "start"
+    },
+    {
+      "action": "stop"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Exercise documented workflow concurrency and lifetime limits, including their interaction with the shared session budget."
+}

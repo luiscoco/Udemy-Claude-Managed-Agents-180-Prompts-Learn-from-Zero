@@ -1,0 +1,59 @@
+{
+  "number": 107,
+  "section": "13. Persistent memory",
+  "title": "First memory store",
+  "prompt": "Create and seed a memory store, then demonstrate two separate sessions using the retained information.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const store = await client.beta.memoryStores.create({\n  name: \"Report preferences\",\n  description: \"Formatting choices for reports\"\n});\nawait client.beta.memoryStores.memories.create(store.id, {\n  path: \"/preferences.md\",\n  content: \"Use ISO dates in reports.\"\n});",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "yaml",
+      "code": "resources:\n  - type: memory_store\n    memory_store_id: STORE_ID\n    access: read_only",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/memory"
+  ],
+  "specification": "prompt-107-first-memory-store-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "seed",
+      "label": "Create and seed a memory store",
+      "op": "memory.seed"
+    },
+    {
+      "id": "first",
+      "label": "Read from session A",
+      "op": "memory.read",
+      "args": {
+        "session": "A"
+      }
+    },
+    {
+      "id": "second",
+      "label": "Read from session B",
+      "op": "memory.read",
+      "args": {
+        "session": "B"
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "seed"
+    },
+    {
+      "action": "first"
+    },
+    {
+      "action": "second"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Create and seed a memory store, then demonstrate two separate sessions using the retained information."
+}

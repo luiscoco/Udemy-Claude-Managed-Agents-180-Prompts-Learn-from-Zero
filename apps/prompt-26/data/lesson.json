@@ -1,0 +1,49 @@
+{
+  "number": 26,
+  "section": "3. Cloud environments and sandbox capabilities",
+  "title": "Browser automation",
+  "prompt": "Use the sandbox’s supported Playwright and Chromium installation to inspect a test website and capture a screenshot.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "import { chromium } from \"playwright\";\nconst browser = await chromium.launch({ headless: true });\nconst page = await browser.newPage();\nawait page.goto(\"https://example.com\", {\n  waitUntil: \"domcontentloaded\"\n});\nawait page.screenshot({\n  path: \"page.png\", fullPage: true\n});\nawait browser.close();",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference",
+    "https://platform.claude.com/docs/en/managed-agents/environments"
+  ],
+  "specification": "prompt-026-browser-automation-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "inspect",
+      "label": "Inspect the test website",
+      "op": "browser.inspect"
+    },
+    {
+      "id": "capture",
+      "label": "Capture with Playwright",
+      "op": "browser.capture"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect saved state",
+      "op": "inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "inspect"
+    },
+    {
+      "action": "capture"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Use the sandbox’s supported Playwright and Chromium installation to inspect a test website and capture a screenshot."
+}

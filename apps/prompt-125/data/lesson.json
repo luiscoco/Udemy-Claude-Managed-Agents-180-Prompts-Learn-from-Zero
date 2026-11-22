@@ -1,0 +1,40 @@
+{
+  "number": 125,
+  "section": "15. Multiagent coordination and advisors",
+  "title": "Follow-up work",
+  "prompt": "Have the coordinator ask an existing subagent a follow-up question that uses its earlier context.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const followup = \"Ask the existing researcher subagent to \" +\n  \"revisit its earlier sources and explain the strongest \" +\n  \"counterexample. Reuse its prior thread and cite the \" +\n  \"evidence behind any revised conclusion.\";",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration"
+  ],
+  "specification": "prompt-125-follow-up-work-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "delegate",
+      "label": "Create a persistent child thread",
+      "op": "thread.create"
+    },
+    {
+      "id": "follow",
+      "label": "Ask a follow-up using earlier context",
+      "op": "thread.follow"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "delegate"
+    },
+    {
+      "action": "follow"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Have the coordinator ask an existing subagent a follow-up question that uses its earlier context."
+}

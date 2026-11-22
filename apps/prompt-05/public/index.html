@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Prompt 5 · First Working Agent</title>
+  <link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/agent.css"><link rel="stylesheet" href="/code-highlighting.css">
+  <script src="/vendor/prism.js" data-manual></script><script src="/vendor/prism-typescript.js"></script><script src="/vendor/prism-json.js"></script><script src="/vendor/prism-powershell.js"></script>
+  <script type="module" src="/app.js"></script>
+</head>
+<body><main>
+  <header class="topbar"><a class="course-title" href="/">How <span>Claude Managed Agents</span> Works</a><span class="course-tag">PROMPT 05 · FIRST WORKING AGENT</span></header>
+  <section class="intro"><div><div class="eyebrow">FROM SETUP TO A SAVED RESULT</div><h1>Create your agent.<br><span>Send its first task.</span></h1><p>Connect an agent, environment and session.<br> Read the response events and keep the resource IDs for reuse.</p></div><div class="hero-art"><img src="/astronaut.png" alt=""><span>PROMPT 05<br>FIRST WORKING AGENT</span></div></section>
+  <nav class="lesson-flow" aria-label="Lesson workflow"><div><b>01</b><span><strong>Create</strong><small>Agent and environment</small></span></div><i aria-hidden="true">→</i><div><b>02</b><span><strong>Run</strong><small>Session with an initial task</small></span></div><i aria-hidden="true">→</i><div><b>03</b><span><strong>Observe &amp; save</strong><small>Response, state and resource IDs</small></span></div></nav>
+  <nav class="student-nav" aria-label="Lesson sections"><a href="#agent-lab">Agent lab</a><a href="#saved-ids">Saved IDs</a><a href="#source-code">Project code</a><div class="view-controls"><button id="theme-toggle" class="quiet" aria-pressed="false">Switch to dark mode</button><button id="present" class="quiet" aria-pressed="false">Presentation view</button></div></nav>
+  <section class="classroom-banner"><strong>Local classroom workflow</strong><p>Scripted responses · official SDK with in-process fixtures · saved demo IDs</p></section>
+  <div id="notice" class="notice" role="status" hidden></div>
+  <section class="resource-progress" aria-label="Resource progress"><div><span>Agent</span><strong id="agent-progress">Create first</strong></div><i aria-hidden="true">→</i><div><span>Environment</span><strong id="environment-progress">Waiting</strong></div><i aria-hidden="true">→</i><div><span>Session</span><strong id="session-progress">Waiting</strong></div><i aria-hidden="true">→</i><div><span>Response</span><strong id="response-progress">Waiting</strong></div></section>
+  <div id="agent-lab" class="agent-grid">
+    <section class="agent-card configuration"><h2>Build the workflow</h2>
+      <label for="name">Agent name</label><input id="name" value="Learning agent" maxlength="100">
+      <label for="model">Classroom model</label><select id="model"><option value="classroom-model">Working model fixture</option><option value="unsupported-model">Unsupported model fixture</option></select>
+      <label for="system">Agent instructions</label><textarea id="system" rows="2" maxlength="2000">Explain your results clearly.</textarea>
+      <button id="create-agent" class="primary" disabled>Create agent</button>
+      <button id="create-environment" class="primary" disabled>Create cloud environment</button>
+      <label for="task">Task</label><select id="task"></select>
+      <button id="start-session" class="primary" disabled>Start session &amp; send task ↗</button>
+      <p class="helper">Each creation saves its ID on this server. Saved resources are reused when you reload.</p>
+    </section>
+    <section class="agent-card conversation"><div class="workbench-heading"><h2>Watch the task progress</h2><span id="session-status" class="state-badge">Awaiting setup</span></div>
+      <p id="session-reference" class="session-reference">Start a session to submit the selected user message.</p>
+      <div id="transcript" class="transcript" aria-label="Task and response"><p class="helper">The agent's response will appear here.</p></div>
+      <div class="observe-actions"><button id="observe" class="primary" disabled>Read event history</button><p id="completion" class="helper" role="status" aria-live="polite">Follow the events after your session is accepted.</p></div>
+      <div class="session-facts"><div><span>Session state</span><b id="state-value">not-started</b></div><div><span>Stop reason</span><b id="stop-reason">pending</b></div></div>
+    </section>
+  </div>
+  <section class="agent-card"><div class="workbench-heading"><h2>Events recorded for this session</h2><span id="event-count" class="course-tag">0 events</span></div><p class="helper">Select an event to inspect its JSON projection. Read history again while the session is running.</p><div class="event-grid"><div id="events" class="event-list"></div><pre tabindex="0" aria-label="Selected event JSON"><code id="event-json" class="language-json"></code></pre></div></section>
+  <section id="saved-ids" class="agent-card"><div class="workbench-heading"><h2>Keep the resource IDs</h2><a id="download" class="quiet" href="/api/resource-ids" download="resource-ids.json">Download IDs ↓</a></div><p class="helper">Saved automatically in .runtime/demo-resource-ids.json. The download contains resource references and the execution mode.</p><pre tabindex="0" aria-label="Saved resource IDs JSON"><code id="ids" class="language-json"></code></pre></section>
+  <section id="source-code" class="agent-card"><div class="workbench-heading"><h2>Read the working TypeScript</h2><button id="copy" class="quiet">Copy source</button></div><p class="helper">Actual project files for resource creation, event history, persistence and the account-backed runner.</p><div id="files" class="file-tabs" role="group" aria-label="Project source files"></div><div class="source-label"><strong id="filename"></strong><span>TypeScript</span></div><pre tabindex="0" aria-label="Project TypeScript source"><code id="source" class="language-typescript"></code></pre></section>
+  <section class="agent-card terminal-guide"><h2>Run with your Managed Agents account</h2><p class="helper">From apps/prompt-05, copy the template and set ANTHROPIC_API_KEY and an available MODEL_ID. The terminal runner creates resources as needed, starts the task and polls its event history.</p><p class="helper">PowerShell</p><pre tabindex="0"><code id="commands" class="language-powershell"></code></pre><p class="helper">Account-backed IDs and response history are saved in .runtime/live-resource-ids.json. Rerunning resumes that saved workflow. Credentials stay in the server environment.</p></section>
+  <footer><span>Independent teaching application · Prompt 5 · Managed Agents Beta</span><div><a href="https://platform.claude.com/docs/en/managed-agents/quickstart" target="_blank" rel="noreferrer">Managed Agents quickstart ↗</a><a href="https://platform.claude.com/docs/en/managed-agents/events-and-streaming" target="_blank" rel="noreferrer">Events reference ↗</a></div></footer>
+</main></body></html>

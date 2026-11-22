@@ -1,0 +1,64 @@
+{
+  "number": 112,
+  "section": "13. Persistent memory",
+  "title": "Memory audit history",
+  "prompt": "List immutable memory versions and identify the sessions or users responsible for changes.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 112.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'memory.seed':\n        accept({ memory: ensureMemory(s), content_hash: hash(ensureMemory(s).content) });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/memory"
+  ],
+  "specification": "prompt-112-memory-audit-history-prompt.txt",
+  "fields": [
+    {
+      "key": "access",
+      "label": "Access",
+      "value": "read_write"
+    },
+    {
+      "key": "actor",
+      "label": "Classroom actor",
+      "value": "alice",
+      "options": [
+        "alice",
+        "bob",
+        "reviewer"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "seed",
+      "label": "Create original memory",
+      "op": "memory.seed"
+    },
+    {
+      "id": "edit",
+      "label": "Write a new version",
+      "op": "memory.write"
+    },
+    {
+      "id": "audit",
+      "label": "Inspect immutable version history",
+      "op": "memory.history"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "seed"
+    },
+    {
+      "action": "edit"
+    },
+    {
+      "action": "audit"
+    }
+  ],
+  "initial": {},
+  "takeaway": "List immutable memory versions and identify the sessions or users responsible for changes."
+}

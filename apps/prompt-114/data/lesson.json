@@ -1,0 +1,51 @@
+{
+  "number": 114,
+  "section": "13. Persistent memory",
+  "title": "Export and backup",
+  "prompt": "Export memory content and retained history into an application-managed backup.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "import { writeFile } from \"node:fs/promises\";\nconst stores = client.beta.memoryStores;\nconst memories = [];\nconst versions = [];",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "await writeFile(\"memory-backup.json\", JSON.stringify({\n  store_id: storeId,\n  exported_at: new Date().toISOString(),\n  memories, versions\n}, null, 2), \"utf8\");",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/memory"
+  ],
+  "specification": "prompt-114-export-and-backup-prompt.txt",
+  "fields": [
+    {
+      "key": "access",
+      "label": "Access",
+      "value": "read_write"
+    }
+  ],
+  "actions": [
+    {
+      "id": "edit",
+      "label": "Create retained history",
+      "op": "memory.write"
+    },
+    {
+      "id": "export",
+      "label": "Export memory and history JSON",
+      "op": "memory.export"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "edit"
+    },
+    {
+      "action": "export"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Export memory content and retained history into an application-managed backup."
+}

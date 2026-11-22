@@ -1,0 +1,54 @@
+{
+  "number": 93,
+  "section": "11. Built-in and custom skills",
+  "title": "Custom skill creation",
+  "prompt": "Create a custom SKILL.md bundle and upload it using the Skills API.",
+  "examples": [
+    {
+      "language": "markdown",
+      "code": "---\nname: review-summary\ndescription: >-\n  Summarize approved changes\n  for a reviewer.\n---\n# Review summary",
+      "label": "Markdown reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "import { toFile } from \"@anthropic-ai/sdk\";\nconst file = await toFile(\n  new TextEncoder().encode(skillMarkdown),\n  \"review/SKILL.md\"\n);\nconst skill = await client.skills.create({ files: [file] });",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/skills",
+    "https://platform.claude.com/docs/en/api/skills/create"
+  ],
+  "specification": "prompt-093-custom-skill-creation-v2-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "bundle",
+      "label": "Build a SKILL.md bundle",
+      "op": "skill.bundle"
+    },
+    {
+      "id": "upload",
+      "label": "Register the synthetic skill version",
+      "op": "skill.publish"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect saved state",
+      "op": "inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "bundle"
+    },
+    {
+      "action": "upload"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Create a custom SKILL.md bundle and upload it using the Skills API."
+}

@@ -1,0 +1,51 @@
+{
+  "number": 140,
+  "section": "17. Outcomes and automated grading",
+  "title": "Evaluation feedback",
+  "prompt": "Display the public grading explanation and connect failed criteria to changes in the next artifact.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "if (event.type === \"span.outcome_evaluation_end\") {\n  console.log(event.outcome_id, event.iteration);\n  console.log(event.result, event.explanation);\n  console.log(event.outcome_evaluation_start_id);\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/define-outcomes"
+  ],
+  "specification": "prompt-140-evaluation-feedback-v2-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "evaluate",
+      "label": "Evaluate a defective artifact",
+      "op": "outcome.verify",
+      "args": {
+        "bad": true
+      }
+    },
+    {
+      "id": "feedback",
+      "label": "Show public criterion feedback",
+      "op": "outcome.feedback"
+    },
+    {
+      "id": "repair",
+      "label": "Verify the repaired artifact",
+      "op": "outcome.verify"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "evaluate"
+    },
+    {
+      "action": "feedback"
+    },
+    {
+      "action": "repair"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Display the public grading explanation and connect failed criteria to changes in the next artifact."
+}

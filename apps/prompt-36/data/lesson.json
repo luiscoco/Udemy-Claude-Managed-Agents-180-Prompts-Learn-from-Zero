@@ -1,0 +1,58 @@
+{
+  "number": 36,
+  "section": "4. Sessions and lifecycle management",
+  "title": "Session cleanup",
+  "prompt": "Demonstrate session archiving and deletion, explaining which separately uploaded files also require cleanup.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.archive(disposableSessionId);\n// Alternative lifecycle path: permanent deletion\nawait client.beta.sessions.delete(otherDisposableSessionId);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/sessions",
+    "https://platform.claude.com/docs/en/managed-agents/session-operations",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-036-session-cleanup-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "create",
+      "label": "Prepare disposable session and file",
+      "op": "session.work"
+    },
+    {
+      "id": "archive",
+      "label": "Archive session",
+      "op": "session.archive"
+    },
+    {
+      "id": "delete",
+      "label": "Delete session",
+      "op": "session.delete"
+    },
+    {
+      "id": "file",
+      "label": "Clean separate upload",
+      "op": "file.cleanup"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "create"
+    },
+    {
+      "action": "archive"
+    },
+    {
+      "action": "delete"
+    },
+    {
+      "action": "file"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Demonstrate session archiving and deletion, explaining which separately uploaded files also require cleanup."
+}

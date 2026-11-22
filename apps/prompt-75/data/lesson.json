@@ -1,0 +1,50 @@
+{
+  "number": 75,
+  "section": "9. Permission policies and human approval",
+  "title": "Approval interface",
+  "prompt": "Build an approval interface that allows or denies a pending tool call using its event ID.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.events.send(sessionId, {\n  events: [{\n    type: \"user.tool_confirmation\",\n    tool_use_id: pendingEvent.id,\n    result: decision\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/permission-policies"
+  ],
+  "specification": "prompt-075-approval-interface-v2-prompt.txt",
+  "fields": [
+    {
+      "key": "decision",
+      "label": "Decision",
+      "value": "allow",
+      "options": [
+        "allow",
+        "deny"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "pending",
+      "label": "Receive an approval request",
+      "op": "approval.seed"
+    },
+    {
+      "id": "respond",
+      "label": "Allow or deny by event ID",
+      "op": "approval.respond"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "pending"
+    },
+    {
+      "action": "respond"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Build an approval interface that allows or denies a pending tool call using its event ID."
+}

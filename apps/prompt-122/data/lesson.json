@@ -1,0 +1,40 @@
+{
+  "number": 122,
+  "section": "15. Multiagent coordination and advisors",
+  "title": "Predefined specialists",
+  "prompt": "Create version-pinned researcher, analyst, and reviewer agents, then register them with a coordinator.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const specialists = [];\nfor (const name of [\"researcher\", \"analyst\", \"reviewer\"]) {\n  const agent = await client.beta.agents.create({\n    name,\n    model: \"claude-sonnet-5-5\",\n    system: \"Work as the \" + name + \" specialist.\",\n    tools: [{ type: \"agent_toolset_20260401\" }]\n  });\n  specialists.push({\n    type: \"agent\" as const,\n    id: agent.id, version: agent.version\n  });\n}\nconst coordinator = await client.beta.agents.create({\n  name: \"Research coordinator\",\n  model: \"claude-opus-5-5\",\n  system: \"Delegate by role and reconcile the reports.\",\n  tools: [{ type: \"agent_toolset_20260401\" }],\n  multiagent: {\n    type: \"multiagent_20261001\",\n    subagents: {\n      type: \"enabled\",\n      inline_agents: { type: \"disabled\" },\n      predefined_agents: specialists\n    },\n    workflows: { type: \"disabled\" },\n    advisor: { type: \"disabled\" }\n  }\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration"
+  ],
+  "specification": "prompt-122-predefined-specialists-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "register",
+      "label": "Register version-pinned specialists",
+      "op": "orchestration.specialists"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect saved state",
+      "op": "inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "register"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Create version-pinned researcher, analyst, and reviewer agents, then register them with a coordinator."
+}

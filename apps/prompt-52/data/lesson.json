@@ -1,0 +1,46 @@
+{
+  "number": 52,
+  "section": "6. Built-in tools and web access",
+  "title": "File discovery",
+  "prompt": "Use glob and grep to find relevant files and explain where a repository implements a particular feature.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const task = [\n  \"Use glob to find TypeScript files under /workspace/project.\",\n  \"Use grep to locate the authentication handler.\",\n  \"Read matching files and cite paths and supporting code.\"\n].join(\"\\n\");",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-052-file-discovery-prompt.txt",
+  "fields": [
+    {
+      "key": "query",
+      "label": "Search term",
+      "value": "authorize"
+    }
+  ],
+  "actions": [
+    {
+      "id": "glob",
+      "label": "Discover relevant file paths",
+      "op": "file.glob"
+    },
+    {
+      "id": "grep",
+      "label": "Search the selected feature",
+      "op": "file.grep"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "glob"
+    },
+    {
+      "action": "grep"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Use glob and grep to find relevant files and explain where a repository implements a particular feature."
+}

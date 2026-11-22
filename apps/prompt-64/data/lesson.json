@@ -1,0 +1,43 @@
+{
+  "number": 64,
+  "section": "7. Custom tools and application execution",
+  "title": "External API integration",
+  "prompt": "Connect a custom tool to a test REST API and handle authentication, unsuccessful responses, and malformed data.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const response = await fetch(testApiUrl, {\n  headers: { Authorization: `Bearer ${testApiToken}` },\n  signal: AbortSignal.timeout(5000)\n});\nif (!response.ok) {\n  throw new Error(`Test API status ${response.status}`);\n}\nconst data: unknown = await response.json();\nreturn validateOrderResult(data);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-064-external-api-integration-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "call",
+      "label": "Call the local REST fixture",
+      "op": "rest.call"
+    },
+    {
+      "id": "bad",
+      "label": "Exercise malformed API data",
+      "op": "rest.call",
+      "args": {
+        "malformed": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "call"
+    },
+    {
+      "action": "bad"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Connect a custom tool to a test REST API and handle authentication, unsuccessful responses, and malformed data."
+}

@@ -1,0 +1,79 @@
+{
+  "number": 9,
+  "section": "2. Agent definitions, models, and versions",
+  "title": "Agent definition",
+  "prompt": "Create a reusable agent with a name, model, system instructions, tools, description, and tracking metadata.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const agent = await client.beta.agents.create({\n  name: \"Document analyst\",\n  model: modelId,\n  system: \"Explain findings and cite source passages.\",\n  tools: [{ type: \"agent_toolset_20260401\" }],\n  description: \"Analyzes supplied project documents\",\n  metadata: { team: \"learning\", purpose: \"review\" }\n});\nconsole.log(agent.id, agent.version);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/agent-setup"
+  ],
+  "specification": "prompt-009-agent-definition-prompt.txt",
+  "fields": [
+    {
+      "key": "name",
+      "label": "Agent name",
+      "value": "Document analyst"
+    },
+    {
+      "key": "model",
+      "label": "Classroom model profile",
+      "value": "classroom-model-a"
+    },
+    {
+      "key": "description",
+      "label": "Agent description",
+      "value": "Analyzes supplied inventory sources"
+    },
+    {
+      "key": "system",
+      "label": "System instructions",
+      "value": "Explain findings and cite source passages."
+    },
+    {
+      "key": "tools",
+      "label": "Enabled tool names",
+      "value": "read,grep"
+    },
+    {
+      "key": "team",
+      "label": "Tracking metadata team",
+      "value": "learning"
+    }
+  ],
+  "actions": [
+    {
+      "id": "create",
+      "label": "Create reusable agent",
+      "op": "agent.create"
+    },
+    {
+      "id": "retrieve",
+      "label": "Retrieve configuration",
+      "op": "agent.retrieve"
+    },
+    {
+      "id": "reuse",
+      "label": "Reference in a session",
+      "op": "session.create"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "create"
+    },
+    {
+      "action": "retrieve"
+    },
+    {
+      "action": "reuse"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Create a reusable agent with a name, model, system instructions, tools, description, and tracking metadata."
+}

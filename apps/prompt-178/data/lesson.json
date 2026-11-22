@@ -1,0 +1,46 @@
+{
+  "number": 178,
+  "section": "22. Application patterns, testing, and complete projects",
+  "title": "Migration",
+  "prompt": "Migrate a Messages API or Agent SDK application, identifying which hooks, turn limits, and client behaviours require application code.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 178.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'migration.map':\n        s.rows = [{ concern: 'Local turn loop', managed: 'Session lifecycle' }, { concern: 'Tool execution', managed: 'Application handler or hosted tool' }, { concern: 'Conversation persistence', managed: 'Session event history' }, { concern: 'Authorization', managed: 'Application responsibility retained' }];\n        accept({ mapping: s.rows });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/migration"
+  ],
+  "specification": "prompt-178-migration-prompt.txt",
+  "fields": [
+    {
+      "key": "maxAttempts",
+      "label": "Application turn limit",
+      "value": 3
+    }
+  ],
+  "actions": [
+    {
+      "id": "map",
+      "label": "Map application responsibilities",
+      "op": "migration.map"
+    },
+    {
+      "id": "run",
+      "label": "Run the bounded application control loop",
+      "op": "migration.run"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "map"
+    },
+    {
+      "action": "run"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Migrate a Messages API or Agent SDK application, identifying which hooks, turn limits, and client behaviours require application code."
+}

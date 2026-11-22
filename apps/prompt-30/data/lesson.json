@@ -1,0 +1,50 @@
+{
+  "number": 30,
+  "section": "4. Sessions and lifecycle management",
+  "title": "Continuing work",
+  "prompt": "Resume an idle cloud session and verify that its conversation, files, and installed dependencies remain available.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.events.send(sessionId, {\n  events: [{\n    type: \"user.message\",\n    content: [{ type: \"text\",\n      text: \"Recall the last result and read marker.txt.\" }]\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/sessions",
+    "https://platform.claude.com/docs/en/managed-agents/session-operations",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-030-continuing-work-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "run",
+      "label": "Create files and dependency state",
+      "op": "session.work"
+    },
+    {
+      "id": "resume",
+      "label": "Resume idle session",
+      "op": "session.resume"
+    },
+    {
+      "id": "inspect",
+      "label": "Verify retained context",
+      "op": "session.inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "run"
+    },
+    {
+      "action": "resume"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Resume an idle cloud session and verify that its conversation, files, and installed dependencies remain available."
+}

@@ -1,0 +1,40 @@
+{
+  "number": 94,
+  "section": "11. Built-in and custom skills",
+  "title": "Supporting resources",
+  "prompt": "Add scripts and reference files to a skill, then demonstrate how the agent loads relevant resources.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 94.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'skill.bundle':\n        s.files['/skill/SKILL.md'] = '---\\nname: inventory-report\\ndescription: Produce inventory reports with exact source citations.\\n---\\n# Inventory report\\nRead references/schema.json when needed. Recompute every total.';\n        s.files['/skill/references/schema.json'] = '{\"required\":[\"total\",\"sources\"]}';\n        accept({ entrypoint: '/skill/SKILL.md', files: Object.keys(s.files).filter(path => path.startsWith('/skill/')) });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/skills"
+  ],
+  "specification": "prompt-094-supporting-resources-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "bundle",
+      "label": "Add instructions and references",
+      "op": "skill.bundle"
+    },
+    {
+      "id": "load",
+      "label": "Load a relevant supporting file",
+      "op": "skill.load"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "bundle"
+    },
+    {
+      "action": "load"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Add scripts and reference files to a skill, then demonstrate how the agent loads relevant resources."
+}

@@ -1,0 +1,43 @@
+{
+  "number": 163,
+  "section": "21. Self-hosted sandboxes and cloud-platform variants",
+  "title": "Execution boundaries",
+  "prompt": "Compare cloud and self-hosted sandboxes, identifying where files, processes, model requests, and tool results are handled.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 163.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'host.boundaries':\n        accept({ controlPlane: 'Hosted orchestration fixture', modelExecution: 'Provider fixture', toolExecution: p.selfHosted ? 'Customer worker' : 'Hosted sandbox', files: p.selfHosted ? 'Explicit staging required' : 'Hosted session storage', realWorkerConnected: false });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/choosing-an-environment"
+  ],
+  "specification": "prompt-163-execution-boundaries-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "cloud",
+      "label": "Trace cloud execution boundaries",
+      "op": "host.boundaries"
+    },
+    {
+      "id": "self",
+      "label": "Trace self-hosted boundaries",
+      "op": "host.boundaries",
+      "args": {
+        "selfHosted": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "cloud"
+    },
+    {
+      "action": "self"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Compare cloud and self-hosted sandboxes, identifying where files, processes, model requests, and tool results are handled."
+}

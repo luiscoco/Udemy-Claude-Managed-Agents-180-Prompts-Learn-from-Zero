@@ -1,0 +1,54 @@
+{
+  "number": 89,
+  "section": "11. Built-in and custom skills",
+  "title": "Word documents",
+  "prompt": "Attach the Word skill and generate a report with headings, tables, and a downloadable document.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "skills:\n  - type: anthropic\n    skill_id: docx\n    version: latest",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/skills"
+  ],
+  "specification": "prompt-089-word-documents-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "attach",
+      "label": "Attach docx skill fixture",
+      "op": "skill.attach",
+      "args": {
+        "format": "docx"
+      }
+    },
+    {
+      "id": "create",
+      "label": "Create the checked fixture deliverable",
+      "op": "artifact.generate",
+      "args": {
+        "format": "docx"
+      }
+    },
+    {
+      "id": "verify",
+      "label": "Verify its source facts",
+      "op": "artifact.verify"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "attach"
+    },
+    {
+      "action": "create"
+    },
+    {
+      "action": "verify"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Attach the Word skill and generate a report with headings, tables, and a downloadable document."
+}

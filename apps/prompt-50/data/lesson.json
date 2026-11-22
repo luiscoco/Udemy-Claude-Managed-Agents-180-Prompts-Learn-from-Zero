@@ -1,0 +1,45 @@
+{
+  "number": 50,
+  "section": "6. Built-in tools and web access",
+  "title": "Writing files",
+  "prompt": "Have the agent generate a configuration file, then read it back and verify its required fields.",
+  "examples": [
+    {
+      "language": "json",
+      "code": "{\n  \"mode\": \"review\",\n  \"retries\": 2,\n  \"enabled\": true\n}",
+      "label": "JSON reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "const task = [\n  \"Use write to create settings.json with the supplied JSON.\",\n  \"Use read to inspect the saved file.\",\n  \"Verify mode, retries and enabled before reporting.\"\n].join(\"\\n\");",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-050-writing-files-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "write",
+      "label": "Write configuration JSON",
+      "op": "file.write"
+    },
+    {
+      "id": "verify",
+      "label": "Read and validate fields",
+      "op": "file.validate"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "write"
+    },
+    {
+      "action": "verify"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Have the agent generate a configuration file, then read it back and verify its required fields."
+}

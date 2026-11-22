@@ -1,0 +1,40 @@
+{
+  "number": 105,
+  "section": "12. Files, multimodal inputs, and GitHub",
+  "title": "Multiple repositories",
+  "prompt": "Mount two repositories and have the agent analyse a dependency or interface shared between them.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "resources: [\n  {\n    type: \"github_repository\", url: frontendUrl,\n    mount_path: \"/workspace/frontend\",\n    checkout: { type: \"commit\", sha: frontendSha }\n  },\n  {\n    type: \"github_repository\", url: backendUrl,\n    mount_path: \"/workspace/backend\",\n    checkout: { type: \"commit\", sha: backendSha }\n  }\n]",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/github"
+  ],
+  "specification": "prompt-105-multiple-repositories-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "mount",
+      "label": "Mount two repository snapshots",
+      "op": "repo.multiple"
+    },
+    {
+      "id": "compare",
+      "label": "Compare shared interface contracts",
+      "op": "repo.compare"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "mount"
+    },
+    {
+      "action": "compare"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Mount two repositories and have the agent analyse a dependency or interface shared between them."
+}

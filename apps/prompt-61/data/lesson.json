@@ -1,0 +1,49 @@
+{
+  "number": 61,
+  "section": "7. Custom tools and application execution",
+  "title": "Timeouts and retries",
+  "prompt": "Add bounded retries and timeouts to a custom-tool handler, distinguishing transient failures from permanent failures.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "for (let attempt = 1; attempt <= 3; attempt++) {\n  try {\n    return await runAttempt(AbortSignal.timeout(5000));\n  } catch (error) {\n    if (attempt === 3 || !isTransient(error)) throw error;\n    await delay(200 * 2 ** (attempt - 1));\n  }\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-061-timeouts-and-retries-prompt.txt",
+  "fields": [
+    {
+      "key": "maxAttempts",
+      "label": "Maximum attempts",
+      "value": 3
+    }
+  ],
+  "actions": [
+    {
+      "id": "retry",
+      "label": "Run a bounded retry handler",
+      "op": "tool.retry"
+    },
+    {
+      "id": "permanent",
+      "label": "Exercise a permanent failure",
+      "op": "tool.retry",
+      "args": {
+        "permanent": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "retry"
+    },
+    {
+      "action": "permanent"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Add bounded retries and timeouts to a custom-tool handler, distinguishing transient failures from permanent failures."
+}

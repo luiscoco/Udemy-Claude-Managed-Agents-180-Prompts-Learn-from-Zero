@@ -1,0 +1,67 @@
+{
+  "number": 160,
+  "section": "20. Observability, usage, and budgets",
+  "title": "Budget changes",
+  "prompt": "Increase a paused session’s budget and explain the consequences of removing a budget that cannot be re-added.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const newCap = \"500\";\nconst updated = await client.beta.sessions.update(sessionId, {\n  budget: {\n    type: \"limit\",\n    max_list_cost: { amount: newCap, currency: \"USD\" }\n  }\n});\nconsole.log(updated.budget, updated.usage.list_cost);",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.update(disposableSessionId, {\n  budget: null\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/budgets"
+  ],
+  "specification": "prompt-160-budget-changes-prompt.txt",
+  "fields": [
+    {
+      "key": "amount",
+      "label": "New cap in cents",
+      "value": "200"
+    }
+  ],
+  "actions": [
+    {
+      "id": "pause",
+      "label": "Prepare a budget-paused session",
+      "op": "budget.exhaust"
+    },
+    {
+      "id": "increase",
+      "label": "Increase the cap above consumed cost",
+      "op": "budget.increase"
+    },
+    {
+      "id": "remove",
+      "label": "Remove the cap",
+      "op": "budget.remove"
+    },
+    {
+      "id": "readd",
+      "label": "Attempt to re-add the cap",
+      "op": "budget.create"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "pause"
+    },
+    {
+      "action": "increase"
+    },
+    {
+      "action": "remove"
+    },
+    {
+      "action": "readd"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Increase a paused session’s budget and explain the consequences of removing a budget that cannot be re-added."
+}

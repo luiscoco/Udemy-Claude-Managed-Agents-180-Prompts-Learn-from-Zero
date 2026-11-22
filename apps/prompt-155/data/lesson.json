@@ -1,0 +1,40 @@
+{
+  "number": 155,
+  "section": "20. Observability, usage, and budgets",
+  "title": "Console debugging",
+  "prompt": "Inspect a session’s transcript, tools, resources, and threads in Console and diagnose one failed operation.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 155.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'debug.trace':\n        r.trace = [{ boundary: 'configuration', status: 'ok' }, { boundary: 'network allowlist', status: 'denied', host: 'unrelated.example.test' }, { boundary: 'tool', status: 'not executed' }];\n        s.rows = r.trace;\n        accept({ trace: r.trace });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/session-observability"
+  ],
+  "specification": "prompt-155-console-debugging-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "trace",
+      "label": "Load a failed session trace",
+      "op": "debug.trace"
+    },
+    {
+      "id": "diagnose",
+      "label": "Identify the failed boundary",
+      "op": "debug.diagnose"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "trace"
+    },
+    {
+      "action": "diagnose"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Inspect a session’s transcript, tools, resources, and threads in Console and diagnose one failed operation."
+}

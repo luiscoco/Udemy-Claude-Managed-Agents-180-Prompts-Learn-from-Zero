@@ -1,0 +1,51 @@
+{
+  "number": 41,
+  "section": "5. Events, streaming, and reconnection",
+  "title": "Stop reasons",
+  "prompt": "Interpret stop reasons so the application distinguishes a completed turn from a session awaiting action.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "if (event.type === \"session.status_idle\") {\n  switch (event.stop_reason?.type) {\n    case \"end_turn\": console.log(\"Turn ended\"); break;\n    case \"requires_action\": console.log(\"Resolve tool calls\"); break;\n    case \"budget_reached\": console.log(\"Review budget\"); break;\n  }\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming",
+    "https://platform.claude.com/docs/en/managed-agents/reference"
+  ],
+  "specification": "prompt-041-stop-reasons-prompt.txt",
+  "fields": [
+    {
+      "key": "reason",
+      "label": "Stop reason",
+      "value": "requires_action",
+      "options": [
+        "end_turn",
+        "requires_action",
+        "budget_reached",
+        "future_reason"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "interpret",
+      "label": "Interpret stop reason",
+      "op": "events.stop"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "interpret"
+    },
+    {
+      "action": "interpret",
+      "input": {
+        "reason": "end_turn"
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Interpret stop reasons so the application distinguishes a completed turn from a session awaiting action."
+}

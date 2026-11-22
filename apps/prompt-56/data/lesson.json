@@ -1,0 +1,43 @@
+{
+  "number": 56,
+  "section": "6. Built-in tools and web access",
+  "title": "Large tool outputs",
+  "prompt": "Demonstrate oversized tool-output offloading and have the agent inspect the resulting sandbox file.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const task = [\n  \"Inspect the tool result preview.\",\n  \"If it points to a full-output file, use read on that path.\",\n  \"Search relevant sections and cite evidence from the full result.\"\n].join(\"\\n\");",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-056-large-tool-outputs-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "offload",
+      "label": "Offload a large tool result",
+      "op": "tools.offload"
+    },
+    {
+      "id": "read",
+      "label": "Inspect the resulting file",
+      "op": "file.read",
+      "args": {
+        "path": "/tmp/tool-output.txt"
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "offload"
+    },
+    {
+      "action": "read"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Demonstrate oversized tool-output offloading and have the agent inspect the resulting sandbox file."
+}

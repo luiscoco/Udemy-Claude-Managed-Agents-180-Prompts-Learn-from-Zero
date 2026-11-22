@@ -1,0 +1,51 @@
+{
+  "number": 131,
+  "section": "16. Session threads and dynamic workflows",
+  "title": "Thread-aware responses",
+  "prompt": "Route tool approvals and custom-tool results correctly when requests originate from different session threads.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.events.send(sessionId, {\n  events: [{\n    type: \"user.tool_confirmation\",\n    tool_use_id: call.id,\n    result: decision\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.events.send(sessionId, {\n  events: [{\n    type: \"user.custom_tool_result\",\n    custom_tool_use_id: customCall.id,\n    content: toolContent,\n    is_error: toolFailed\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/session-threads"
+  ],
+  "specification": "prompt-131-thread-aware-responses-prompt.txt",
+  "fields": [
+    {
+      "key": "decision",
+      "label": "Decision",
+      "value": "allow"
+    }
+  ],
+  "actions": [
+    {
+      "id": "pending",
+      "label": "Receive child tool requests",
+      "op": "approval.threads"
+    },
+    {
+      "id": "route",
+      "label": "Route result by thread and event ID",
+      "op": "approval.respond"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "pending"
+    },
+    {
+      "action": "route"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Route tool approvals and custom-tool results correctly when requests originate from different session threads."
+}

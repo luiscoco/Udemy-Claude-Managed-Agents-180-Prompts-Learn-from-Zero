@@ -1,0 +1,51 @@
+{
+  "number": 74,
+  "section": "9. Permission policies and human approval",
+  "title": "Policy overrides",
+  "prompt": "Configure a default toolset policy and override it for selected built-in and MCP tools.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 74.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'approval.policy':\n        accept({ policy: p.policy, decision: p.policy === 'always_allow' ? 'allowed' : p.policy === 'always_ask' ? 'requires_action' : 'fixture evaluator allows read only', actualServiceEvaluatorInvoked: false });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/permission-policies"
+  ],
+  "specification": "prompt-074-policy-overrides-prompt.txt",
+  "fields": [
+    {
+      "key": "policy",
+      "label": "Permission policy",
+      "value": "always_ask",
+      "options": [
+        "always_allow",
+        "always_ask",
+        "auto"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "default",
+      "label": "Evaluate default policy",
+      "op": "approval.policy"
+    },
+    {
+      "id": "override",
+      "label": "Apply per-tool policy override",
+      "op": "approval.override"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "default"
+    },
+    {
+      "action": "override"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Configure a default toolset policy and override it for selected built-in and MCP tools."
+}

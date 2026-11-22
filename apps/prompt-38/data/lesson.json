@@ -1,0 +1,41 @@
+{
+  "number": 38,
+  "section": "5. Events, streaming, and reconnection",
+  "title": "Event rendering",
+  "prompt": "Render agent messages, tool calls, tool results, and session-status changes in a readable event timeline.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 38.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'events.seed':\n        r.history = [{ id: 'evt-1', type: 'message.user', text: 'Analyze inventory' }, { id: 'evt-2', type: 'tool.request', tool: 'read' }, { id: 'evt-3', type: 'message.completed', text: 'Inventory value: USD 440' }];\n        s.rows = r.history;\n        accept({ events: r.history });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming",
+    "https://platform.claude.com/docs/en/managed-agents/reference"
+  ],
+  "specification": "prompt-038-event-rendering-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "events",
+      "label": "Receive mixed session events",
+      "op": "events.seed"
+    },
+    {
+      "id": "render",
+      "label": "Render readable projections",
+      "op": "events.render"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "events"
+    },
+    {
+      "action": "render"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Render agent messages, tool calls, tool results, and session-status changes in a readable event timeline."
+}

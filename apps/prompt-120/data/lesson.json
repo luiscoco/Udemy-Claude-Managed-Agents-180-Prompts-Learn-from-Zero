@@ -1,0 +1,63 @@
+{
+  "number": 120,
+  "section": "14. Dreams and memory consolidation — research preview",
+  "title": "Dream lifecycle",
+  "prompt": "Track Dream status and usage, handling failure, cancellation, partial outputs, and archiving.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const state = await client.beta.dreams.retrieve(dreamId);\nconsole.log(state.status, state.usage);\nconsole.log(state.error, state.outputs, state.session_id);",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "await client.beta.dreams.cancel(activeDreamId);\nawait client.beta.dreams.archive(terminalDreamId);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/dreams"
+  ],
+  "specification": "prompt-120-dream-lifecycle-prompt.txt",
+  "fields": [
+    {
+      "key": "status",
+      "label": "Dream state",
+      "value": "failed",
+      "options": [
+        "running",
+        "succeeded",
+        "failed",
+        "cancelled"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "start",
+      "label": "Start Dream fixture",
+      "op": "dream.seed"
+    },
+    {
+      "id": "status",
+      "label": "Handle selected lifecycle state",
+      "op": "dream.status"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "start"
+    },
+    {
+      "action": "status"
+    },
+    {
+      "action": "status",
+      "input": {
+        "status": "succeeded"
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Track Dream status and usage, handling failure, cancellation, partial outputs, and archiving."
+}

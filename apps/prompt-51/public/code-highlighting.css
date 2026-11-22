@@ -1,0 +1,50 @@
+/* Both themes use navy code panels for consistent classroom recordings. */
+pre[class*="language-"] {
+  background: var(--code);
+  color: var(--code-ink);
+  tab-size: 2;
+  text-align: left;
+}
+
+code[class*="language-"] {
+  font-family: Consolas, 'Courier New', monospace;
+  font-variant-ligatures: none;
+  text-shadow: none;
+  color: inherit;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #b5c5df;
+}
+
+.token.punctuation { color: #d3e0f5; }
+.token.keyword,
+.token.atrule { color: #c4a1ff; }
+.token.string,
+.token.char,
+.token.attr-value { color: #9ce2a4; }
+.token.function,
+.token.class-name { color: #83c8ff; }
+.token.number,
+.token.boolean,
+.token.constant { color: #ffb49d; }
+.token.operator,
+.token.entity,
+.token.url { color: #7fe0ea; }
+.token.property,
+.token.attr-name,
+.token.symbol,
+.token.builtin { color: #ffd38b; }
+.token.regex,
+.token.important { color: #ffc078; }
+.token.important,
+.token.bold { font-weight: 700; }
+.token.italic { font-style: italic; }
+
+pre[class*="language-"] ::selection {
+  background: #365984;
+  color: #fff;
+}

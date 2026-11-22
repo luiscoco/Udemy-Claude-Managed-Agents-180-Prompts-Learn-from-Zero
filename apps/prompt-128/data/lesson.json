@@ -1,0 +1,43 @@
+{
+  "number": 128,
+  "section": "15. Multiagent coordination and advisors",
+  "title": "Advisor responses",
+  "prompt": "Handle readable and redacted advisor results correctly and account for consultation usage.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "if (event.type === \"agent.thread_message_received\" &&\n    event.from_agent_name === \"anthropic.advisor\") {\n  for (const block of event.content) {\n    if (block.type === \"text\") {\n      console.log(block.text);\n    } else if (block.type === \"redacted\") {\n      console.log(\"Advice withheld by model policy\");\n    }\n  }\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration"
+  ],
+  "specification": "prompt-128-advisor-responses-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "readable",
+      "label": "Handle readable advice",
+      "op": "orchestration.consult"
+    },
+    {
+      "id": "redacted",
+      "label": "Handle redacted advice and usage",
+      "op": "orchestration.consult",
+      "args": {
+        "redacted": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "readable"
+    },
+    {
+      "action": "redacted"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Handle readable and redacted advisor results correctly and account for consultation usage."
+}

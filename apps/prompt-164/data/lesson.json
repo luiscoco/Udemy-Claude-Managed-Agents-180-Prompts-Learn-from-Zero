@@ -1,0 +1,40 @@
+{
+  "number": 164,
+  "section": "21. Self-hosted sandboxes and cloud-platform variants",
+  "title": "First worker",
+  "prompt": "Run a self-hosted CLI worker and prove that a session’s Bash and file operations execute on that host.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 164.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'host.claim':\n        r.queue ??= [{ id: 'job-1', status: 'queued' }];\n        r.claim = r.queue.find((item: Data) => item.status === 'queued');\n        if (r.claim) {\n            r.claim.status = 'claimed';\n            r.claim.worker = 'classroom-local';\n            accept({ claim: r.claim });\n        }\n        else\n            reject('No queued work.');\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes"
+  ],
+  "specification": "prompt-164-first-worker-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "claim",
+      "label": "Claim a local classroom work item",
+      "op": "host.claim"
+    },
+    {
+      "id": "execute",
+      "label": "Write and read an actual local marker",
+      "op": "host.execute"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "claim"
+    },
+    {
+      "action": "execute"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Run a self-hosted CLI worker and prove that a session’s Bash and file operations execute on that host."
+}

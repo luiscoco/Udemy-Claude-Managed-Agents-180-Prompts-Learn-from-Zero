@@ -1,0 +1,49 @@
+{
+  "number": 25,
+  "section": "3. Cloud environments and sandbox capabilities",
+  "title": "Local databases",
+  "prompt": "Run a sandbox-local database for a small analysis task and explain its persistence within the session.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 25.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'database.create':\n        r.databaseRows = inventory;\n        accept({ engine: 'Actual node:sqlite, local classroom fixture', persistedRows: r.databaseRows });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference",
+    "https://platform.claude.com/docs/en/managed-agents/environments"
+  ],
+  "specification": "prompt-025-local-databases-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "create",
+      "label": "Create local inventory database",
+      "op": "database.create"
+    },
+    {
+      "id": "query",
+      "label": "Query inventory totals",
+      "op": "database.query"
+    },
+    {
+      "id": "resume",
+      "label": "Restore and query session data",
+      "op": "database.query"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "create"
+    },
+    {
+      "action": "query"
+    },
+    {
+      "action": "resume"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Run a sandbox-local database for a small analysis task and explain its persistence within the session."
+}

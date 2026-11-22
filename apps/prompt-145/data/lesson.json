@@ -1,0 +1,51 @@
+{
+  "number": 145,
+  "section": "18. Scheduled deployments",
+  "title": "Manual execution",
+  "prompt": "Run a deployment manually and inspect the session it creates.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const run = await client.beta.deployments.run(deploymentId);\nconsole.log(run.id, run.trigger_context);\nif (run.error) {\n  throw new Error(run.error.message);\n}\nif (!run.session_id) {\n  throw new Error(\"Session ID unavailable\");\n}\nconst session = await client.beta.sessions.retrieve(\n  run.session_id\n);\nconsole.log(session.id, session.status);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/scheduled-deployments"
+  ],
+  "specification": "prompt-145-manual-execution-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "configure",
+      "label": "Create deployment fixture",
+      "op": "schedule.create"
+    },
+    {
+      "id": "manual",
+      "label": "Run deployment manually",
+      "op": "schedule.run",
+      "args": {
+        "manual": true
+      }
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect the created session",
+      "op": "session.list"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "configure"
+    },
+    {
+      "action": "manual"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Run a deployment manually and inspect the session it creates."
+}

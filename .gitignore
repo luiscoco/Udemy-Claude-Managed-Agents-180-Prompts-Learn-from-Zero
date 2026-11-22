@@ -1,0 +1,22 @@
+# Dependencies and generated files
+node_modules/
+.runtime/
+.build/
+.tools/
+artifacts/
+test-results/
+playwright-report/
+coverage/
+*.tsbuildinfo
+*.log
+*.mp4
+*.webm
+*.mov
+# Keep credentials local
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
+Thumbs.db

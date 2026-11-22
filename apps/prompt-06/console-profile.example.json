@@ -1,0 +1,13 @@
+{
+  "consoleAgentId": "<agent ID copied from Console>",
+  "environmentId": "<environment ID copied from Console>",
+  "agent": {
+    "name": "Document reviewer",
+    "model": "<model ID available to your account>",
+    "system": "Summarize findings and cite evidence.",
+    "description": "Reviews supplied text",
+    "metadata": { "purpose": "learning" },
+    "tools": []
+  },
+  "task": "Review this note. The release is Friday. The owner is Maya. Identify the release day and owner."
+}

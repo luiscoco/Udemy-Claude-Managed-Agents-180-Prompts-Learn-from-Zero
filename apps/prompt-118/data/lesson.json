@@ -1,0 +1,48 @@
+{
+  "number": 118,
+  "section": "14. Dreams and memory consolidation — research preview",
+  "title": "First Dream",
+  "prompt": "Run a Dream that consolidates one memory store using a small set of completed sessions.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const dream = await client.beta.dreams.create({\n  model: \"claude-opus-5-5\",\n  inputs: [\n    { type: \"memory_store\", memory_store_id: storeId },\n    { type: \"sessions\", session_ids: [sessionA, sessionB] }\n  ],\n  output_behavior: { type: \"create_new\" },\n  instructions: \"Consolidate confirmed coding preferences.\"\n});\nconsole.log(dream.id, dream.status);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/dreams"
+  ],
+  "specification": "prompt-118-first-dream-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "seed",
+      "label": "Prepare memory and completed sessions",
+      "op": "dream.seed"
+    },
+    {
+      "id": "dream",
+      "label": "Consolidate fixture memory",
+      "op": "dream.run"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect saved state",
+      "op": "inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "seed"
+    },
+    {
+      "action": "dream"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Run a Dream that consolidates one memory store using a small set of completed sessions."
+}

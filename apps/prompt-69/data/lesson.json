@@ -1,0 +1,54 @@
+{
+  "number": 69,
+  "section": "8. MCP integrations",
+  "title": "Session credentials",
+  "prompt": "Reuse one agent across two sessions that authenticate to the same MCP server through different vaults.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const sessionA = await client.beta.sessions.create({\n  agent: agentId,\n  environment_id: environmentId,\n  vault_ids: [vaultIdA]\n});\nconst sessionB = await client.beta.sessions.create({\n  agent: agentId,\n  environment_id: environmentId,\n  vault_ids: [vaultIdB]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/vaults"
+  ],
+  "specification": "prompt-069-session-credentials-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "first",
+      "label": "Create Alice session",
+      "op": "mcp.userSession",
+      "args": {
+        "actor": "alice"
+      }
+    },
+    {
+      "id": "second",
+      "label": "Create Bob session",
+      "op": "mcp.userSession",
+      "args": {
+        "actor": "bob"
+      }
+    },
+    {
+      "id": "verify",
+      "label": "Compare vault bindings",
+      "op": "mcp.bindings"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "first"
+    },
+    {
+      "action": "second"
+    },
+    {
+      "action": "verify"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Reuse one agent across two sessions that authenticate to the same MCP server through different vaults."
+}

@@ -1,0 +1,43 @@
+{
+  "number": 77,
+  "section": "9. Permission policies and human approval",
+  "title": "Permission auditing",
+  "prompt": "Record evaluated permissions and available evaluation details, tolerating new values introduced by future API versions.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "if (event.type === \"agent.tool_use\" ||\n    event.type === \"agent.mcp_tool_use\") {\n  await appendAudit({\n    sessionId,\n    eventId: event.id,\n    tool: event.name,\n    permission: event.evaluated_permission,\n    evaluation: event.evaluation ?? null\n  });\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/permission-policies"
+  ],
+  "specification": "prompt-077-permission-auditing-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "known",
+      "label": "Record evaluated permissions",
+      "op": "approval.audit"
+    },
+    {
+      "id": "future",
+      "label": "Record an unfamiliar permission value",
+      "op": "approval.audit",
+      "args": {
+        "future": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "known"
+    },
+    {
+      "action": "future"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Record evaluated permissions and available evaluation details, tolerating new values introduced by future API versions."
+}

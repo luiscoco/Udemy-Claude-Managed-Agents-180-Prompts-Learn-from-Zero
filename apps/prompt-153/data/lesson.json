@@ -1,0 +1,40 @@
+{
+  "number": 153,
+  "section": "19. Webhooks and event-driven integrations",
+  "title": "Delivery recovery",
+  "prompt": "Add periodic reconciliation so missed webhook deliveries do not leave application state permanently incorrect.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "for (const sessionId of trackedSessionIds) {\n  const session = await client.beta.sessions.retrieve(sessionId);\n  console.log(session.id, session.status, session.updated_at);\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/webhooks"
+  ],
+  "specification": "prompt-153-delivery-recovery-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "miss",
+      "label": "Simulate a missed notification",
+      "op": "webhook.missed"
+    },
+    {
+      "id": "reconcile",
+      "label": "Reconcile from resource state",
+      "op": "webhook.reconcile"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "miss"
+    },
+    {
+      "action": "reconcile"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Add periodic reconciliation so missed webhook deliveries do not leave application state permanently incorrect."
+}

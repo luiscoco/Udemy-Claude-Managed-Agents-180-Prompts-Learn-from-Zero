@@ -1,0 +1,55 @@
+{
+  "number": 138,
+  "section": "17. Outcomes and automated grading",
+  "title": "Outcome creation",
+  "prompt": "Start an outcome-oriented session using user.define_outcome, demonstrating inline and uploaded-file rubrics.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const session = await client.beta.sessions.create({\n  agent: agentId,\n  environment_id: environmentId\n});\nawait client.beta.sessions.events.send(session.id, {\n  events: [{\n    type: \"user.define_outcome\",\n    description: \"Create stock-summary.json from the fixture.\",\n    rubric: { type: \"text\", content: RUBRIC },\n    max_iterations: 2\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "const fileRubric = {\n  type: \"file\" as const,\n  file_id: rubricFile.id\n};",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/define-outcomes"
+  ],
+  "specification": "prompt-138-outcome-creation-prompt.txt",
+  "fields": [
+    {
+      "key": "rubricMode",
+      "label": "Rubric input",
+      "value": "inline",
+      "options": [
+        "inline",
+        "file"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "rubric",
+      "label": "Create a rubric artifact",
+      "op": "outcome.rubric"
+    },
+    {
+      "id": "define",
+      "label": "Emit an outcome definition",
+      "op": "outcome.define"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "rubric"
+    },
+    {
+      "action": "define"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Start an outcome-oriented session using user.define_outcome, demonstrating inline and uploaded-file rubrics."
+}

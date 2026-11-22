@@ -1,0 +1,40 @@
+{
+  "number": 60,
+  "section": "7. Custom tools and application execution",
+  "title": "Concurrent calls",
+  "prompt": "Handle several custom-tool requests concurrently while matching every result to the correct tool-call event.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await Promise.all(calls.map(async (call) => {\n  await executeAndReply(call);\n}));",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-060-concurrent-calls-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "requests",
+      "label": "Receive concurrent requests",
+      "op": "tool.concurrent"
+    },
+    {
+      "id": "join",
+      "label": "Match results to request IDs",
+      "op": "tool.correlate"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "requests"
+    },
+    {
+      "action": "join"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Handle several custom-tool requests concurrently while matching every result to the correct tool-call event."
+}

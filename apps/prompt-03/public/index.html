@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Prompt 3 · Project Setup Lab</title>
+  <link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/setup.css"><link rel="stylesheet" href="/code-highlighting.css">
+  <script src="/vendor/prism.js" data-manual></script><script src="/vendor/prism-typescript.js"></script><script src="/vendor/prism-json.js"></script><script src="/vendor/prism-powershell.js"></script>
+  <script type="module" src="/app.js"></script>
+</head>
+<body><main>
+  <header class="topbar"><a class="course-title" href="/">How <span>Claude Managed Agents</span> Works</a><span class="course-tag">PROMPT 03 · PROJECT SETUP</span></header>
+  <section class="intro"><div><div class="eyebrow">A RELIABLE START. EVERY TIME.</div><h1>Validate first.<br><span>Build with confidence.</span></h1><p>A runnable TypeScript project with pinned dependencies.<br>Catch missing configuration before a request leaves your app.</p></div><div class="hero-art"><img src="/astronaut.png" alt=""><span>PROMPT 03<br>PROJECT SETUP</span></div></section>
+  <nav class="lesson-flow" aria-label="Lesson workflow"><div><b>01</b><span><strong>Configure</strong><small>Provide three required values</small></span></div><i aria-hidden="true">→</i><div><b>02</b><span><strong>Validate</strong><small>Check config, runtime and SDK</small></span></div><i aria-hidden="true">→</i><div><b>03</b><span><strong>Inspect</strong><small>Read the real project source</small></span></div></nav>
+  <nav class="student-nav" aria-label="Lesson sections"><a href="#setup-lab">Setup lab</a><a href="#source-code">Project files</a><a href="#run-project">Run it yourself ↗</a><div class="view-controls"><button id="theme-toggle" class="quiet" aria-pressed="false">Switch to dark mode</button><button id="present" class="quiet" aria-pressed="false">Presentation view</button></div></nav>
+  <section class="setup-banner"><div><span class="course-tag">LOCAL CLASSROOM LAB</span><p>Synthetic configuration · real Zod validation · installed SDK check · no provider requests</p></div><span id="runtime" class="runtime"></span></section>
+  <div id="notice" class="notice" role="status" hidden></div>
+  <div id="setup-lab" class="setup-grid">
+    <section class="setup-card setup-form"><p class="eyebrow">01 / CONFIGURE</p><h2>Try a setup scenario</h2>
+      <label for="scenario">Teaching scenario</label><select id="scenario"><option value="valid">All values present</option><option value="agent">Missing agent ID</option><option value="environment">Missing environment ID</option><option value="key">Missing API key</option><option value="sdk">SDK surface fault (injected)</option></select>
+      <label for="key">ANTHROPIC_API_KEY</label><select id="key"><option value="present">Synthetic key present</option><option value="missing">Missing key</option></select><p class="helper">The lab uses a placeholder. Keep real keys in your server's .env file.</p>
+      <label for="agent">AGENT_ID</label><input id="agent" value="agent_classroom" maxlength="200" autocomplete="off" spellcheck="false">
+      <label for="environment">ENVIRONMENT_ID</label><input id="environment" value="env_classroom" maxlength="200" autocomplete="off" spellcheck="false">
+      <label class="fault-option"><input type="checkbox" id="missing-surface"> Inject a missing SDK method</label>
+      <button id="validate" class="primary">Validate configuration ↗</button>
+      <p class="helper">Presence checks cannot verify whether an ID exists or whether your account has access.</p>
+    </section>
+    <section class="setup-card result-card"><div class="workbench-heading"><div><p class="eyebrow">02 / VALIDATE</p><h2>Follow the startup checks</h2></div><span id="result-status" class="result-status">Not checked</span></div>
+      <div id="trace" class="check-trace"><p>Run validation to see which checks pass.</p></div>
+      <div class="request-meter"><strong id="request-count">0</strong><div><b>Provider requests</b><span>Validation runs locally. It never creates a session.</span></div></div>
+      <div id="issues" role="status" aria-live="polite"></div>
+      <p id="result-explanation" class="helper">When setup passes, inspect the request plan below. No network call is sent to Claude.</p>
+    </section>
+  </div>
+  <section class="setup-card report-card"><div class="workbench-heading"><div><p class="eyebrow">VALIDATION EVIDENCE</p><h2>The exact result</h2></div><span class="course-tag">JSON · LOCAL REPORT</span></div><pre tabindex="0" aria-label="Validation JSON"><code id="report" class="language-json"></code></pre></section>
+  <section id="source-code" class="setup-card source-card"><div class="workbench-heading"><div><p class="eyebrow">03 / INSPECT</p><h2>A real TypeScript project</h2></div><button id="copy" class="quiet">Copy source</button></div><p class="helper">These are the files running this application, served directly from disk. Dependencies are pinned and package-lock.json is included.</p><div id="files" class="file-tabs" role="group" aria-label="Project source files"></div><div class="source-label"><strong id="filename"></strong><span id="language"></span></div><pre tabindex="0" aria-label="Project source"><code id="source"></code></pre></section>
+  <section id="run-project" class="setup-card"><div class="workbench-heading"><div><p class="eyebrow">FROM LAB TO YOUR TERMINAL</p><h2>Run the same project</h2></div><button id="server-check" class="quiet">Check server configuration</button></div><p class="helper">Use Node.js 24+. From apps/prompt-03, install the lockfile and create your .env. Supply your own API key and existing agent / environment IDs.</p><div class="terminal-grid"><div><p class="helper">PowerShell · install and launch</p><pre tabindex="0"><code id="commands" class="language-powershell"></code></pre></div><div><p class="helper">PowerShell · validate, then optionally create a real session</p><pre tabindex="0"><code id="live-commands" class="language-powershell"></code></pre></div></div><p class="helper">setup:check makes no provider request and exits with code 1 when setup fails. session:create makes one creation attempt with retries disabled. A session ID does not start a task; send a user event separately.</p><div id="server-result" role="status"></div></section>
+  <footer><span>Independent teaching application · Prompt 3 · Managed Agents Beta</span><div><a href="https://platform.claude.com/docs/en/api/typescript/beta/sessions/create" target="_blank" rel="noreferrer">Session API ↗</a><a href="https://github.com/anthropics/anthropic-sdk-typescript" target="_blank" rel="noreferrer">Official TypeScript SDK ↗</a></div></footer>
+</main></body></html>
+

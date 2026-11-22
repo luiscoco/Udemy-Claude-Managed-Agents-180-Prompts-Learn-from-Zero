@@ -1,0 +1,50 @@
+{
+  "number": 141,
+  "section": "17. Outcomes and automated grading",
+  "title": "Outcome completion",
+  "prompt": "Handle successful evaluation, interrupted work, failures, and exhausted iterations without reporting premature success.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "if (event.type === \"span.outcome_evaluation_end\") {\n  console.log(event.outcome_id, event.result);\n  console.log(event.explanation, event.iteration);\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/define-outcomes"
+  ],
+  "specification": "prompt-141-outcome-completion-v2-prompt.txt",
+  "fields": [
+    {
+      "key": "status",
+      "label": "Outcome result",
+      "value": "max_iterations_reached",
+      "options": [
+        "satisfied",
+        "interrupted",
+        "failed",
+        "max_iterations_reached"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "status",
+      "label": "Handle selected outcome result",
+      "op": "outcome.status"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "status"
+    },
+    {
+      "action": "status",
+      "input": {
+        "status": "satisfied"
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Handle successful evaluation, interrupted work, failures, and exhausted iterations without reporting premature success."
+}

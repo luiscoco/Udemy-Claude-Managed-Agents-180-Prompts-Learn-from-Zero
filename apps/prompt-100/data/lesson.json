@@ -1,0 +1,49 @@
+{
+  "number": 100,
+  "section": "12. Files, multimodal inputs, and GitHub",
+  "title": "Images and documents",
+  "prompt": "Send supported image and document message content, comparing it with mounting files for sandbox processing.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.events.send(sessionId, {\n  events: [{\n    type: \"user.message\",\n    content: [\n      { type: \"image\",\n        source: { type: \"file\", file_id: imageId } },\n      { type: \"document\",\n        source: { type: \"file\", file_id: documentId } }\n    ]\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/files",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-100-images-and-documents-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "message",
+      "label": "Build image/document message content",
+      "op": "file.multimodal"
+    },
+    {
+      "id": "mount",
+      "label": "Compare a sandbox mount",
+      "op": "file.mount"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect saved state",
+      "op": "inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "message"
+    },
+    {
+      "action": "mount"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Send supported image and document message content, comparing it with mounting files for sandbox processing."
+}

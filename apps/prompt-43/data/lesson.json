@@ -1,0 +1,42 @@
+{
+  "number": 43,
+  "section": "5. Events, streaming, and reconnection",
+  "title": "Thinking indicator",
+  "prompt": "Display a thinking-progress indicator from supported events without treating it as access to hidden reasoning.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "if (event.type === \"agent.thinking\") {\n  console.log(\"Agent is making progress.\");\n}\nif (event.type === \"session.status_idle\") {\n  console.log(\"Inspect the stop reason.\");\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/event-deltas",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming",
+    "https://platform.claude.com/docs/en/managed-agents/reference"
+  ],
+  "specification": "prompt-043-thinking-indicator-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "progress",
+      "label": "Receive thinking progress",
+      "op": "events.thinking"
+    },
+    {
+      "id": "finish",
+      "label": "Receive completed answer",
+      "op": "events.authoritative"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "progress"
+    },
+    {
+      "action": "finish"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Display a thinking-progress indicator from supported events without treating it as access to hidden reasoning."
+}

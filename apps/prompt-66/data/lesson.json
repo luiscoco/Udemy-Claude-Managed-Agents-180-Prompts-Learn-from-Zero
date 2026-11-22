@@ -1,0 +1,49 @@
+{
+  "number": 66,
+  "section": "8. MCP integrations",
+  "title": "Configuration matching",
+  "prompt": "Demonstrate how an MCP server declaration connects to its matching mcp_toolset entry.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "mcp_servers:\n  - type: url\n    name: issue_source\n    url: https://api.githubcopilot.com/mcp/\ntools:\n  - type: mcp_toolset\n    mcp_server_name: issue_source",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/mcp-connector"
+  ],
+  "specification": "prompt-066-configuration-matching-prompt.txt",
+  "fields": [
+    {
+      "key": "serverName",
+      "label": "Server declaration name",
+      "value": "github"
+    },
+    {
+      "key": "toolsetName",
+      "label": "Toolset server name",
+      "value": "wrong-name"
+    }
+  ],
+  "actions": [
+    {
+      "id": "match",
+      "label": "Validate server-to-toolset mapping",
+      "op": "mcp.match"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "match"
+    },
+    {
+      "action": "match",
+      "input": {
+        "toolsetName": "github"
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Demonstrate how an MCP server declaration connects to its matching mcp_toolset entry."
+}

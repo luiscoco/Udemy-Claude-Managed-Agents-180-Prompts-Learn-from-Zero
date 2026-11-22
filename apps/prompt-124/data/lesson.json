@@ -1,0 +1,40 @@
+{
+  "number": 124,
+  "section": "15. Multiagent coordination and advisors",
+  "title": "Parallel delegation",
+  "prompt": "Have a coordinator delegate independent tasks concurrently and combine the specialists’ results.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const task = \"Delegate source research and dataset analysis \" +\n  \"concurrently to the researcher and analyst. Give each a \" +\n  \"separate scope and evidence requirements. Collect both \" +\n  \"reports, then ask the reviewer to check the synthesis. \" +\n  \"Report missing coverage and unresolved disagreements.\";",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration"
+  ],
+  "specification": "prompt-124-parallel-delegation-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "delegate",
+      "label": "Run independent local tasks concurrently",
+      "op": "orchestration.parallel"
+    },
+    {
+      "id": "combine",
+      "label": "Combine specialist findings",
+      "op": "orchestration.combine"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "delegate"
+    },
+    {
+      "action": "combine"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Have a coordinator delegate independent tasks concurrently and combine the specialists’ results."
+}

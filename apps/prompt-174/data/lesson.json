@@ -1,0 +1,58 @@
+{
+  "number": 174,
+  "section": "22. Application patterns, testing, and complete projects",
+  "title": "Multiple users",
+  "prompt": "Add authentication and enforce user ownership before accessing sessions, files, memory stores, or vault references.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 174.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'auth.seed':\n        r.ownership = { session: 'alice', vault: 'alice', file: 'alice' };\n        accept({ ownership: r.ownership });\n        break;\n}"
+    }
+  ],
+  "sources": [],
+  "specification": "prompt-174-multiple-users-prompt.txt",
+  "fields": [
+    {
+      "key": "actor",
+      "label": "Classroom actor",
+      "value": "alice",
+      "options": [
+        "alice",
+        "bob",
+        "reviewer"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "create",
+      "label": "Create Alice-owned resources",
+      "op": "auth.seed"
+    },
+    {
+      "id": "access",
+      "label": "Authorize selected actor",
+      "op": "auth.access"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "create"
+    },
+    {
+      "action": "access",
+      "input": {
+        "actor": "bob"
+      }
+    },
+    {
+      "action": "access",
+      "input": {
+        "actor": "alice"
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Add authentication and enforce user ownership before accessing sessions, files, memory stores, or vault references."
+}

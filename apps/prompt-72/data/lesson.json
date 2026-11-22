@@ -1,0 +1,47 @@
+{
+  "number": 72,
+  "section": "8. MCP integrations",
+  "title": "Network validation",
+  "prompt": "Test how environment networking and MCP-specific allowances affect connection to a declared MCP server.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 72.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'network.check': {\n        const host = p.host || (p.context === 'mcp' ? 'mcp.example.test' : 'registry.npmjs.org');\n        const allowed = p.context === 'package' ? !!p.allowPackages : p.context === 'mcp' ? !!p.allowMcp : host === 'api.example.test' || host.endsWith('.docs.example.test');\n        const evidence = { host, allowed, rule: p.context || 'api.example.test and *.docs.example.test', requestSent: false };\n        if (allowed)\n            accept(evidence);\n        else\n            reject('Destination is outside the configured allowlist.', evidence);\n        break;\n    }\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/environments"
+  ],
+  "specification": "prompt-072-network-validation-v2-prompt.txt",
+  "fields": [
+    {
+      "key": "allowMcp",
+      "label": "Allow declared MCP destinations",
+      "value": false
+    }
+  ],
+  "actions": [
+    {
+      "id": "test",
+      "label": "Test MCP-specific network allowance",
+      "op": "network.check",
+      "args": {
+        "context": "mcp"
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "test"
+    },
+    {
+      "action": "test",
+      "input": {
+        "allowMcp": true
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Test how environment networking and MCP-specific allowances affect connection to a declared MCP server."
+}

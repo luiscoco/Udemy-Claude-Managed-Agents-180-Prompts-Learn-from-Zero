@@ -1,0 +1,60 @@
+{
+  "number": 63,
+  "section": "7. Custom tools and application execution",
+  "title": "Custom authorization",
+  "prompt": "Enforce user authorization and human review inside a write-capable custom-tool handler.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "if (!await canUpdate(user, order)) {\n  return \"Denied: order access is not authorized.\";\n}\nif (!await approved(actionId)) {\n  return \"Pending: human review is required.\";\n}\nreturn await performUpdate(actionId);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-063-custom-authorization-prompt.txt",
+  "fields": [
+    {
+      "key": "actor",
+      "label": "Classroom actor",
+      "value": "alice",
+      "options": [
+        "alice",
+        "bob",
+        "reviewer"
+      ]
+    },
+    {
+      "key": "approved",
+      "label": "Human review recorded",
+      "value": false
+    }
+  ],
+  "actions": [
+    {
+      "id": "write",
+      "label": "Authorize a write request",
+      "op": "auth.write"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "write"
+    },
+    {
+      "action": "write",
+      "input": {
+        "approved": true
+      }
+    },
+    {
+      "action": "write",
+      "input": {
+        "actor": "bob"
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Enforce user authorization and human review inside a write-capable custom-tool handler."
+}

@@ -1,0 +1,1082 @@
+[
+  {
+    "number": 1,
+    "section": "1. Foundations and first implementation",
+    "title": "Product selection",
+    "prompt": "Compare Claude Managed Agents, Claude Agent SDK, and the Messages API using the same document-analysis application."
+  },
+  {
+    "number": 2,
+    "section": "1. Foundations and first implementation",
+    "title": "Architecture",
+    "prompt": "Explain agents, environments, sessions, and events, then show how they interact in one minimal runnable example."
+  },
+  {
+    "number": 3,
+    "section": "1. Foundations and first implementation",
+    "title": "Project setup",
+    "prompt": "Create a TypeScript Managed Agents project with a compatible SDK version, configuration validation, and clear setup instructions."
+  },
+  {
+    "number": 4,
+    "section": "1. Foundations and first implementation",
+    "title": "Authentication",
+    "prompt": "Configure API-key authentication and explain the documented CLI-login alternative, keeping credentials outside source code."
+  },
+  {
+    "number": 5,
+    "section": "1. Foundations and first implementation",
+    "title": "First working agent",
+    "prompt": "Create an agent and environment, start a session, send a task, display its response, and save the resource IDs."
+  },
+  {
+    "number": 6,
+    "section": "1. Foundations and first implementation",
+    "title": "Console workflow",
+    "prompt": "Guide me through creating and testing an agent in Claude Console, then reproduce its configuration through the API."
+  },
+  {
+    "number": 7,
+    "section": "1. Foundations and first implementation",
+    "title": "Declarative configuration",
+    "prompt": "Manage agent and environment definitions with ant apply and claude-lock.json; demonstrate a repeatable update."
+  },
+  {
+    "number": 8,
+    "section": "1. Foundations and first implementation",
+    "title": "API headers",
+    "prompt": "Explain the required Managed Agents beta header and show equivalent SDK and raw HTTP requests."
+  },
+  {
+    "number": 9,
+    "section": "2. Agent definitions, models, and versions",
+    "title": "Agent definition",
+    "prompt": "Create a reusable agent with a name, model, system instructions, tools, description, and tracking metadata."
+  },
+  {
+    "number": 10,
+    "section": "2. Agent definitions, models, and versions",
+    "title": "Instruction design",
+    "prompt": "Separate permanent agent instructions from individual user tasks, demonstrating how each affects the agent’s behaviour."
+  },
+  {
+    "number": 11,
+    "section": "2. Agent definitions, models, and versions",
+    "title": "Model selection",
+    "prompt": "Compare two supported models on one task, measuring output quality, latency, and usage."
+  },
+  {
+    "number": 12,
+    "section": "2. Agent definitions, models, and versions",
+    "title": "Effort settings",
+    "prompt": "Compare supported model effort settings using identical inputs and explain the observed trade-offs."
+  },
+  {
+    "number": 13,
+    "section": "2. Agent definitions, models, and versions",
+    "title": "Speed settings",
+    "prompt": "Demonstrate supported model speed settings and measure their effect on latency and cost."
+  },
+  {
+    "number": 14,
+    "section": "2. Agent definitions, models, and versions",
+    "title": "Inference geography",
+    "prompt": "Configure supported inference-geography settings and demonstrate validation against workspace policies."
+  },
+  {
+    "number": 15,
+    "section": "2. Agent definitions, models, and versions",
+    "title": "Resource management",
+    "prompt": "Create, retrieve, and list agents, using metadata to associate them with application features."
+  },
+  {
+    "number": 16,
+    "section": "2. Agent definitions, models, and versions",
+    "title": "Concurrent updates",
+    "prompt": "Update an agent using optimistic concurrency and handle a conflicting version without overwriting another change."
+  },
+  {
+    "number": 17,
+    "section": "2. Agent definitions, models, and versions",
+    "title": "Version rollout",
+    "prompt": "List agent versions and compare sessions pinned to different versions before promoting a configuration."
+  },
+  {
+    "number": 18,
+    "section": "2. Agent definitions, models, and versions",
+    "title": "Archiving",
+    "prompt": "Archive a disposable agent and demonstrate the consequences for existing sessions and attempts to create new sessions."
+  },
+  {
+    "number": 19,
+    "section": "3. Cloud environments and sandbox capabilities",
+    "title": "Sandbox isolation",
+    "prompt": "Create two sessions using one environment and demonstrate that their files and processes are isolated."
+  },
+  {
+    "number": 20,
+    "section": "3. Cloud environments and sandbox capabilities",
+    "title": "Runtime inspection",
+    "prompt": "Inspect the sandbox’s available languages, packages, and utilities, then choose suitable tools for a data-processing task."
+  },
+  {
+    "number": 21,
+    "section": "3. Cloud environments and sandbox capabilities",
+    "title": "Dependencies",
+    "prompt": "Preinstall pinned Python and Node dependencies in an environment and verify the package-manager networking they require."
+  },
+  {
+    "number": 22,
+    "section": "3. Cloud environments and sandbox capabilities",
+    "title": "Network restrictions",
+    "prompt": "Configure limited networking and test allowed hosts, blocked destinations, and documented wildcard behaviour."
+  },
+  {
+    "number": 23,
+    "section": "3. Cloud environments and sandbox capabilities",
+    "title": "Network exceptions",
+    "prompt": "Demonstrate package-manager and MCP network allowances without granting unnecessary access to other destinations."
+  },
+  {
+    "number": 24,
+    "section": "3. Cloud environments and sandbox capabilities",
+    "title": "Environment lifecycle",
+    "prompt": "Implement environment creation, retrieval, listing, updating, and archiving, explaining the effects on existing sessions."
+  },
+  {
+    "number": 25,
+    "section": "3. Cloud environments and sandbox capabilities",
+    "title": "Local databases",
+    "prompt": "Run a sandbox-local database for a small analysis task and explain its persistence within the session."
+  },
+  {
+    "number": 26,
+    "section": "3. Cloud environments and sandbox capabilities",
+    "title": "Browser automation",
+    "prompt": "Use the sandbox’s supported Playwright and Chromium installation to inspect a test website and capture a screenshot."
+  },
+  {
+    "number": 27,
+    "section": "4. Sessions and lifecycle management",
+    "title": "Session creation",
+    "prompt": "Create sessions from saved agent and environment IDs, and persist each session ID for later interaction."
+  },
+  {
+    "number": 28,
+    "section": "4. Sessions and lifecycle management",
+    "title": "Initial events",
+    "prompt": "Create a session and start its first task atomically with initial_events, then retrieve the recorded initial events."
+  },
+  {
+    "number": 29,
+    "section": "4. Sessions and lifecycle management",
+    "title": "Session overrides",
+    "prompt": "Override an agent’s model and tools for one session, demonstrating replacement semantics without modifying the reusable agent."
+  },
+  {
+    "number": 30,
+    "section": "4. Sessions and lifecycle management",
+    "title": "Continuing work",
+    "prompt": "Resume an idle cloud session and verify that its conversation, files, and installed dependencies remain available."
+  },
+  {
+    "number": 31,
+    "section": "4. Sessions and lifecycle management",
+    "title": "Status handling",
+    "prompt": "Build a session-status handler that distinguishes idle, running, rescheduling, and terminated states."
+  },
+  {
+    "number": 32,
+    "section": "4. Sessions and lifecycle management",
+    "title": "Interruption",
+    "prompt": "Interrupt a running task, observe the acknowledgement, and redirect the agent with a new instruction."
+  },
+  {
+    "number": 33,
+    "section": "4. Sessions and lifecycle management",
+    "title": "Runtime reconfiguration",
+    "prompt": "Update a session’s tools and MCP servers while respecting idle-state requirements and open-workflow restrictions."
+  },
+  {
+    "number": 34,
+    "section": "4. Sessions and lifecycle management",
+    "title": "Trusted system context",
+    "prompt": "Append trusted system guidance using system.message on a supported model, keeping end-user input in user messages."
+  },
+  {
+    "number": 35,
+    "section": "4. Sessions and lifecycle management",
+    "title": "Session browsing",
+    "prompt": "Build a paginated session browser that retrieves status, configuration, and metadata for a selected session."
+  },
+  {
+    "number": 36,
+    "section": "4. Sessions and lifecycle management",
+    "title": "Session cleanup",
+    "prompt": "Demonstrate session archiving and deletion, explaining which separately uploaded files also require cleanup."
+  },
+  {
+    "number": 37,
+    "section": "5. Events, streaming, and reconnection",
+    "title": "Opening streams",
+    "prompt": "Open a session event stream before sending work and demonstrate why the ordering prevents missing early events."
+  },
+  {
+    "number": 38,
+    "section": "5. Events, streaming, and reconnection",
+    "title": "Event rendering",
+    "prompt": "Render agent messages, tool calls, tool results, and session-status changes in a readable event timeline."
+  },
+  {
+    "number": 39,
+    "section": "5. Events, streaming, and reconnection",
+    "title": "Reconnection",
+    "prompt": "Reconnect by opening a stream, loading event history, and deduplicating event IDs without losing updates."
+  },
+  {
+    "number": 40,
+    "section": "5. Events, streaming, and reconnection",
+    "title": "Event history",
+    "prompt": "Retrieve paginated event history and distinguish when an instruction was submitted from when it was processed."
+  },
+  {
+    "number": 41,
+    "section": "5. Events, streaming, and reconnection",
+    "title": "Stop reasons",
+    "prompt": "Interpret stop reasons so the application distinguishes a completed turn from a session awaiting action."
+  },
+  {
+    "number": 42,
+    "section": "5. Events, streaming, and reconnection",
+    "title": "Response deltas",
+    "prompt": "Render incremental response previews, then reconcile them with the authoritative completed agent message."
+  },
+  {
+    "number": 43,
+    "section": "5. Events, streaming, and reconnection",
+    "title": "Thinking indicator",
+    "prompt": "Display a thinking-progress indicator from supported events without treating it as access to hidden reasoning."
+  },
+  {
+    "number": 44,
+    "section": "5. Events, streaming, and reconnection",
+    "title": "Failure events",
+    "prompt": "Handle session errors and automatic rescheduling, showing useful status messages while preserving diagnostic details."
+  },
+  {
+    "number": 45,
+    "section": "5. Events, streaming, and reconnection",
+    "title": "Interactive events",
+    "prompt": "Process approval requests and custom-tool requests immediately while continuing to consume other session events."
+  },
+  {
+    "number": 46,
+    "section": "5. Events, streaming, and reconnection",
+    "title": "Context compaction",
+    "prompt": "Observe automatic context-compaction events and explain the difference between active model context and persisted session history."
+  },
+  {
+    "number": 47,
+    "section": "6. Built-in tools and web access",
+    "title": "Tool selection",
+    "prompt": "Configure the built-in toolset with only the tools needed for a small file-analysis task."
+  },
+  {
+    "number": 48,
+    "section": "6. Built-in tools and web access",
+    "title": "Bash execution",
+    "prompt": "Build an agent that runs a Bash data-processing command and reports its exit status and generated output."
+  },
+  {
+    "number": 49,
+    "section": "6. Built-in tools and web access",
+    "title": "Reading files",
+    "prompt": "Have the agent read selected files and produce a summary grounded in their actual contents."
+  },
+  {
+    "number": 50,
+    "section": "6. Built-in tools and web access",
+    "title": "Writing files",
+    "prompt": "Have the agent generate a configuration file, then read it back and verify its required fields."
+  },
+  {
+    "number": 51,
+    "section": "6. Built-in tools and web access",
+    "title": "Editing files",
+    "prompt": "Modify an existing configuration file using the edit tool and present a clear before-and-after diff."
+  },
+  {
+    "number": 52,
+    "section": "6. Built-in tools and web access",
+    "title": "File discovery",
+    "prompt": "Use glob and grep to find relevant files and explain where a repository implements a particular feature."
+  },
+  {
+    "number": 53,
+    "section": "6. Built-in tools and web access",
+    "title": "Web research",
+    "prompt": "Create a research agent using localized web search and citations to the sources it actually consulted."
+  },
+  {
+    "number": 54,
+    "section": "6. Built-in tools and web access",
+    "title": "Web fetching",
+    "prompt": "Fetch an approved URL, configure a content-token limit, and handle failed or rejected retrievals."
+  },
+  {
+    "number": 55,
+    "section": "6. Built-in tools and web access",
+    "title": "Domain policies",
+    "prompt": "Compare web allowlists and blocklists, including how they interact with organization and environment restrictions."
+  },
+  {
+    "number": 56,
+    "section": "6. Built-in tools and web access",
+    "title": "Large tool outputs",
+    "prompt": "Demonstrate oversized tool-output offloading and have the agent inspect the resulting sandbox file."
+  },
+  {
+    "number": 57,
+    "section": "7. Custom tools and application execution",
+    "title": "Tool schema",
+    "prompt": "Define an order-status custom tool with a JSON Schema input, clear description, and valid tool name."
+  },
+  {
+    "number": 58,
+    "section": "7. Custom tools and application execution",
+    "title": "Execution handler",
+    "prompt": "Handle agent.custom_tool_use, run the matching function, and return the corresponding user.custom_tool_result."
+  },
+  {
+    "number": 59,
+    "section": "7. Custom tools and application execution",
+    "title": "Input validation",
+    "prompt": "Validate custom-tool arguments and return a useful failure when required fields or values are invalid."
+  },
+  {
+    "number": 60,
+    "section": "7. Custom tools and application execution",
+    "title": "Concurrent calls",
+    "prompt": "Handle several custom-tool requests concurrently while matching every result to the correct tool-call event."
+  },
+  {
+    "number": 61,
+    "section": "7. Custom tools and application execution",
+    "title": "Timeouts and retries",
+    "prompt": "Add bounded retries and timeouts to a custom-tool handler, distinguishing transient failures from permanent failures."
+  },
+  {
+    "number": 62,
+    "section": "7. Custom tools and application execution",
+    "title": "Duplicate prevention",
+    "prompt": "Make a simulated write operation idempotent so repeated events cannot apply the same change twice."
+  },
+  {
+    "number": 63,
+    "section": "7. Custom tools and application execution",
+    "title": "Custom authorization",
+    "prompt": "Enforce user authorization and human review inside a write-capable custom-tool handler."
+  },
+  {
+    "number": 64,
+    "section": "7. Custom tools and application execution",
+    "title": "External API integration",
+    "prompt": "Connect a custom tool to a test REST API and handle authentication, unsuccessful responses, and malformed data."
+  },
+  {
+    "number": 65,
+    "section": "8. MCP integrations",
+    "title": "First MCP server",
+    "prompt": "Connect a remote MCP server using its documented URL and inspect the tools available to the agent."
+  },
+  {
+    "number": 66,
+    "section": "8. MCP integrations",
+    "title": "Configuration matching",
+    "prompt": "Demonstrate how an MCP server declaration connects to its matching mcp_toolset entry."
+  },
+  {
+    "number": 67,
+    "section": "8. MCP integrations",
+    "title": "Tool allowlists",
+    "prompt": "Expose only selected MCP tools and disable the remaining tools from that server."
+  },
+  {
+    "number": 68,
+    "section": "8. MCP integrations",
+    "title": "Multiple servers",
+    "prompt": "Combine two MCP servers so the agent can retrieve information from one and prepare an action in another."
+  },
+  {
+    "number": 69,
+    "section": "8. MCP integrations",
+    "title": "Session credentials",
+    "prompt": "Reuse one agent across two sessions that authenticate to the same MCP server through different vaults."
+  },
+  {
+    "number": 70,
+    "section": "8. MCP integrations",
+    "title": "Connection recovery",
+    "prompt": "Detect MCP connection and authentication errors and demonstrate the documented reconnection behaviour."
+  },
+  {
+    "number": 71,
+    "section": "8. MCP integrations",
+    "title": "Private MCP tunnels — preview",
+    "prompt": "If my account has access, connect a private MCP server through a tunnel and verify authentication."
+  },
+  {
+    "number": 72,
+    "section": "8. MCP integrations",
+    "title": "Network validation",
+    "prompt": "Test how environment networking and MCP-specific allowances affect connection to a declared MCP server."
+  },
+  {
+    "number": 73,
+    "section": "9. Permission policies and human approval",
+    "title": "Policy comparison",
+    "prompt": "Compare always_allow, always_ask, and auto using harmless tool calls and their resulting events."
+  },
+  {
+    "number": 74,
+    "section": "9. Permission policies and human approval",
+    "title": "Policy overrides",
+    "prompt": "Configure a default toolset policy and override it for selected built-in and MCP tools."
+  },
+  {
+    "number": 75,
+    "section": "9. Permission policies and human approval",
+    "title": "Approval interface",
+    "prompt": "Build an approval interface that allows or denies a pending tool call using its event ID."
+  },
+  {
+    "number": 76,
+    "section": "9. Permission policies and human approval",
+    "title": "Denials",
+    "prompt": "Return a useful denial message and distinguish human rejection from a server decision that cannot be overridden."
+  },
+  {
+    "number": 77,
+    "section": "9. Permission policies and human approval",
+    "title": "Permission auditing",
+    "prompt": "Record evaluated permissions and available evaluation details, tolerating new values introduced by future API versions."
+  },
+  {
+    "number": 78,
+    "section": "9. Permission policies and human approval",
+    "title": "Untrusted content",
+    "prompt": "Test a document containing malicious instructions and demonstrate how configured permissions limit the actions it can trigger."
+  },
+  {
+    "number": 79,
+    "section": "9. Permission policies and human approval",
+    "title": "Disabling versus approving",
+    "prompt": "Demonstrate the difference between removing a tool and leaving it available behind an approval requirement."
+  },
+  {
+    "number": 80,
+    "section": "9. Permission policies and human approval",
+    "title": "Concurrent approvals",
+    "prompt": "Handle approvals from multiple threads without waiting for the entire session to become idle."
+  },
+  {
+    "number": 81,
+    "section": "10. Vaults, OAuth, and credential management",
+    "title": "Vault creation",
+    "prompt": "Create a vault and maintain an application-side association between its ID and the intended user."
+  },
+  {
+    "number": 82,
+    "section": "10. Vaults, OAuth, and credential management",
+    "title": "Static credentials",
+    "prompt": "Register a static bearer credential and inspect its metadata without attempting to retrieve the secret."
+  },
+  {
+    "number": 83,
+    "section": "10. Vaults, OAuth, and credential management",
+    "title": "OAuth lifecycle",
+    "prompt": "Configure supported MCP OAuth credentials, validate connectivity, and handle refresh failures."
+  },
+  {
+    "number": 84,
+    "section": "10. Vaults, OAuth, and credential management",
+    "title": "Environment credentials",
+    "prompt": "Call a test API from a cloud sandbox using a vaulted environment-variable credential."
+  },
+  {
+    "number": 85,
+    "section": "10. Vaults, OAuth, and credential management",
+    "title": "Credential scope",
+    "prompt": "Restrict credential substitution to approved destinations and request locations, demonstrating the placeholder seen inside the sandbox."
+  },
+  {
+    "number": 86,
+    "section": "10. Vaults, OAuth, and credential management",
+    "title": "Signing limitations",
+    "prompt": "Explain why placeholder substitution can fail with signature-based authentication and implement an appropriate alternative."
+  },
+  {
+    "number": 87,
+    "section": "10. Vaults, OAuth, and credential management",
+    "title": "Rotation and revocation",
+    "prompt": "Rotate, archive, and delete disposable credentials while observing their effects on an existing session."
+  },
+  {
+    "number": 88,
+    "section": "10. Vaults, OAuth, and credential management",
+    "title": "Access ownership",
+    "prompt": "Implement user authorization before selecting a vault, accounting for the workspace scope of vault access."
+  },
+  {
+    "number": 89,
+    "section": "11. Built-in and custom skills",
+    "title": "Word documents",
+    "prompt": "Attach the Word skill and generate a report with headings, tables, and a downloadable document."
+  },
+  {
+    "number": 90,
+    "section": "11. Built-in and custom skills",
+    "title": "Presentations",
+    "prompt": "Attach the PowerPoint skill and create a short presentation from an approved source document."
+  },
+  {
+    "number": 91,
+    "section": "11. Built-in and custom skills",
+    "title": "Spreadsheets",
+    "prompt": "Attach the Excel skill and produce a workbook with formulas, formatting, and verified calculated results."
+  },
+  {
+    "number": 92,
+    "section": "11. Built-in and custom skills",
+    "title": "PDF workflows",
+    "prompt": "Attach the PDF skill and process a sample PDF into a checked, downloadable deliverable."
+  },
+  {
+    "number": 93,
+    "section": "11. Built-in and custom skills",
+    "title": "Custom skill creation",
+    "prompt": "Create a custom SKILL.md bundle and upload it using the Skills API."
+  },
+  {
+    "number": 94,
+    "section": "11. Built-in and custom skills",
+    "title": "Supporting resources",
+    "prompt": "Add scripts and reference files to a skill, then demonstrate how the agent loads relevant resources."
+  },
+  {
+    "number": 95,
+    "section": "11. Built-in and custom skills",
+    "title": "Skill versioning",
+    "prompt": "Publish a new skill version and compare agents pinned to the old and new versions."
+  },
+  {
+    "number": 96,
+    "section": "11. Built-in and custom skills",
+    "title": "Repository discovery",
+    "prompt": "Load a trusted repository skill from .claude/skills and demonstrate when discovery and skill use occur."
+  },
+  {
+    "number": 97,
+    "section": "12. Files, multimodal inputs, and GitHub",
+    "title": "Input mounting",
+    "prompt": "Upload a file, mount it at a predictable sandbox path, and have the agent verify its contents."
+  },
+  {
+    "number": 98,
+    "section": "12. Files, multimodal inputs, and GitHub",
+    "title": "Multiple inputs",
+    "prompt": "Mount several input files and produce a report that identifies which file supports each finding."
+  },
+  {
+    "number": 99,
+    "section": "12. Files, multimodal inputs, and GitHub",
+    "title": "Resource changes",
+    "prompt": "Add, list, and remove supported file resources after session creation."
+  },
+  {
+    "number": 100,
+    "section": "12. Files, multimodal inputs, and GitHub",
+    "title": "Images and documents",
+    "prompt": "Send supported image and document message content, comparing it with mounting files for sandbox processing."
+  },
+  {
+    "number": 101,
+    "section": "12. Files, multimodal inputs, and GitHub",
+    "title": "Output downloads",
+    "prompt": "Generate output files and download them using session-scoped file listing with the required headers."
+  },
+  {
+    "number": 102,
+    "section": "12. Files, multimodal inputs, and GitHub",
+    "title": "Output availability",
+    "prompt": "Handle the delay before generated files become downloadable and implement appropriate file cleanup."
+  },
+  {
+    "number": 103,
+    "section": "12. Files, multimodal inputs, and GitHub",
+    "title": "Reproducible repository access",
+    "prompt": "Mount a public GitHub repository at a specific commit and produce a reproducible code review."
+  },
+  {
+    "number": 104,
+    "section": "12. Files, multimodal inputs, and GitHub",
+    "title": "Private repositories",
+    "prompt": "Mount a private repository using appropriately scoped credentials and verify access without exposing the credential."
+  },
+  {
+    "number": 105,
+    "section": "12. Files, multimodal inputs, and GitHub",
+    "title": "Multiple repositories",
+    "prompt": "Mount two repositories and have the agent analyse a dependency or interface shared between them."
+  },
+  {
+    "number": 106,
+    "section": "12. Files, multimodal inputs, and GitHub",
+    "title": "Pull-request workflow",
+    "prompt": "Use repository access and GitHub MCP to prepare a tested change and require approval before publishing it."
+  },
+  {
+    "number": 107,
+    "section": "13. Persistent memory",
+    "title": "First memory store",
+    "prompt": "Create and seed a memory store, then demonstrate two separate sessions using the retained information."
+  },
+  {
+    "number": 108,
+    "section": "13. Persistent memory",
+    "title": "Read and write access",
+    "prompt": "Attach shared reference memory as read-only and user-specific working memory as read-write."
+  },
+  {
+    "number": 109,
+    "section": "13. Persistent memory",
+    "title": "Memory discovery",
+    "prompt": "Read returned memory mount paths and provide instructions telling the agent when to consult each store."
+  },
+  {
+    "number": 110,
+    "section": "13. Persistent memory",
+    "title": "Memory management",
+    "prompt": "Implement memory creation, retrieval, editing, renaming, and paginated listing with supported path filters."
+  },
+  {
+    "number": 111,
+    "section": "13. Persistent memory",
+    "title": "Conflicting edits",
+    "prompt": "Use content-hash preconditions to detect concurrent memory changes and recover from a conflict."
+  },
+  {
+    "number": 112,
+    "section": "13. Persistent memory",
+    "title": "Memory audit history",
+    "prompt": "List immutable memory versions and identify the sessions or users responsible for changes."
+  },
+  {
+    "number": 113,
+    "section": "13. Persistent memory",
+    "title": "Restoring content",
+    "prompt": "Recover an earlier memory version by retrieving its content and writing it back through the documented API."
+  },
+  {
+    "number": 114,
+    "section": "13. Persistent memory",
+    "title": "Export and backup",
+    "prompt": "Export memory content and retained history into an application-managed backup."
+  },
+  {
+    "number": 115,
+    "section": "13. Persistent memory",
+    "title": "Redaction and deletion",
+    "prompt": "Demonstrate historical-version redaction and the difference between archiving and deleting a disposable memory store."
+  },
+  {
+    "number": 116,
+    "section": "13. Persistent memory",
+    "title": "Multiple stores",
+    "prompt": "Attach several stores at session creation and verify current limits and restrictions on later attachment changes."
+  },
+  {
+    "number": 117,
+    "section": "14. Dreams and memory consolidation — research preview",
+    "title": "Availability check",
+    "prompt": "Check whether Dreams is enabled for my account and identify its current model, API, and access requirements."
+  },
+  {
+    "number": 118,
+    "section": "14. Dreams and memory consolidation — research preview",
+    "title": "First Dream",
+    "prompt": "Run a Dream that consolidates one memory store using a small set of completed sessions."
+  },
+  {
+    "number": 119,
+    "section": "14. Dreams and memory consolidation — research preview",
+    "title": "Review before adoption",
+    "prompt": "Compare the Dream’s output with its input, then attach the reviewed output store to future sessions."
+  },
+  {
+    "number": 120,
+    "section": "14. Dreams and memory consolidation — research preview",
+    "title": "Dream lifecycle",
+    "prompt": "Track Dream status and usage, handling failure, cancellation, partial outputs, and archiving."
+  },
+  {
+    "number": 121,
+    "section": "15. Multiagent coordination and advisors",
+    "title": "Orchestration configuration",
+    "prompt": "Configure the current multiagent type and explicitly choose whether subagents, workflows, and an advisor are enabled."
+  },
+  {
+    "number": 122,
+    "section": "15. Multiagent coordination and advisors",
+    "title": "Predefined specialists",
+    "prompt": "Create version-pinned researcher, analyst, and reviewer agents, then register them with a coordinator."
+  },
+  {
+    "number": 123,
+    "section": "15. Multiagent coordination and advisors",
+    "title": "Inline agents",
+    "prompt": "Compare predefined and inline subagents, including restrictions on inline creation and delegation depth."
+  },
+  {
+    "number": 124,
+    "section": "15. Multiagent coordination and advisors",
+    "title": "Parallel delegation",
+    "prompt": "Have a coordinator delegate independent tasks concurrently and combine the specialists’ results."
+  },
+  {
+    "number": 125,
+    "section": "15. Multiagent coordination and advisors",
+    "title": "Follow-up work",
+    "prompt": "Have the coordinator ask an existing subagent a follow-up question that uses its earlier context."
+  },
+  {
+    "number": 126,
+    "section": "15. Multiagent coordination and advisors",
+    "title": "Shared resources",
+    "prompt": "Demonstrate separate agent contexts and shared sandbox resources, preventing conflicting writes to the same files."
+  },
+  {
+    "number": 127,
+    "section": "15. Multiagent coordination and advisors",
+    "title": "Advisor configuration",
+    "prompt": "Configure a supported executor–advisor pairing and request advice during planning and final review."
+  },
+  {
+    "number": 128,
+    "section": "15. Multiagent coordination and advisors",
+    "title": "Advisor responses",
+    "prompt": "Handle readable and redacted advisor results correctly and account for consultation usage."
+  },
+  {
+    "number": 129,
+    "section": "16. Session threads and dynamic workflows",
+    "title": "Thread inspection",
+    "prompt": "Display the primary session overview alongside each subagent’s complete event history and live stream."
+  },
+  {
+    "number": 130,
+    "section": "16. Session threads and dynamic workflows",
+    "title": "Thread lifecycle",
+    "prompt": "Interrupt and archive disposable subagent threads, explaining the applicable active-thread limits."
+  },
+  {
+    "number": 131,
+    "section": "16. Session threads and dynamic workflows",
+    "title": "Thread-aware responses",
+    "prompt": "Route tool approvals and custom-tool results correctly when requests originate from different session threads."
+  },
+  {
+    "number": 132,
+    "section": "16. Session threads and dynamic workflows",
+    "title": "First dynamic workflow",
+    "prompt": "Ask the agent to create a workflow that analyses many documents in parallel and synthesizes the findings."
+  },
+  {
+    "number": 133,
+    "section": "16. Session threads and dynamic workflows",
+    "title": "Workflow branching",
+    "prompt": "Guide a workflow to branch on intermediate results, repeat failed quality checks, and report partial failures."
+  },
+  {
+    "number": 134,
+    "section": "16. Session threads and dynamic workflows",
+    "title": "Progress reconstruction",
+    "prompt": "Reconstruct workflow and phase state from event history after the client disconnects."
+  },
+  {
+    "number": 135,
+    "section": "16. Session threads and dynamic workflows",
+    "title": "Stopping workflows",
+    "prompt": "Distinguish interrupting the main agent from ending workflow runs and implement correct completion detection."
+  },
+  {
+    "number": 136,
+    "section": "16. Session threads and dynamic workflows",
+    "title": "Workflow limits",
+    "prompt": "Exercise documented workflow concurrency and lifetime limits, including their interaction with the shared session budget."
+  },
+  {
+    "number": 137,
+    "section": "17. Outcomes and automated grading",
+    "title": "Measurable criteria",
+    "prompt": "Turn an example deliverable into a rubric containing explicit, individually testable acceptance criteria."
+  },
+  {
+    "number": 138,
+    "section": "17. Outcomes and automated grading",
+    "title": "Outcome creation",
+    "prompt": "Start an outcome-oriented session using user.define_outcome, demonstrating inline and uploaded-file rubrics."
+  },
+  {
+    "number": 139,
+    "section": "17. Outcomes and automated grading",
+    "title": "Iteration limits",
+    "prompt": "Configure a bounded outcome iteration limit and observe the agent revising work after evaluation."
+  },
+  {
+    "number": 140,
+    "section": "17. Outcomes and automated grading",
+    "title": "Evaluation feedback",
+    "prompt": "Display the public grading explanation and connect failed criteria to changes in the next artifact."
+  },
+  {
+    "number": 141,
+    "section": "17. Outcomes and automated grading",
+    "title": "Outcome completion",
+    "prompt": "Handle successful evaluation, interrupted work, failures, and exhausted iterations without reporting premature success."
+  },
+  {
+    "number": 142,
+    "section": "17. Outcomes and automated grading",
+    "title": "Independent verification",
+    "prompt": "Retrieve the final artifacts and verify objective requirements separately from the grader’s assessment."
+  },
+  {
+    "number": 143,
+    "section": "18. Scheduled deployments",
+    "title": "Recurring execution",
+    "prompt": "Create a deployment with a cron expression, an IANA timezone, and an initial task."
+  },
+  {
+    "number": 144,
+    "section": "18. Scheduled deployments",
+    "title": "Run configuration",
+    "prompt": "Attach the required environment, memory, credentials, supported resources, and a budget for each scheduled session."
+  },
+  {
+    "number": 145,
+    "section": "18. Scheduled deployments",
+    "title": "Manual execution",
+    "prompt": "Run a deployment manually and inspect the session it creates."
+  },
+  {
+    "number": 146,
+    "section": "18. Scheduled deployments",
+    "title": "Scheduling controls",
+    "prompt": "Demonstrate pause, unpause, and archive, explaining their effects on future triggers and existing sessions."
+  },
+  {
+    "number": 147,
+    "section": "18. Scheduled deployments",
+    "title": "Scheduled version rollout",
+    "prompt": "Pin a scheduled deployment to a tested agent version and demonstrate a controlled configuration update."
+  },
+  {
+    "number": 148,
+    "section": "18. Scheduled deployments",
+    "title": "Run monitoring",
+    "prompt": "Monitor deployment-run failures and automatic pausing, then separately track the work performed by successfully created sessions."
+  },
+  {
+    "number": 149,
+    "section": "19. Webhooks and event-driven integrations",
+    "title": "Webhook setup",
+    "prompt": "Configure an HTTPS webhook endpoint subscribed to the Managed Agents lifecycle events my application needs."
+  },
+  {
+    "number": 150,
+    "section": "19. Webhooks and event-driven integrations",
+    "title": "Signature verification",
+    "prompt": "Verify webhook signatures using the raw request body and reject invalid or stale deliveries."
+  },
+  {
+    "number": 151,
+    "section": "19. Webhooks and event-driven integrations",
+    "title": "Resource retrieval",
+    "prompt": "Handle a webhook by fetching the current resource state, with appropriate handling for deleted resources."
+  },
+  {
+    "number": 152,
+    "section": "19. Webhooks and event-driven integrations",
+    "title": "Duplicate and reordered events",
+    "prompt": "Make webhook processing idempotent and robust when events arrive more than once or out of order."
+  },
+  {
+    "number": 153,
+    "section": "19. Webhooks and event-driven integrations",
+    "title": "Delivery recovery",
+    "prompt": "Add periodic reconciliation so missed webhook deliveries do not leave application state permanently incorrect."
+  },
+  {
+    "number": 154,
+    "section": "19. Webhooks and event-driven integrations",
+    "title": "Event routing",
+    "prompt": "Route session, budget, credential, and deployment notifications while accounting for differences between webhook and SSE event names."
+  },
+  {
+    "number": 155,
+    "section": "20. Observability, usage, and budgets",
+    "title": "Console debugging",
+    "prompt": "Inspect a session’s transcript, tools, resources, and threads in Console and diagnose one failed operation."
+  },
+  {
+    "number": 156,
+    "section": "20. Observability, usage, and budgets",
+    "title": "Usage reporting",
+    "prompt": "Report token usage, cache usage, active time, and list cost without double-counting cumulative snapshots."
+  },
+  {
+    "number": 157,
+    "section": "20. Observability, usage, and budgets",
+    "title": "OpenTelemetry",
+    "prompt": "Configure supported SDK and API tracing, choosing an appropriate content mode and correlating traces with application requests."
+  },
+  {
+    "number": 158,
+    "section": "20. Observability, usage, and budgets",
+    "title": "Budget creation",
+    "prompt": "Create a session budget using the documented USD-cent representation and validate the configuration."
+  },
+  {
+    "number": 159,
+    "section": "20. Observability, usage, and budgets",
+    "title": "Budget exhaustion",
+    "prompt": "Handle budget-reached events and demonstrate why in-flight requests can take final usage slightly beyond the cap."
+  },
+  {
+    "number": 160,
+    "section": "20. Observability, usage, and budgets",
+    "title": "Budget changes",
+    "prompt": "Increase a paused session’s budget and explain the consequences of removing a budget that cannot be re-added."
+  },
+  {
+    "number": 161,
+    "section": "20. Observability, usage, and budgets",
+    "title": "Budget scope",
+    "prompt": "Compare a budget shared by one session’s agents with separate budgets applied to scheduled sessions."
+  },
+  {
+    "number": 162,
+    "section": "20. Observability, usage, and budgets",
+    "title": "Cost experiments",
+    "prompt": "Measure how prompt caching, model selection, effort settings, and task design affect the cost of repeated work."
+  },
+  {
+    "number": 163,
+    "section": "21. Self-hosted sandboxes and cloud-platform variants",
+    "title": "Execution boundaries",
+    "prompt": "Compare cloud and self-hosted sandboxes, identifying where files, processes, model requests, and tool results are handled."
+  },
+  {
+    "number": 164,
+    "section": "21. Self-hosted sandboxes and cloud-platform variants",
+    "title": "First worker",
+    "prompt": "Run a self-hosted CLI worker and prove that a session’s Bash and file operations execute on that host."
+  },
+  {
+    "number": 165,
+    "section": "21. Self-hosted sandboxes and cloud-platform variants",
+    "title": "Worker-hosted tools",
+    "prompt": "Serve custom tools from an SDK worker, including an authorized adapter to an internal MCP server."
+  },
+  {
+    "number": 166,
+    "section": "21. Self-hosted sandboxes and cloud-platform variants",
+    "title": "Session isolation",
+    "prompt": "Launch a separate sandbox for each claimed session with distinct working directories and appropriate resource limits."
+  },
+  {
+    "number": 167,
+    "section": "21. Self-hosted sandboxes and cloud-platform variants",
+    "title": "Worker operations",
+    "prompt": "Implement on-demand worker startup, queue monitoring, and graceful shutdown that preserves required state."
+  },
+  {
+    "number": 168,
+    "section": "21. Self-hosted sandboxes and cloud-platform variants",
+    "title": "Self-hosted resources",
+    "prompt": "Stage files and repositories yourself and demonstrate supported memory synchronization without assuming cloud-only resource mounting."
+  },
+  {
+    "number": 169,
+    "section": "21. Self-hosted sandboxes and cloud-platform variants",
+    "title": "AWS integration",
+    "prompt": "Adapt the application to Claude Platform on AWS and document its authentication and Managed Agents feature differences."
+  },
+  {
+    "number": 170,
+    "section": "21. Self-hosted sandboxes and cloud-platform variants",
+    "title": "Google Cloud integration",
+    "prompt": "Adapt the application to Anthropic-managed Google Cloud, checking worker support, authentication, and unavailable features."
+  },
+  {
+    "number": 171,
+    "section": "22. Application patterns, testing, and complete projects",
+    "title": "Validated JSON",
+    "prompt": "Request JSON output, validate it with Zod, and implement bounded correction attempts when it fails the application schema."
+  },
+  {
+    "number": 172,
+    "section": "22. Application patterns, testing, and complete projects",
+    "title": "RAG integration",
+    "prompt": "Connect an external retrieval service through a custom tool or MCP, returning source references with every retrieved passage."
+  },
+  {
+    "number": 173,
+    "section": "22. Application patterns, testing, and complete projects",
+    "title": "Web application",
+    "prompt": "Build a web interface with session history, live responses, tool activity, approvals, and downloadable artifacts."
+  },
+  {
+    "number": 174,
+    "section": "22. Application patterns, testing, and complete projects",
+    "title": "Multiple users",
+    "prompt": "Add authentication and enforce user ownership before accessing sessions, files, memory stores, or vault references."
+  },
+  {
+    "number": 175,
+    "section": "22. Application patterns, testing, and complete projects",
+    "title": "Operational resilience",
+    "prompt": "Handle rate limits, retries, request timeouts, and application deadlines without duplicating side effects or losing session state."
+  },
+  {
+    "number": 176,
+    "section": "22. Application patterns, testing, and complete projects",
+    "title": "Regression evaluation",
+    "prompt": "Build a small evaluation dataset that checks answer quality, tool behaviour, permissions, cost, and failure recovery."
+  },
+  {
+    "number": 177,
+    "section": "22. Application patterns, testing, and complete projects",
+    "title": "Release pipeline",
+    "prompt": "Create a deployment pipeline that validates configurations, evaluates candidate versions, and promotes or rolls back pinned agent references."
+  },
+  {
+    "number": 178,
+    "section": "22. Application patterns, testing, and complete projects",
+    "title": "Migration",
+    "prompt": "Migrate a Messages API or Agent SDK application, identifying which hooks, turn limits, and client behaviours require application code."
+  },
+  {
+    "number": 179,
+    "section": "22. Application patterns, testing, and complete projects",
+    "title": "Research assistant project",
+    "prompt": "Build a research assistant combining web tools, files, persistent memory, source citations, budgets, and live progress."
+  },
+  {
+    "number": 180,
+    "section": "22. Application patterns, testing, and complete projects",
+    "title": "Scheduled reporting project",
+    "prompt": "Build a scheduled reporting system combining MCP data, document skills, specialists, outcomes, credentials, and operational monitoring."
+  }
+]

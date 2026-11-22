@@ -1,0 +1,32 @@
+import { test, expect } from '@playwright/test';
+
+test('Prompt 2 architecture classroom walkthrough', async ({ page }, testInfo) => {
+  await page.goto('/?presentation=1');
+  await expect(page.locator('#create')).toBeEnabled();
+  await page.locator('#architecture').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(2200);
+  await page.getByRole('button', { name: 'Create session' }).click();
+  await expect(page.locator('#session-status')).toHaveText('idle');
+  await page.locator('#session-lab').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(1800);
+  await page.getByRole('button', { name: 'Send task' }).click();
+  await expect(page.locator('#session-status')).toHaveText('idle · end_turn');
+  await page.waitForTimeout(2500);
+  await page.getByRole('button', { name: 'Create session' }).click();
+  await expect(page.locator('#session-count')).toHaveText('2');
+  await page.waitForTimeout(1800);
+  await page.locator('[data-session]').last().click();
+  await expect(page.locator('.agent-message')).toHaveCount(1);
+  await page.locator('.event-row').filter({ hasText: 'agent.message' }).click();
+  await page.locator('#source-code').scrollIntoViewIfNeeded();
+  await page.locator('[data-code="stream"]').click();
+  await expect(page.locator('#typescript .token.keyword').first()).toBeVisible();
+  await expect(page.locator('#json .token.property').first()).toBeVisible();
+  await page.waitForTimeout(5000);
+  await page.screenshot({ path: testInfo.outputPath('code-and-evidence.png'), fullPage: true });
+  await page.locator('[data-code="history"]').click();
+  await page.waitForTimeout(2500);
+  await page.locator('#architecture').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(1500);
+  await page.screenshot({ path: testInfo.outputPath('architecture.png'), fullPage: true });
+});

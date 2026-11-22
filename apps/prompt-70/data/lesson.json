@@ -1,0 +1,44 @@
+{
+  "number": 70,
+  "section": "8. MCP integrations",
+  "title": "Connection recovery",
+  "prompt": "Detect MCP connection and authentication errors and demonstrate the documented reconnection behaviour.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "if (event.type === \"session.error\") {\n  console.log(event.error);\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/mcp-connector",
+    "https://platform.claude.com/docs/en/managed-agents/reference"
+  ],
+  "specification": "prompt-070-connection-recovery-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "connect",
+      "label": "Exercise authentication failure",
+      "op": "mcp.recover"
+    },
+    {
+      "id": "reconnect",
+      "label": "Refresh fixture credential and reconnect",
+      "op": "mcp.recover",
+      "args": {
+        "refreshed": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "connect"
+    },
+    {
+      "action": "reconnect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Detect MCP connection and authentication errors and demonstrate the documented reconnection behaviour."
+}

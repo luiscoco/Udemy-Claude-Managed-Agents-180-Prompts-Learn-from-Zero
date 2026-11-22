@@ -1,0 +1,54 @@
+{
+  "number": 62,
+  "section": "7. Custom tools and application execution",
+  "title": "Duplicate prevention",
+  "prompt": "Make a simulated write operation idempotent so repeated events cannot apply the same change twice.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const jobs = new Map<string, Promise<string>>();\nfunction once(id: string): Promise<string> {\n  const existing = jobs.get(id);\n  if (existing) return existing;\n  const job = Promise.resolve().then(() => simulateWrite(id));\n  jobs.set(id, job);\n  return job;\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-062-duplicate-prevention-prompt.txt",
+  "fields": [
+    {
+      "key": "eventId",
+      "label": "Write event ID",
+      "value": "evt-write-1"
+    }
+  ],
+  "actions": [
+    {
+      "id": "write",
+      "label": "Apply a simulated write",
+      "op": "tool.idempotent"
+    },
+    {
+      "id": "duplicate",
+      "label": "Replay the same event",
+      "op": "tool.idempotent"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect saved state",
+      "op": "inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "write"
+    },
+    {
+      "action": "duplicate"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Make a simulated write operation idempotent so repeated events cannot apply the same change twice."
+}

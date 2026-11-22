@@ -1,0 +1,17 @@
+{
+  "name": "claude-managed-agents-180-practical-applications",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "setup": "node scripts/lesson.mjs setup",
+    "start": "node scripts/lesson.mjs start",
+    "check": "node scripts/lesson.mjs check",
+    "browser": "node scripts/lesson.mjs browser",
+    "test:browser": "node scripts/lesson.mjs test:browser",
+    "verify:catalog": "node scripts/verify-catalog.mjs"
+  }
+}

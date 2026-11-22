@@ -1,0 +1,51 @@
+{
+  "number": 81,
+  "section": "10. Vaults, OAuth, and credential management",
+  "title": "Vault creation",
+  "prompt": "Create a vault and maintain an application-side association between its ID and the intended user.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const vault = await client.beta.vaults.create({\n  display_name: \"User credentials\",\n  metadata: { external_user_id: authenticatedUser.id }\n});\nawait saveUserVault({\n  userId: authenticatedUser.id,\n  vaultId: vault.id\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/vaults"
+  ],
+  "specification": "prompt-081-vault-creation-v2-prompt.txt",
+  "fields": [
+    {
+      "key": "actor",
+      "label": "Classroom actor",
+      "value": "alice",
+      "options": [
+        "alice",
+        "bob",
+        "reviewer"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "create",
+      "label": "Create and associate a vault",
+      "op": "vault.create"
+    },
+    {
+      "id": "select",
+      "label": "Authorize vault selection",
+      "op": "vault.authorize"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "create"
+    },
+    {
+      "action": "select"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Create a vault and maintain an application-side association between its ID and the intended user."
+}

@@ -1,0 +1,64 @@
+{
+  "number": 24,
+  "section": "3. Cloud environments and sandbox capabilities",
+  "title": "Environment lifecycle",
+  "prompt": "Implement environment creation, retrieval, listing, updating, and archiving, explaining the effects on existing sessions.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const env = await client.beta.environments.create({\n  name: \"learning-env\", config: { type: \"cloud\" }\n});\nconst saved = await client.beta.environments.retrieve(env.id);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/environments"
+  ],
+  "specification": "prompt-024-environment-lifecycle-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "create",
+      "label": "Create environment",
+      "op": "environment.create"
+    },
+    {
+      "id": "list",
+      "label": "Retrieve and list",
+      "op": "environment.list"
+    },
+    {
+      "id": "update",
+      "label": "Update networking",
+      "op": "environment.update"
+    },
+    {
+      "id": "archive",
+      "label": "Archive environment",
+      "op": "environment.archive"
+    },
+    {
+      "id": "test",
+      "label": "Attempt a new session",
+      "op": "session.create"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "create"
+    },
+    {
+      "action": "list"
+    },
+    {
+      "action": "update"
+    },
+    {
+      "action": "archive"
+    },
+    {
+      "action": "test"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Implement environment creation, retrieval, listing, updating, and archiving, explaining the effects on existing sessions."
+}

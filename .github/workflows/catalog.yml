@@ -1,0 +1,28 @@
+name: Student repository checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm run verify:catalog
+  representative-typescript:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        lesson: [1, 9, 26, 180]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm run setup -- ${{ matrix.lesson }}
+      - run: npm run check -- ${{ matrix.lesson }}

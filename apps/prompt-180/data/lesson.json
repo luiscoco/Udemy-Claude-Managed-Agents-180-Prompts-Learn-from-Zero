@@ -1,0 +1,56 @@
+{
+  "number": 180,
+  "section": "22. Application patterns, testing, and complete projects",
+  "title": "Scheduled reporting project",
+  "prompt": "Build a scheduled reporting system combining MCP data, document skills, specialists, outcomes, credentials, and operational monitoring.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "schedule:\n  type: cron\n  expression: \"0 9 * * 1,2,3,4,5\"\n  timezone: Europe/Madrid\nbudget:\n  type: limit\n  max_list_cost:\n    amount: \"500\"\n    currency: USD",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/scheduled-deployments"
+  ],
+  "specification": "prompt-180-scheduled-reporting-project-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "schedule",
+      "label": "Configure the reporting workflow",
+      "op": "project.reporting"
+    },
+    {
+      "id": "run",
+      "label": "Run specialists and objective checks",
+      "op": "workflow.complete"
+    },
+    {
+      "id": "deliver",
+      "label": "Record reviewed delivery",
+      "op": "project.deliver"
+    },
+    {
+      "id": "duplicate",
+      "label": "Replay the same reporting period",
+      "op": "project.deliver"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "schedule"
+    },
+    {
+      "action": "run"
+    },
+    {
+      "action": "deliver"
+    },
+    {
+      "action": "duplicate"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Build a scheduled reporting system combining MCP data, document skills, specialists, outcomes, credentials, and operational monitoring."
+}

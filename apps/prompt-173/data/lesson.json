@@ -1,0 +1,54 @@
+{
+  "number": 173,
+  "section": "22. Application patterns, testing, and complete projects",
+  "title": "Web application",
+  "prompt": "Build a web interface with session history, live responses, tool activity, approvals, and downloadable artifacts.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 173.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'project.web':\n        session(s);\n        approval(s);\n        accept({ session: r.session, pending: r.pending, applicationBoundaries: ['browser', 'local server', 'tool handler', 'download'] });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-173-web-application-prompt.txt",
+  "fields": [
+    {
+      "key": "decision",
+      "label": "Decision",
+      "value": "allow"
+    }
+  ],
+  "actions": [
+    {
+      "id": "create",
+      "label": "Start the application session",
+      "op": "project.web"
+    },
+    {
+      "id": "approve",
+      "label": "Approve a pending action",
+      "op": "approval.respond"
+    },
+    {
+      "id": "artifact",
+      "label": "Prepare a downloadable result",
+      "op": "file.process"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "create"
+    },
+    {
+      "action": "approve"
+    },
+    {
+      "action": "artifact"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Build a web interface with session history, live responses, tool activity, approvals, and downloadable artifacts."
+}

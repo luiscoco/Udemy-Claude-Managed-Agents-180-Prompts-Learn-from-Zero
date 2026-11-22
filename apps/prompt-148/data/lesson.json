@@ -1,0 +1,48 @@
+{
+  "number": 148,
+  "section": "18. Scheduled deployments",
+  "title": "Run monitoring",
+  "prompt": "Monitor deployment-run failures and automatic pausing, then separately track the work performed by successfully created sessions.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const deployment = await client.beta.deployments.retrieve(\n  deploymentId\n);\nconsole.log(deployment.status, deployment.paused_reason);\nconsole.log(deployment.archived_at);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/scheduled-deployments"
+  ],
+  "specification": "prompt-148-deployment-run-monitoring-v2-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "failure",
+      "label": "Record a scheduled trigger failure",
+      "op": "schedule.failure"
+    },
+    {
+      "id": "again",
+      "label": "Reach fixture pause threshold",
+      "op": "schedule.failure"
+    },
+    {
+      "id": "sessions",
+      "label": "Track successfully created work separately",
+      "op": "session.list"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "failure"
+    },
+    {
+      "action": "again"
+    },
+    {
+      "action": "sessions"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Monitor deployment-run failures and automatic pausing, then separately track the work performed by successfully created sessions."
+}

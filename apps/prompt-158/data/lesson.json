@@ -1,0 +1,49 @@
+{
+  "number": 158,
+  "section": "20. Observability, usage, and budgets",
+  "title": "Budget creation",
+  "prompt": "Create a session budget using the documented USD-cent representation and validate the configuration.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const amount = \"125\";\nif (!/^[1-9][0-9]*$/.test(amount)) {\n  throw new Error(\"Budget must be positive whole cents\");\n}\nconst session = await client.beta.sessions.create({\n  agent: agentId,\n  environment_id: environmentId,\n  budget: {\n    type: \"limit\",\n    max_list_cost: { amount, currency: \"USD\" }\n  }\n});\nconsole.log(session.id, session.budget);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/budgets"
+  ],
+  "specification": "prompt-158-budget-creation-prompt.txt",
+  "fields": [
+    {
+      "key": "amount",
+      "label": "Budget in whole USD cents",
+      "value": "125"
+    }
+  ],
+  "actions": [
+    {
+      "id": "validate",
+      "label": "Validate budget configuration",
+      "op": "budget.create"
+    },
+    {
+      "id": "invalid",
+      "label": "Exercise a decimal amount",
+      "op": "budget.create",
+      "args": {
+        "amount": "1.25"
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "validate"
+    },
+    {
+      "action": "invalid"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Create a session budget using the documented USD-cent representation and validate the configuration."
+}

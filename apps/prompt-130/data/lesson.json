@@ -1,0 +1,53 @@
+{
+  "number": 130,
+  "section": "16. Session threads and dynamic workflows",
+  "title": "Thread lifecycle",
+  "prompt": "Interrupt and archive disposable subagent threads, explaining the applicable active-thread limits.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.events.send(sessionId, {\n  events: [{\n    type: \"user.interrupt\",\n    session_thread_id: childThreadId\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.threads.archive(childThreadId, {\n  session_id: sessionId\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/session-threads"
+  ],
+  "specification": "prompt-130-thread-lifecycle-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "threads",
+      "label": "Create disposable child threads",
+      "op": "thread.create"
+    },
+    {
+      "id": "interrupt",
+      "label": "Interrupt one child",
+      "op": "thread.interrupt"
+    },
+    {
+      "id": "archive",
+      "label": "Archive its idle thread",
+      "op": "thread.archive"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "threads"
+    },
+    {
+      "action": "interrupt"
+    },
+    {
+      "action": "archive"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Interrupt and archive disposable subagent threads, explaining the applicable active-thread limits."
+}

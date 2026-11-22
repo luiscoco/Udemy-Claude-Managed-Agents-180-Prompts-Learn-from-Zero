@@ -1,0 +1,47 @@
+{
+  "number": 53,
+  "section": "6. Built-in tools and web access",
+  "title": "Web research",
+  "prompt": "Create a research agent using localized web search and citations to the sources it actually consulted.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "tools: [{\n  type: \"agent_toolset_20260401\",\n  default_config: { enabled: false },\n  configs: [\n    { type: \"web_search\", name: \"web_search\",\n      enabled: true, allowed_domains: [\"arxiv.org\"],\n      user_location: { type: \"approximate\", country: \"ES\" }\n    },\n    { type: \"web_fetch\", name: \"web_fetch\",\n      enabled: true, allowed_domains: [\"arxiv.org\"] }\n  ]\n}]",
+      "label": "TypeScript configuration fragment"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions",
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-053-web-research-v3-prompt.txt",
+  "fields": [
+    {
+      "key": "query",
+      "label": "Research question",
+      "value": "inventory valuation"
+    }
+  ],
+  "actions": [
+    {
+      "id": "search",
+      "label": "Search approved fixture sources",
+      "op": "retrieval.search"
+    },
+    {
+      "id": "cite",
+      "label": "Build a cited answer",
+      "op": "retrieval.answer"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "search"
+    },
+    {
+      "action": "cite"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Create a research agent using localized web search and citations to the sources it actually consulted."
+}

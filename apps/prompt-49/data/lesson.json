@@ -1,0 +1,46 @@
+{
+  "number": 49,
+  "section": "6. Built-in tools and web access",
+  "title": "Reading files",
+  "prompt": "Have the agent read selected files and produce a summary grounded in their actual contents.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.events.send(sessionId, {\n  events: [{\n    type: \"user.message\",\n    content: [{ type: \"text\",\n      text: \"Use read on /workspace/project/README.md. \" +\n        \"Summarize with supporting passages.\" }]\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-049-reading-files-v2-prompt.txt",
+  "fields": [
+    {
+      "key": "path",
+      "label": "Source path",
+      "value": "/inputs/report.txt"
+    }
+  ],
+  "actions": [
+    {
+      "id": "read",
+      "label": "Read selected source",
+      "op": "file.read"
+    },
+    {
+      "id": "summarize",
+      "label": "Summarize with exact source evidence",
+      "op": "file.summary"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "read"
+    },
+    {
+      "action": "summarize"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Have the agent read selected files and produce a summary grounded in their actual contents."
+}

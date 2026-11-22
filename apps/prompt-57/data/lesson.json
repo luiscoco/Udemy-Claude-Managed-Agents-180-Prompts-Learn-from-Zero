@@ -1,0 +1,46 @@
+{
+  "number": 57,
+  "section": "7. Custom tools and application execution",
+  "title": "Tool schema",
+  "prompt": "Define an order-status custom tool with a JSON Schema input, clear description, and valid tool name.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "tools:\n  - type: custom\n    name: order_status\n    description: >-\n      Look up an existing order by its ID.\n      Use for status questions, not order changes.\n      The order_id must be a nonempty string.\n    input_schema:\n      type: object\n      properties:\n        order_id:\n          type: string\n          minLength: 1\n      required: [order_id]\n      additionalProperties: false",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-057-tool-schema-prompt.txt",
+  "fields": [
+    {
+      "key": "orderId",
+      "label": "Order ID",
+      "value": "ORD-100"
+    }
+  ],
+  "actions": [
+    {
+      "id": "define",
+      "label": "Define the order-status schema",
+      "op": "tool.schema"
+    },
+    {
+      "id": "validate",
+      "label": "Validate sample arguments",
+      "op": "tool.validate"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "define"
+    },
+    {
+      "action": "validate"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Define an order-status custom tool with a JSON Schema input, clear description, and valid tool name."
+}

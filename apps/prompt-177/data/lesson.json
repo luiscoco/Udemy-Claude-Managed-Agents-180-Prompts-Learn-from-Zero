@@ -1,0 +1,48 @@
+{
+  "number": 177,
+  "section": "22. Application patterns, testing, and complete projects",
+  "title": "Release pipeline",
+  "prompt": "Create a deployment pipeline that validates configurations, evaluates candidate versions, and promotes or rolls back pinned agent references.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const session = await client.beta.sessions.create({\n  agent: {\n    type: \"agent\",\n    id: agentId,\n    version: candidateVersion,\n  },\n  environment_id: environmentId,\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/agent-setup"
+  ],
+  "specification": "prompt-177-release-pipeline-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "validate",
+      "label": "Validate and evaluate candidate",
+      "op": "release.evaluate"
+    },
+    {
+      "id": "promote",
+      "label": "Promote a passing version",
+      "op": "release.promote"
+    },
+    {
+      "id": "rollback",
+      "label": "Restore the previous pin",
+      "op": "release.rollback"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "validate"
+    },
+    {
+      "action": "promote"
+    },
+    {
+      "action": "rollback"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Create a deployment pipeline that validates configurations, evaluates candidate versions, and promotes or rolls back pinned agent references."
+}

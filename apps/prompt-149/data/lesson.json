@@ -1,0 +1,46 @@
+{
+  "number": 149,
+  "section": "19. Webhooks and event-driven integrations",
+  "title": "Webhook setup",
+  "prompt": "Configure an HTTPS webhook endpoint subscribed to the Managed Agents lifecycle events my application needs.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const subscribedTypes = [\n  \"session.status_idled\",\n  \"session.budget_reached\",\n  \"session.status_terminated\",\n  \"session.deleted\",\n  \"deployment.paused\",\n  \"deployment_run.failed\",\n  \"vault_credential.refresh_failed\"\n];",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/webhooks"
+  ],
+  "specification": "prompt-149-webhook-setup-prompt.txt",
+  "fields": [
+    {
+      "key": "url",
+      "label": "Fixture webhook URL",
+      "value": "https://hooks.example.test/managed-agents"
+    }
+  ],
+  "actions": [
+    {
+      "id": "register",
+      "label": "Validate webhook registration fixture",
+      "op": "webhook.register"
+    },
+    {
+      "id": "delivery",
+      "label": "Create a signed fixture delivery",
+      "op": "webhook.sign"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "register"
+    },
+    {
+      "action": "delivery"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Configure an HTTPS webhook endpoint subscribed to the Managed Agents lifecycle events my application needs."
+}

@@ -1,0 +1,53 @@
+{
+  "number": 170,
+  "section": "21. Self-hosted sandboxes and cloud-platform variants",
+  "title": "Google Cloud integration",
+  "prompt": "Adapt the application to Anthropic-managed Google Cloud, checking worker support, authentication, and unavailable features.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 170.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'cloud.capabilities':\n        r.cloud = { provider: p.provider, capabilities: ['cloud sessions'], source: 'Injected classroom capability table; consult current provider documentation' };\n        accept(r.cloud);\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed"
+  ],
+  "specification": "prompt-170-google-cloud-integration-prompt.txt",
+  "fields": [
+    {
+      "key": "feature",
+      "label": "Requested fixture feature",
+      "value": "cloud sessions",
+      "options": [
+        "cloud sessions",
+        "self-hosted worker"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "configure",
+      "label": "Select Google Cloud capability fixture",
+      "op": "cloud.capabilities",
+      "args": {
+        "provider": "Google Cloud"
+      }
+    },
+    {
+      "id": "validate",
+      "label": "Validate selected feature requirements",
+      "op": "cloud.validate"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "configure"
+    },
+    {
+      "action": "validate"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Adapt the application to Anthropic-managed Google Cloud, checking worker support, authentication, and unavailable features."
+}

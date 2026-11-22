@@ -1,0 +1,56 @@
+{
+  "number": 157,
+  "section": "20. Observability, usage, and budgets",
+  "title": "OpenTelemetry",
+  "prompt": "Configure supported SDK and API tracing, choosing an appropriate content mode and correlating traces with application requests.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "import Anthropic from \"@anthropic-ai/sdk\";\nimport { trace } from \"@opentelemetry/api\";\nimport { NodeSDK } from \"@opentelemetry/sdk-node\";\nimport { ConsoleSpanExporter } from\n  \"@opentelemetry/sdk-trace-base\";\nconst telemetry = new NodeSDK({\n  traceExporter: new ConsoleSpanExporter()\n});",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "const client = new Anthropic({\n  openTelemetry: {\n    traces: { contentMode: \"metadata_only\" }\n  }\n});\nconst tracer = trace.getTracer(\"inventory-service\");\nawait tracer.startActiveSpan(\"inventory.request\", async span => {\n  try {\n    await client.beta.sessions.retrieve(sessionId);\n  } finally {\n    span.end();\n  }\n});\nawait telemetry.shutdown();",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/manage-claude/opentelemetry"
+  ],
+  "specification": "prompt-157-opentelemetry-v2-prompt.txt",
+  "fields": [
+    {
+      "key": "mode",
+      "label": "Trace content mode",
+      "value": "metadata",
+      "options": [
+        "off",
+        "metadata",
+        "full"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "trace",
+      "label": "Capture a correlated trace projection",
+      "op": "trace.capture"
+    },
+    {
+      "id": "redact",
+      "label": "Inspect exported trace content",
+      "op": "trace.export"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "trace"
+    },
+    {
+      "action": "redact"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Configure supported SDK and API tracing, choosing an appropriate content mode and correlating traces with application requests."
+}

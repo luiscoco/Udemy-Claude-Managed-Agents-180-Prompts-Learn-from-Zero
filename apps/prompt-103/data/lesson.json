@@ -1,0 +1,50 @@
+{
+  "number": 103,
+  "section": "12. Files, multimodal inputs, and GitHub",
+  "title": "Reproducible repository access",
+  "prompt": "Mount a public GitHub repository at a specific commit and produce a reproducible code review.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "resources:\n  - type: github_repository\n    url: https://github.com/OWNER/REPO\n    mount_path: /workspace/repo\n    checkout:\n      type: commit\n      sha: FULL_COMMIT_SHA",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/github"
+  ],
+  "specification": "prompt-103-reproducible-repository-access-v3-prompt.txt",
+  "fields": [
+    {
+      "key": "commit",
+      "label": "Fixture commit",
+      "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "options": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "mount",
+      "label": "Load a commit-pinned repository fixture",
+      "op": "repo.mount"
+    },
+    {
+      "id": "review",
+      "label": "Review the pinned source",
+      "op": "repo.review"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "mount"
+    },
+    {
+      "action": "review"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Mount a public GitHub repository at a specific commit and produce a reproducible code review."
+}

@@ -1,0 +1,48 @@
+{
+  "number": 51,
+  "section": "6. Built-in tools and web access",
+  "title": "Editing files",
+  "prompt": "Modify an existing configuration file using the edit tool and present a clear before-and-after diff.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const task = [\n  \"Read settings.json.\",\n  \"Use edit to change retries from 2 to 3 only.\",\n  \"Read the file again and show the before/after diff.\"\n].join(\"\\n\");",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-051-editing-files-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "before",
+      "label": "Read existing configuration",
+      "op": "file.write"
+    },
+    {
+      "id": "edit",
+      "label": "Apply a targeted edit",
+      "op": "file.edit"
+    },
+    {
+      "id": "diff",
+      "label": "Inspect before and after",
+      "op": "file.diff"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "before"
+    },
+    {
+      "action": "edit"
+    },
+    {
+      "action": "diff"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Modify an existing configuration file using the edit tool and present a clear before-and-after diff."
+}

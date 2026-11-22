@@ -1,0 +1,46 @@
+{
+  "number": 159,
+  "section": "20. Observability, usage, and budgets",
+  "title": "Budget exhaustion",
+  "prompt": "Handle budget-reached events and demonstrate why in-flight requests can take final usage slightly beyond the cap.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "if (event.type === \"session.usage\") {\n  console.log(event.usage.list_cost, event.budget);\n}\nif (event.type === \"session.status_idle\" &&\n    event.stop_reason.type === \"budget_reached\") {\n  console.log(\"Session paused at its budget\");\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/budgets"
+  ],
+  "specification": "prompt-159-budget-exhaustion-prompt.txt",
+  "fields": [
+    {
+      "key": "amount",
+      "label": "Fixture cap in cents",
+      "value": "100"
+    }
+  ],
+  "actions": [
+    {
+      "id": "create",
+      "label": "Create a fixture cap",
+      "op": "budget.create"
+    },
+    {
+      "id": "spend",
+      "label": "Finish an in-flight request across the cap",
+      "op": "budget.exhaust"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "create"
+    },
+    {
+      "action": "spend"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Handle budget-reached events and demonstrate why in-flight requests can take final usage slightly beyond the cap."
+}

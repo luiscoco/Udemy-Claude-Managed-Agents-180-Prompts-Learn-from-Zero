@@ -1,0 +1,58 @@
+{
+  "number": 80,
+  "section": "9. Permission policies and human approval",
+  "title": "Concurrent approvals",
+  "prompt": "Handle approvals from multiple threads without waiting for the entire session to become idle.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "if ((event.type === \"agent.tool_use\" ||\n     event.type === \"agent.mcp_tool_use\") &&\n    event.evaluated_permission === \"ask\") {\n  await queueForReview({\n    sessionId,\n    eventId: event.id,\n    call: event\n  });\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/permission-policies"
+  ],
+  "specification": "prompt-080-concurrent-approvals-v2-prompt.txt",
+  "fields": [
+    {
+      "key": "decision",
+      "label": "Decision",
+      "value": "allow",
+      "options": [
+        "allow",
+        "deny"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "requests",
+      "label": "Receive requests from two threads",
+      "op": "approval.threads"
+    },
+    {
+      "id": "first",
+      "label": "Respond to thread A",
+      "op": "approval.respond"
+    },
+    {
+      "id": "second",
+      "label": "Respond to thread B",
+      "op": "approval.respond"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "requests"
+    },
+    {
+      "action": "first"
+    },
+    {
+      "action": "second"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Handle approvals from multiple threads without waiting for the entire session to become idle."
+}

@@ -1,0 +1,43 @@
+{
+  "number": 86,
+  "section": "10. Vaults, OAuth, and credential management",
+  "title": "Signing limitations",
+  "prompt": "Explain why placeholder substitution can fail with signature-based authentication and implement an appropriate alternative.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const result = await signingService.call({\n  actorId: authenticatedUser.id,\n  operation: \"read_test_status\"\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/vaults"
+  ],
+  "specification": "prompt-086-signing-limitations-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "sign",
+      "label": "Sign a placeholder then compare",
+      "op": "vault.signature"
+    },
+    {
+      "id": "adapter",
+      "label": "Use the authorized signing adapter",
+      "op": "vault.signature",
+      "args": {
+        "adapter": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "sign"
+    },
+    {
+      "action": "adapter"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Explain why placeholder substitution can fail with signature-based authentication and implement an appropriate alternative."
+}

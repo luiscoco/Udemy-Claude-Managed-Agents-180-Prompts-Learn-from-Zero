@@ -1,0 +1,49 @@
+{
+  "number": 44,
+  "section": "5. Events, streaming, and reconnection",
+  "title": "Failure events",
+  "prompt": "Handle session errors and automatic rescheduling, showing useful status messages while preserving diagnostic details.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "if (event.type === \"session.error\") {\n  console.error(event.id, event.error);\n}\nif (event.type === \"session.status_rescheduled\") {\n  console.log(\"Service is retrying the session.\");\n}\nif (event.type === \"session.status_terminated\") {\n  console.log(\"Session ended; inspect the cause.\");\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming",
+    "https://platform.claude.com/docs/en/managed-agents/reference"
+  ],
+  "specification": "prompt-044-failure-events-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "failure",
+      "label": "Receive session error",
+      "op": "events.failure"
+    },
+    {
+      "id": "retry",
+      "label": "Observe rescheduling",
+      "op": "events.reschedule"
+    },
+    {
+      "id": "recover",
+      "label": "Observe recovered response",
+      "op": "events.authoritative"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "failure"
+    },
+    {
+      "action": "retry"
+    },
+    {
+      "action": "recover"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Handle session errors and automatic rescheduling, showing useful status messages while preserving diagnostic details."
+}

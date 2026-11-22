@@ -1,0 +1,54 @@
+{
+  "number": 67,
+  "section": "8. MCP integrations",
+  "title": "Tool allowlists",
+  "prompt": "Expose only selected MCP tools and disable the remaining tools from that server.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 67.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'mcp.discover':\n        r.discovered = ['get_issue', 'list_issues', 'create_issue'];\n        accept({ server: 'github', tools: r.discovered, fixture: true });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/mcp-connector"
+  ],
+  "specification": "prompt-067-tool-allowlists-prompt.txt",
+  "fields": [
+    {
+      "key": "tools",
+      "label": "Allowed MCP tool names",
+      "value": "get_issue,list_issues"
+    }
+  ],
+  "actions": [
+    {
+      "id": "discover",
+      "label": "Discover server tools",
+      "op": "mcp.discover"
+    },
+    {
+      "id": "allow",
+      "label": "Apply tool allowlist",
+      "op": "mcp.allowlist"
+    },
+    {
+      "id": "blocked",
+      "label": "Try a hidden write tool",
+      "op": "tools.disabled"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "discover"
+    },
+    {
+      "action": "allow"
+    },
+    {
+      "action": "blocked"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Expose only selected MCP tools and disable the remaining tools from that server."
+}

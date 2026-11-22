@@ -1,0 +1,51 @@
+{
+  "number": 152,
+  "section": "19. Webhooks and event-driven integrations",
+  "title": "Duplicate and reordered events",
+  "prompt": "Make webhook processing idempotent and robust when events arrive more than once or out of order.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 152.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'webhook.process': {\n        const id = p.old ? 'delivery_old' : 'delivery_new';\n        const duplicate = s.seen.includes(id);\n        if (!duplicate)\n            s.seen.push(id);\n        r.currentProjection = { status: 'idle', revision: 3 };\n        accept({ deliveryId: id, duplicate, fetchedCurrentState: !duplicate, projection: r.currentProjection, reordered: !!p.old });\n        break;\n    }\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/webhooks"
+  ],
+  "specification": "prompt-152-duplicate-and-reordered-events-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "new",
+      "label": "Process a fresh delivery",
+      "op": "webhook.process"
+    },
+    {
+      "id": "duplicate",
+      "label": "Replay its delivery ID",
+      "op": "webhook.process"
+    },
+    {
+      "id": "old",
+      "label": "Process a reordered notification",
+      "op": "webhook.process",
+      "args": {
+        "old": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "new"
+    },
+    {
+      "action": "duplicate"
+    },
+    {
+      "action": "old"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Make webhook processing idempotent and robust when events arrive more than once or out of order."
+}

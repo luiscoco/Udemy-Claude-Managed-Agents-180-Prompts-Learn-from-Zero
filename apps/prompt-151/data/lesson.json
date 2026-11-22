@@ -1,0 +1,51 @@
+{
+  "number": 151,
+  "section": "19. Webhooks and event-driven integrations",
+  "title": "Resource retrieval",
+  "prompt": "Handle a webhook by fetching the current resource state, with appropriate handling for deleted resources.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "if (event.data.type === \"session.deleted\") {\n  console.log(\"Record deletion\", event.data.id);\n} else if (event.data.type === \"session.status_idled\") {\n  try {\n    const session = await client.beta.sessions.retrieve(\n      event.data.id\n    );\n    console.log(session.id, session.status);\n  } catch (error) {\n    if (error instanceof Anthropic.NotFoundError) {\n      console.log(\"Resource unavailable\", event.data.id);\n    } else {\n      throw error;\n    }\n  }\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/webhooks"
+  ],
+  "specification": "prompt-151-webhook-resource-retrieval-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "delivery",
+      "label": "Receive a thin resource notification",
+      "op": "webhook.sign"
+    },
+    {
+      "id": "fetch",
+      "label": "Fetch current resource state",
+      "op": "webhook.fetch"
+    },
+    {
+      "id": "deleted",
+      "label": "Handle a deleted resource",
+      "op": "webhook.fetch",
+      "args": {
+        "deleted": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "delivery"
+    },
+    {
+      "action": "fetch"
+    },
+    {
+      "action": "deleted"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Handle a webhook by fetching the current resource state, with appropriate handling for deleted resources."
+}

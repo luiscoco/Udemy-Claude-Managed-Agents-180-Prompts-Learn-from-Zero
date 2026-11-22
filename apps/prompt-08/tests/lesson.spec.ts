@@ -1,0 +1,31 @@
+import { test, expect } from '@playwright/test';
+
+test('Prompt 8 API headers classroom walkthrough', async ({ page }, testInfo) => {
+  await page.goto('/?presentation=1');
+  await expect(page.locator('#send')).toBeEnabled();
+  await page.waitForTimeout(1800);
+  await page.locator('#request-code').scrollIntoViewIfNeeded();
+  await expect(page.locator('#http-code .token.property').first()).toBeAttached();
+  await page.waitForTimeout(4500);
+  await page.locator('#send').click();
+  await expect(page.locator('#match-count')).toHaveText('6 / 6 core fields match');
+  await page.locator('#comparison').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(2500);
+  await page.locator('.results-grid').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(3500);
+  await page.locator('#scenario').selectOption('missing-beta');
+  await page.locator('#send').click();
+  await expect(page.locator('#http-status')).toContainText('400');
+  await page.locator('#comparison').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(3200);
+  await page.locator('.results-grid').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(2800);
+  await page.locator('#scenario').selectOption('equivalent');
+  await page.locator('#sdk-mode').selectOption('explicit');
+  await page.locator('#raw-auth').selectOption('x-api-key');
+  await page.locator('#send').click();
+  await expect(page.locator('#match-count')).toHaveText('6 / 6 core fields match');
+  await page.locator('#request-code').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(4500);
+  await page.screenshot({ path: testInfo.outputPath('highlighted-requests.png'), fullPage: true });
+});

@@ -1,0 +1,40 @@
+{
+  "number": 127,
+  "section": "15. Multiagent coordination and advisors",
+  "title": "Advisor configuration",
+  "prompt": "Configure a supported executor–advisor pairing and request advice during planning and final review.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "model: claude-sonnet-5\nmultiagent:\n  type: multiagent_20261001\n  subagents: { type: disabled }\n  workflows: { type: disabled }\n  advisor:\n    type: enabled\n    model: claude-opus-5-5\nsystem: >-\n  Consult the advisor when planning the approach.\n  Implement the work yourself, then consult the\n  advisor for a final review before answering.",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration"
+  ],
+  "specification": "prompt-127-advisor-configuration-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "configure",
+      "label": "Configure executor and advisor roles",
+      "op": "orchestration.advisor"
+    },
+    {
+      "id": "consult",
+      "label": "Request planning advice",
+      "op": "orchestration.consult"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "configure"
+    },
+    {
+      "action": "consult"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Configure a supported executor–advisor pairing and request advice during planning and final review."
+}

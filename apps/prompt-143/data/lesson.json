@@ -1,0 +1,51 @@
+{
+  "number": 143,
+  "section": "18. Scheduled deployments",
+  "title": "Recurring execution",
+  "prompt": "Create a deployment with a cron expression, an IANA timezone, and an initial task.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const deployment = await client.beta.deployments.create({\n  name: \"Weekday inventory report\",\n  agent: agentId,\n  environment_id: environmentId,\n  schedule: {\n    type: \"cron\",\n    expression: \"0 9 * * 1-5\",\n    timezone: \"Europe/Madrid\"\n  },\n  initial_events: [{\n    type: \"user.message\",\n    content: [{\n      type: \"text\",\n      text: \"Create the daily inventory summary.\"\n    }]\n  }]\n});\nconsole.log(deployment.schedule?.upcoming_runs_at);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/scheduled-deployments"
+  ],
+  "specification": "prompt-143-recurring-execution-prompt.txt",
+  "fields": [
+    {
+      "key": "cron",
+      "label": "Cron expression",
+      "value": "0 9 * * 1-5"
+    },
+    {
+      "key": "timezone",
+      "label": "IANA timezone",
+      "value": "Europe/Madrid"
+    }
+  ],
+  "actions": [
+    {
+      "id": "schedule",
+      "label": "Calculate upcoming fixture occurrences",
+      "op": "schedule.create"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect local wall-clock times",
+      "op": "schedule.inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "schedule"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Create a deployment with a cron expression, an IANA timezone, and an initial task."
+}

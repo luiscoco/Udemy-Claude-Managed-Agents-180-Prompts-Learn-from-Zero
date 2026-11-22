@@ -1,0 +1,40 @@
+{
+  "number": 82,
+  "section": "10. Vaults, OAuth, and credential management",
+  "title": "Static credentials",
+  "prompt": "Register a static bearer credential and inspect its metadata without attempting to retrieve the secret.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const credential = await client.beta.vaults.credentials.create(\n  vaultId, {\n    auth: {\n      type: \"static_bearer\",\n      mcp_server_url: mcpServerUrl,\n      token: bearerToken\n    }\n  }\n);\nconsole.log(credential.id, credential.auth.type);\nconsole.log(credential.metadata);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/vaults"
+  ],
+  "specification": "prompt-082-static-credentials-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "register",
+      "label": "Register synthetic bearer credential",
+      "op": "vault.credential"
+    },
+    {
+      "id": "metadata",
+      "label": "Inspect credential metadata",
+      "op": "vault.metadata"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "register"
+    },
+    {
+      "action": "metadata"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Register a static bearer credential and inspect its metadata without attempting to retrieve the secret."
+}

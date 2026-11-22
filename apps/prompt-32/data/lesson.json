@@ -1,0 +1,64 @@
+{
+  "number": 32,
+  "section": "4. Sessions and lifecycle management",
+  "title": "Interruption",
+  "prompt": "Interrupt a running task, observe the acknowledgement, and redirect the agent with a new instruction.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.events.send(sessionId, {\n  events: [{ type: \"user.interrupt\" }]\n});\n// Observe acknowledgement and idle before redirecting.\nawait client.beta.sessions.events.send(sessionId, {\n  events: [{\n    type: \"user.message\",\n    content: [{ type: \"text\", text: \"Focus only on test failures.\" }]\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/sessions",
+    "https://platform.claude.com/docs/en/managed-agents/session-operations",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-032-interruption-prompt.txt",
+  "fields": [
+    {
+      "key": "task",
+      "label": "User task",
+      "value": "Summarize the approved inventory source."
+    }
+  ],
+  "actions": [
+    {
+      "id": "run",
+      "label": "Start a task",
+      "op": "session.work"
+    },
+    {
+      "id": "interrupt",
+      "label": "Request interruption",
+      "op": "session.interrupt"
+    },
+    {
+      "id": "ack",
+      "label": "Observe acknowledgement",
+      "op": "session.ack"
+    },
+    {
+      "id": "redirect",
+      "label": "Send revised instruction",
+      "op": "session.redirect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "run"
+    },
+    {
+      "action": "interrupt"
+    },
+    {
+      "action": "ack"
+    },
+    {
+      "action": "redirect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Interrupt a running task, observe the acknowledgement, and redirect the agent with a new instruction."
+}

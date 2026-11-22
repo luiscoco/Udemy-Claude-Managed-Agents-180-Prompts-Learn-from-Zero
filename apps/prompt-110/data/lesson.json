@@ -1,0 +1,54 @@
+{
+  "number": 110,
+  "section": "13. Persistent memory",
+  "title": "Memory management",
+  "prompt": "Implement memory creation, retrieval, editing, renaming, and paginated listing with supported path filters.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const memories = client.beta.memoryStores.memories;\nconst doc = await memories.create(storeId, {\n  path: \"/notes/draft.md\", content: \"First draft\"\n});\nconst current = await memories.retrieve(doc.id, {\n  memory_store_id: storeId\n});\nawait memories.update(doc.id, {\n  memory_store_id: storeId,\n  content: \"Reviewed draft\",\n  path: \"/notes/reviewed.md\"\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/memory"
+  ],
+  "specification": "prompt-110-memory-management-prompt.txt",
+  "fields": [
+    {
+      "key": "pathFilter",
+      "label": "Path prefix",
+      "value": "/preferences"
+    }
+  ],
+  "actions": [
+    {
+      "id": "seed",
+      "label": "Create a memory entry",
+      "op": "memory.seed"
+    },
+    {
+      "id": "edit",
+      "label": "Edit and rename the entry",
+      "op": "memory.rename"
+    },
+    {
+      "id": "list",
+      "label": "List a filtered page",
+      "op": "memory.list"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "seed"
+    },
+    {
+      "action": "edit"
+    },
+    {
+      "action": "list"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Implement memory creation, retrieval, editing, renaming, and paginated listing with supported path filters."
+}

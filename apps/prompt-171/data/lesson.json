@@ -1,0 +1,46 @@
+{
+  "number": 171,
+  "section": "22. Application patterns, testing, and complete projects",
+  "title": "Validated JSON",
+  "prompt": "Request JSON output, validate it with Zod, and implement bounded correction attempts when it fails the application schema.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "import * as z from \"zod\";\n\nconst Report = z.object({\n  summary: z.string(),\n  sources: z.array(z.string()),\n});\nconst data: unknown = JSON.parse(candidateText);\nconst result = Report.safeParse(data);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://zod.dev/basics"
+  ],
+  "specification": "prompt-171-validated-json-prompt.txt",
+  "fields": [
+    {
+      "key": "candidate",
+      "label": "Candidate response",
+      "value": "{\"summary\":42,\"sources\":[]}"
+    }
+  ],
+  "actions": [
+    {
+      "id": "validate",
+      "label": "Validate the candidate JSON",
+      "op": "json.validate"
+    },
+    {
+      "id": "correct",
+      "label": "Validate a corrected candidate",
+      "op": "json.correct"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "validate"
+    },
+    {
+      "action": "correct"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Request JSON output, validate it with Zod, and implement bounded correction attempts when it fails the application schema."
+}

@@ -1,0 +1,49 @@
+{
+  "number": 39,
+  "section": "5. Events, streaming, and reconnection",
+  "title": "Reconnection",
+  "prompt": "Reconnect by opening a stream, loading event history, and deduplicating event IDs without losing updates.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const stream =\n  await client.beta.sessions.events.stream(sessionId);\nconst seen = new Set<string>();",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming",
+    "https://platform.claude.com/docs/en/managed-agents/reference"
+  ],
+  "specification": "prompt-039-reconnection-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "open",
+      "label": "Open reconnecting stream",
+      "op": "stream.open"
+    },
+    {
+      "id": "history",
+      "label": "Load historical events",
+      "op": "events.seed"
+    },
+    {
+      "id": "merge",
+      "label": "Merge duplicate and new event IDs",
+      "op": "events.dedup"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "open"
+    },
+    {
+      "action": "history"
+    },
+    {
+      "action": "merge"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Reconnect by opening a stream, loading event history, and deduplicating event IDs without losing updates."
+}

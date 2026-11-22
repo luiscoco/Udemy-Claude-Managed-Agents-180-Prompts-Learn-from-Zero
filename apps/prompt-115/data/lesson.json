@@ -1,0 +1,66 @@
+{
+  "number": 115,
+  "section": "13. Persistent memory",
+  "title": "Redaction and deletion",
+  "prompt": "Demonstrate historical-version redaction and the difference between archiving and deleting a disposable memory store.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.memoryStores.memoryVersions.redact(\n  historicalVersionId, { memory_store_id: testStoreId }\n);",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "await client.beta.memoryStores.archive(archiveStoreId);",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "await client.beta.memoryStores.delete(deleteStoreId);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/memory"
+  ],
+  "specification": "prompt-115-redaction-and-deletion-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "seed",
+      "label": "Prepare disposable memory",
+      "op": "memory.seed"
+    },
+    {
+      "id": "redact",
+      "label": "Redact one historical version",
+      "op": "memory.redact"
+    },
+    {
+      "id": "archive",
+      "label": "Archive the store",
+      "op": "memory.archive"
+    },
+    {
+      "id": "delete",
+      "label": "Delete the disposable store",
+      "op": "memory.delete"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "seed"
+    },
+    {
+      "action": "redact"
+    },
+    {
+      "action": "archive"
+    },
+    {
+      "action": "delete"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Demonstrate historical-version redaction and the difference between archiving and deleting a disposable memory store."
+}

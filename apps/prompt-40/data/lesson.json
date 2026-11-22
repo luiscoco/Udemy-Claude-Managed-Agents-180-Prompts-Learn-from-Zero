@@ -1,0 +1,41 @@
+{
+  "number": 40,
+  "section": "5. Events, streaming, and reconnection",
+  "title": "Event history",
+  "prompt": "Retrieve paginated event history and distinguish when an instruction was submitted from when it was processed.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 40.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'events.pages':\n        r.history = Array.from({ length: 5 }, (_, i) => ({ id: `evt-${i}`, type: i ? 'processing' : 'submitted' }));\n        s.rows = r.history;\n        accept({ pages: [r.history.slice(0, 2), r.history.slice(2, 4), r.history.slice(4)], next_page: null });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming",
+    "https://platform.claude.com/docs/en/managed-agents/reference"
+  ],
+  "specification": "prompt-040-event-history-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "history",
+      "label": "Retrieve event-history pages",
+      "op": "events.pages"
+    },
+    {
+      "id": "process",
+      "label": "Compare submission and processing",
+      "op": "events.processed"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "history"
+    },
+    {
+      "action": "process"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Retrieve paginated event history and distinguish when an instruction was submitted from when it was processed."
+}

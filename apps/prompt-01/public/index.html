@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt 1 · Claude Product Lab</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/code-highlighting.css">
+  <script src="/vendor/prism.js" data-manual></script>
+  <script src="/vendor/prism-typescript.js"></script>
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <main id="workspace">
+    <header class="topbar">
+      <a class="course-title" href="/">How <span>Claude Managed Agents</span> Works</a>
+      <span class="course-tag">PROMPT 01 · PRODUCT SELECTION</span>
+    </header>
+    <section class="intro">
+      <div><div class="eyebrow">ONE DOCUMENT. THREE APPROACHES.</div><h1>Who runs <span>the agent?</span></h1><p>Analyze the same report with three Claude products.<br>Follow the result, then explore the responsibilities behind it.</p></div>
+      <div class="hero-art"><img src="/astronaut.png" alt=""><span>PROMPT 01<br>PRODUCT FOUNDATIONS</span></div>
+    </section>
+    <nav class="lesson-flow" aria-label="Lesson workflow">
+      <div><b>01</b><span><strong>Choose</strong><small>Use the same document</small></span></div><i aria-hidden="true">→</i>
+      <div><b>02</b><span><strong>Run</strong><small>Compare three approaches</small></span></div><i aria-hidden="true">→</i>
+      <div><b>03</b><span><strong>Verify</strong><small>Inspect the evidence</small></span></div>
+    </nav>
+    <nav class="student-nav" aria-label="Lesson sections">
+      <a href="#source-document">Source document</a>
+      <a href="#product-lab" class="lab-link">Product lab ↗</a>
+      <a href="#ownership">Responsibilities</a>
+      <div class="view-controls"><button id="theme-toggle" class="quiet" aria-pressed="false">Switch to dark mode</button><button id="present" class="quiet" aria-pressed="false">▣ Presentation view</button></div>
+    </nav>
+    <section class="toolbar" aria-label="Run controls">
+      <div class="mode-control" role="group" aria-label="Execution mode"><button id="demo-mode" class="active" aria-pressed="true">Classroom demo</button><button id="live-mode" aria-pressed="false">Live Claude</button></div>
+      <p id="mode-description">Local extraction · simulated product flows · no credentials needed</p>
+      <label class="pace">Pace <select id="pace" aria-label="Playback pace"><option value="normal">Teaching</option><option value="fast">Fast</option></select></label>
+      <button id="run-all" class="primary">▶ Run all three</button>
+      <button id="stop" class="quiet" hidden>Stop run</button>
+      <button id="reset" class="quiet">Reset</button>
+    </section>
+    <div id="notice" class="notice" role="status" hidden></div>
+    <div class="lab">
+      <section id="source-document" class="document-panel" aria-labelledby="document-heading">
+        <div class="panel-heading"><div><span class="eyebrow">SHARED INPUT</span><h2 id="document-heading">The source document</h2></div><span class="file-icon">TXT</span></div>
+        <div class="document-actions"><button id="edit-document" class="text-button">Edit document</button><label class="text-button upload">Upload .txt<input id="upload" type="file" accept=".txt,text/plain" aria-label="Upload text document"></label><button id="sample" class="text-button">Load sample</button></div>
+        <div id="document" class="document-text" tabindex="0"></div>
+        <textarea id="editor" aria-label="Source document text" maxlength="30000" hidden></textarea>
+        <div class="document-foot"><span id="char-count"></span><span>Same input for every run</span></div>
+        <div class="task-card"><span class="eyebrow">THE TASK</span><p>Summarize findings, flag risks, and cite supporting passages.</p><span class="task-note">Select a source reference in a result to inspect its evidence here.</span></div>
+      </section>
+      <section id="product-lab" class="comparison" aria-label="Product workbench">
+        <div class="workbench-heading"><h2>Three ways to build it</h2><div class="tabs" role="group" aria-label="Result view"><button data-tab="analysis" class="active" aria-pressed="true">Analysis</button><button data-tab="execution" aria-pressed="false">Execution</button><button data-tab="code" aria-pressed="false">Code</button></div></div>
+        <div id="products" class="products"></div>
+      </section>
+    </div>
+    <section id="ownership" class="ownership" aria-labelledby="ownership-heading"><div class="section-title"><div><span class="eyebrow">COMPARE RESPONSIBILITIES</span><h2 id="ownership-heading">Same task. Different ownership.</h2></div><button id="download" class="quiet" disabled>↓ Export lesson results</button></div>
+      <div class="table-scroll"><table><thead><tr><th scope="col">Responsibility</th><th scope="col">Managed Agents</th><th scope="col">Agent SDK</th><th scope="col">Messages API</th></tr></thead><tbody id="ownership-rows"></tbody></table></div>
+      <p class="table-note">Model inference runs in Claude services for all three. Managed Agents also supports self-hosted sandboxes. This lesson passes the report as text.</p>
+    </section>
+    <footer><span>Independent teaching application · Prompt 1</span><div id="sources"></div></footer>
+  </main>
+</body>
+</html>

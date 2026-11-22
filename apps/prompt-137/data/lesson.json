@@ -1,0 +1,51 @@
+{
+  "number": 137,
+  "section": "17. Outcomes and automated grading",
+  "title": "Measurable criteria",
+  "prompt": "Turn an example deliverable into a rubric containing explicit, individually testable acceptance criteria.",
+  "examples": [
+    {
+      "language": "markdown",
+      "code": "# Inventory summary rubric\n- R1. stock-summary.json parses as a JSON object.\n- R2. The items array contains exactly three records.\n- R3. The records contain SKU A, B and C exactly once each.\n- R4. Each quantity and unit_price is numeric and matches the fixture.\n- R5. total_value equals the sum of quantity times unit_price, which is 30.\n- R6. The root currency field equals EUR.",
+      "label": "Markdown reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/define-outcomes"
+  ],
+  "specification": "prompt-137-measurable-criteria-v2-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "rubric",
+      "label": "Build six objective criteria",
+      "op": "outcome.rubric"
+    },
+    {
+      "id": "good",
+      "label": "Check a correct artifact",
+      "op": "outcome.verify"
+    },
+    {
+      "id": "bad",
+      "label": "Check a single-defect artifact",
+      "op": "outcome.verify",
+      "args": {
+        "bad": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "rubric"
+    },
+    {
+      "action": "good"
+    },
+    {
+      "action": "bad"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Turn an example deliverable into a rubric containing explicit, individually testable acceptance criteria."
+}

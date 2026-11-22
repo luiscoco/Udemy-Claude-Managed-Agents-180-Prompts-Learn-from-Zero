@@ -1,0 +1,56 @@
+{
+  "number": 18,
+  "section": "2. Agent definitions, models, and versions",
+  "title": "Archiving",
+  "prompt": "Archive a disposable agent and demonstrate the consequences for existing sessions and attempts to create new sessions.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const archived =\n  await client.beta.agents.archive(disposableAgentId);\nconsole.log(archived.archived_at);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/agent-setup"
+  ],
+  "specification": "prompt-018-archiving-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "create",
+      "label": "Start an existing session",
+      "op": "session.create"
+    },
+    {
+      "id": "archive",
+      "label": "Archive the agent",
+      "op": "agent.archive"
+    },
+    {
+      "id": "new",
+      "label": "Attempt another session",
+      "op": "session.create"
+    },
+    {
+      "id": "existing",
+      "label": "Inspect existing session",
+      "op": "session.inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "create"
+    },
+    {
+      "action": "archive"
+    },
+    {
+      "action": "new"
+    },
+    {
+      "action": "existing"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Archive a disposable agent and demonstrate the consequences for existing sessions and attempts to create new sessions."
+}

@@ -1,0 +1,54 @@
+{
+  "number": 90,
+  "section": "11. Built-in and custom skills",
+  "title": "Presentations",
+  "prompt": "Attach the PowerPoint skill and create a short presentation from an approved source document.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "skills:\n  - type: anthropic\n    skill_id: pptx\n    version: latest",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/skills"
+  ],
+  "specification": "prompt-090-presentations-v2-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "attach",
+      "label": "Attach pptx skill fixture",
+      "op": "skill.attach",
+      "args": {
+        "format": "pptx"
+      }
+    },
+    {
+      "id": "create",
+      "label": "Create the checked fixture deliverable",
+      "op": "artifact.generate",
+      "args": {
+        "format": "pptx"
+      }
+    },
+    {
+      "id": "verify",
+      "label": "Verify its source facts",
+      "op": "artifact.verify"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "attach"
+    },
+    {
+      "action": "create"
+    },
+    {
+      "action": "verify"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Attach the PowerPoint skill and create a short presentation from an approved source document."
+}

@@ -1,0 +1,43 @@
+{
+  "number": 48,
+  "section": "6. Built-in tools and web access",
+  "title": "Bash execution",
+  "prompt": "Build an agent that runs a Bash data-processing command and reports its exit status and generated output.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 48.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'tools.bash':\n        accept({ implementation: 'Fixed JavaScript data transform; arbitrary shell execution is not exposed.', ...report(s) });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-048-bash-execution-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "run",
+      "label": "Run fixed data-processing fixture",
+      "op": "tools.bash"
+    },
+    {
+      "id": "output",
+      "label": "Read generated output",
+      "op": "file.read",
+      "args": {
+        "path": "/outputs/summary.json"
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "run"
+    },
+    {
+      "action": "output"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Build an agent that runs a Bash data-processing command and reports its exit status and generated output."
+}

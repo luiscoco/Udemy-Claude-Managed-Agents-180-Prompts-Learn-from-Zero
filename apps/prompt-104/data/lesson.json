@@ -1,0 +1,52 @@
+{
+  "number": 104,
+  "section": "12. Files, multimodal inputs, and GitHub",
+  "title": "Private repositories",
+  "prompt": "Mount a private repository using appropriately scoped credentials and verify access without exposing the credential.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "resources: [{\n  type: \"github_repository\",\n  url: privateRepoUrl,\n  mount_path: \"/workspace/private-repo\",\n  authorization_token: githubToken\n}]",
+      "label": "TypeScript configuration fragment"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/github"
+  ],
+  "specification": "prompt-104-private-repositories-prompt.txt",
+  "fields": [
+    {
+      "key": "authorized",
+      "label": "Credential is authorized for this repository",
+      "value": false
+    }
+  ],
+  "actions": [
+    {
+      "id": "mount",
+      "label": "Authorize private-repository fixture",
+      "op": "repo.private"
+    },
+    {
+      "id": "review",
+      "label": "Review authorized source",
+      "op": "repo.review"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "mount"
+    },
+    {
+      "action": "mount",
+      "input": {
+        "authorized": true
+      }
+    },
+    {
+      "action": "review"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Mount a private repository using appropriately scoped credentials and verify access without exposing the credential."
+}

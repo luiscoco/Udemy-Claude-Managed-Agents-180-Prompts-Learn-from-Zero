@@ -1,0 +1,57 @@
+{
+  "number": 37,
+  "section": "5. Events, streaming, and reconnection",
+  "title": "Opening streams",
+  "prompt": "Open a session event stream before sending work and demonstrate why the ordering prevents missing early events.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const stream =\n  await client.beta.sessions.events.stream(sessionId);\nawait client.beta.sessions.events.send(sessionId, {\n  events: [{\n    type: \"user.message\",\n    content: [{ type: \"text\", text: task }]\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming",
+    "https://platform.claude.com/docs/en/managed-agents/reference"
+  ],
+  "specification": "prompt-037-opening-streams-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "early",
+      "label": "Send before opening a stream",
+      "op": "stream.send"
+    },
+    {
+      "id": "open",
+      "label": "Open event stream",
+      "op": "stream.open"
+    },
+    {
+      "id": "send",
+      "label": "Send after stream opens",
+      "op": "stream.send"
+    },
+    {
+      "id": "consume",
+      "label": "Consume buffered events",
+      "op": "stream.consume"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "early"
+    },
+    {
+      "action": "open"
+    },
+    {
+      "action": "send"
+    },
+    {
+      "action": "consume"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Open a session event stream before sending work and demonstrate why the ordering prevents missing early events."
+}

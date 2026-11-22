@@ -1,0 +1,63 @@
+{
+  "number": 88,
+  "section": "10. Vaults, OAuth, and credential management",
+  "title": "Access ownership",
+  "prompt": "Implement user authorization before selecting a vault, accounting for the workspace scope of vault access.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const vaultId = await getAuthorizedVaultId(\n  authenticatedUser.id, workspaceId\n);\nconst session = await client.beta.sessions.create({\n  agent: agentId,\n  environment_id: environmentId,\n  vault_ids: [vaultId]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/vaults"
+  ],
+  "specification": "prompt-088-access-ownership-prompt.txt",
+  "fields": [
+    {
+      "key": "actor",
+      "label": "Classroom actor",
+      "value": "alice",
+      "options": [
+        "alice",
+        "bob",
+        "reviewer"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "associate",
+      "label": "Associate Alice vault",
+      "op": "vault.create",
+      "args": {
+        "actor": "alice"
+      }
+    },
+    {
+      "id": "authorize",
+      "label": "Authorize requested vault",
+      "op": "vault.authorize"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "associate"
+    },
+    {
+      "action": "authorize",
+      "input": {
+        "actor": "bob"
+      }
+    },
+    {
+      "action": "authorize",
+      "input": {
+        "actor": "alice"
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Implement user authorization before selecting a vault, accounting for the workspace scope of vault access."
+}

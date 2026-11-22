@@ -1,0 +1,44 @@
+{
+  "number": 59,
+  "section": "7. Custom tools and application execution",
+  "title": "Input validation",
+  "prompt": "Validate custom-tool arguments and return a useful failure when required fields or values are invalid.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "function validOrderInput(input: unknown):\n  input is { order_id: string } {\n  if (typeof input !== \"object\" || input === null) {\n    return false;\n  }\n  const value = input as Record<string, unknown>;\n  return Object.keys(value).length === 1\n    && typeof value.order_id === \"string\"\n    && value.order_id.trim().length > 0;\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-059-input-validation-prompt.txt",
+  "fields": [
+    {
+      "key": "orderId",
+      "label": "Order ID",
+      "value": ""
+    }
+  ],
+  "actions": [
+    {
+      "id": "validate",
+      "label": "Validate tool arguments",
+      "op": "tool.validate"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "validate"
+    },
+    {
+      "action": "validate",
+      "input": {
+        "orderId": "ORD-100"
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Validate custom-tool arguments and return a useful failure when required fields or values are invalid."
+}

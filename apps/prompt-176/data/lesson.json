@@ -1,0 +1,40 @@
+{
+  "number": 176,
+  "section": "22. Application patterns, testing, and complete projects",
+  "title": "Regression evaluation",
+  "prompt": "Build a small evaluation dataset that checks answer quality, tool behaviour, permissions, cost, and failure recovery.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 176.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'evaluation.run':\n        s.rows = [{ case: 'correct source total', expected: 440, actual: total, pass: total === 440 }, { case: 'ownership denies bob', expected: false, actual: 'alice' === String('bob'), pass: true }, { case: 'defective total caught', expected: false, actual: 400 === Number(total), pass: 400 !== Number(total) }];\n        r.evaluationPassed = s.rows.every(row => row.pass);\n        accept({ cases: s.rows, passed: r.evaluationPassed, dataset: 'Deterministic classroom regression fixture' });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/session-observability"
+  ],
+  "specification": "prompt-176-regression-evaluation-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "evaluate",
+      "label": "Run the regression dataset",
+      "op": "evaluation.run"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect individual failed checks",
+      "op": "evaluation.inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "evaluate"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Build a small evaluation dataset that checks answer quality, tool behaviour, permissions, cost, and failure recovery."
+}

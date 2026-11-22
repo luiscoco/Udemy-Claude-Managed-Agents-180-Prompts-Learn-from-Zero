@@ -1,0 +1,46 @@
+{
+  "number": 165,
+  "section": "21. Self-hosted sandboxes and cloud-platform variants",
+  "title": "Worker-hosted tools",
+  "prompt": "Serve custom tools from an SDK worker, including an authorized adapter to an internal MCP server.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 165.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'host.tools':\n        r.workerTools = ['get_order_status'];\n        accept({ registered: r.workerTools, authorizationBoundary: 'Server-owned fixed handler' });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-custom-tools"
+  ],
+  "specification": "prompt-165-worker-hosted-tools-prompt.txt",
+  "fields": [
+    {
+      "key": "orderId",
+      "label": "Order ID",
+      "value": "ORD-100"
+    }
+  ],
+  "actions": [
+    {
+      "id": "register",
+      "label": "Register an authorized worker tool",
+      "op": "host.tools"
+    },
+    {
+      "id": "execute",
+      "label": "Execute the local tool adapter",
+      "op": "tool.execute"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "register"
+    },
+    {
+      "action": "execute"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Serve custom tools from an SDK worker, including an authorized adapter to an internal MCP server."
+}

@@ -1,0 +1,68 @@
+{
+  "number": 13,
+  "section": "2. Agent definitions, models, and versions",
+  "title": "Speed settings",
+  "prompt": "Demonstrate supported model speed settings and measure their effect on latency and cost.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const agent = await client.beta.agents.create({\n  name: \"Fast reviewer\",\n  model: {\n    id: \"claude-opus-5-5\",\n    speed: \"fast\"\n  },\n  system: \"Analyze the supplied report.\"\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/build-with-claude/fast-mode",
+    "https://platform.claude.com/docs/en/managed-agents/agent-setup"
+  ],
+  "specification": "prompt-013-speed-settings-prompt.txt",
+  "fields": [
+    {
+      "key": "trials",
+      "label": "Trials per profile",
+      "value": 3
+    },
+    {
+      "key": "settingA",
+      "label": "Profile A",
+      "value": "standard"
+    },
+    {
+      "key": "settingB",
+      "label": "Profile B",
+      "value": "fast"
+    }
+  ],
+  "actions": [
+    {
+      "id": "compare",
+      "label": "Compare speed fixture trials",
+      "op": "benchmark.run",
+      "args": {
+        "axis": "speed"
+      }
+    },
+    {
+      "id": "score",
+      "label": "Score completed fixture outputs",
+      "op": "benchmark.score"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect saved state",
+      "op": "inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "compare"
+    },
+    {
+      "action": "score"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Demonstrate supported model speed settings and measure their effect on latency and cost."
+}

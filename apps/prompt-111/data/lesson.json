@@ -1,0 +1,56 @@
+{
+  "number": 111,
+  "section": "13. Persistent memory",
+  "title": "Conflicting edits",
+  "prompt": "Use content-hash preconditions to detect concurrent memory changes and recover from a conflict.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const memories = client.beta.memoryStores.memories;\nconst before = await memories.retrieve(memoryId, {\n  memory_store_id: storeId\n});\nawait memories.update(memoryId, {\n  memory_store_id: storeId,\n  content: proposedContent,\n  precondition: {\n    type: \"content_sha256\",\n    content_sha256: before.content_sha256\n  }\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/memory"
+  ],
+  "specification": "prompt-111-conflicting-edits-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "read",
+      "label": "Read content hash",
+      "op": "memory.read"
+    },
+    {
+      "id": "compete",
+      "label": "Apply a competing edit",
+      "op": "memory.compete"
+    },
+    {
+      "id": "write",
+      "label": "Write using the captured hash",
+      "op": "memory.cas"
+    },
+    {
+      "id": "reload",
+      "label": "Reload the current memory",
+      "op": "memory.read"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "read"
+    },
+    {
+      "action": "compete"
+    },
+    {
+      "action": "write"
+    },
+    {
+      "action": "reload"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Use content-hash preconditions to detect concurrent memory changes and recover from a conflict."
+}

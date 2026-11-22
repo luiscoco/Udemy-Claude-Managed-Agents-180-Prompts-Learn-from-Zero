@@ -1,0 +1,51 @@
+{
+  "number": 144,
+  "section": "18. Scheduled deployments",
+  "title": "Run configuration",
+  "prompt": "Attach the required environment, memory, credentials, supported resources, and a budget for each scheduled session.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "environment_id: CLOUD_ENVIRONMENT_ID\nvault_ids: [VAULT_ID]",
+      "label": "YAML reference excerpt"
+    },
+    {
+      "language": "yaml",
+      "code": "resources:\n  - type: memory_store\n    memory_store_id: REFERENCE_STORE_ID\n    access: read_only\n  - type: file\n    file_id: INPUT_FILE_ID\n    mount_path: /data/inventory.json\nbudget:\n  type: limit\n  max_list_cost:\n    amount: \"500\"\n    currency: USD",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/scheduled-deployments"
+  ],
+  "specification": "prompt-144-scheduled-run-configuration-prompt.txt",
+  "fields": [
+    {
+      "key": "amount",
+      "label": "Budget in whole USD cents",
+      "value": "125"
+    }
+  ],
+  "actions": [
+    {
+      "id": "configure",
+      "label": "Validate scheduled run resources",
+      "op": "schedule.configure"
+    },
+    {
+      "id": "run",
+      "label": "Create one bounded scheduled session",
+      "op": "schedule.run"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "configure"
+    },
+    {
+      "action": "run"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Attach the required environment, memory, credentials, supported resources, and a budget for each scheduled session."
+}

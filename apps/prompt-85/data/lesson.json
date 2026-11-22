@@ -1,0 +1,43 @@
+{
+  "number": 85,
+  "section": "10. Vaults, OAuth, and credential management",
+  "title": "Credential scope",
+  "prompt": "Restrict credential substitution to approved destinations and request locations, demonstrating the placeholder seen inside the sandbox.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.vaults.credentials.update(credentialId, {\n  vault_id: vaultId,\n  auth: {\n    type: \"environment_variable\",\n    networking: {\n      type: \"limited\",\n      allowed_hosts: [\"api.example.com\"]\n    },\n    injection_location: { header: true, body: false }\n  }\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/vaults"
+  ],
+  "specification": "prompt-085-credential-scope-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "allowed",
+      "label": "Substitute at an approved location",
+      "op": "vault.substitute"
+    },
+    {
+      "id": "blocked",
+      "label": "Try a different destination",
+      "op": "vault.substitute",
+      "args": {
+        "blocked": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "allowed"
+    },
+    {
+      "action": "blocked"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Restrict credential substitution to approved destinations and request locations, demonstrating the placeholder seen inside the sandbox."
+}

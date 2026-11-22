@@ -1,0 +1,37 @@
+import { test, expect } from '@playwright/test';
+
+test('Prompt 3 project setup classroom walkthrough', async ({ page }, testInfo) => {
+  await page.goto('/?presentation=1');
+  await expect(page.locator('#source .token.keyword').first()).toBeAttached();
+  await page.waitForTimeout(2000);
+  await page.locator('#setup-lab').scrollIntoViewIfNeeded();
+  await page.locator('#scenario').selectOption('agent');
+  await page.locator('#validate').click();
+  await expect(page.locator('#issues')).toContainText('AGENT_ID');
+  await page.waitForTimeout(3000);
+  await page.locator('#agent').fill('agent_classroom');
+  await page.locator('#validate').click();
+  await expect(page.locator('#result-status')).toHaveText('Ready locally');
+  await page.waitForTimeout(2500);
+  await page.locator('#scenario').selectOption('sdk');
+  await page.locator('#validate').click();
+  await expect(page.locator('#issues')).toContainText('SDK');
+  await page.waitForTimeout(3000);
+  await page.locator('#scenario').selectOption('valid');
+  await page.locator('#validate').click();
+  await expect(page.locator('#result-status')).toHaveText('Ready locally');
+  await page.locator('.report-card').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(2000);
+  await page.locator('.report-card pre').evaluate(e => { e.scrollTop = e.scrollHeight; });
+  await page.waitForTimeout(3500);
+  await page.locator('#source-code').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(4500);
+  await page.locator('[data-file="src/client.ts"]').click();
+  await expect(page.locator('#filename')).toHaveText('src/client.ts');
+  await page.waitForTimeout(5500);
+  await page.locator('.source-card pre').evaluate(e => { e.scrollTop = e.scrollHeight; });
+  await page.waitForTimeout(4500);
+  await page.screenshot({ path:testInfo.outputPath('highlighted-source.png'), fullPage:true });
+  await page.locator('#run-project').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(4000);
+});

@@ -1,0 +1,48 @@
+{
+  "number": 133,
+  "section": "16. Session threads and dynamic workflows",
+  "title": "Workflow branching",
+  "prompt": "Guide a workflow to branch on intermediate results, repeat failed quality checks, and report partial failures.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const task = \"Build a document-analysis workflow. Branch \" +\n  \"to deeper review when evidence conflicts. Have a reviewer \" +\n  \"check every result against its source. Revise failed \" +\n  \"checks for at most two rounds. Record unreadable inputs, \" +\n  \"unresolved failures and omitted coverage in the final report.\";",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/workflow-runs"
+  ],
+  "specification": "prompt-133-workflow-branching-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "start",
+      "label": "Create a branching workflow",
+      "op": "workflow.start"
+    },
+    {
+      "id": "branch",
+      "label": "Repeat a failed fixture quality check",
+      "op": "workflow.branch"
+    },
+    {
+      "id": "complete",
+      "label": "Collect successful and partial results",
+      "op": "workflow.complete"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "start"
+    },
+    {
+      "action": "branch"
+    },
+    {
+      "action": "complete"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Guide a workflow to branch on intermediate results, repeat failed quality checks, and report partial failures."
+}

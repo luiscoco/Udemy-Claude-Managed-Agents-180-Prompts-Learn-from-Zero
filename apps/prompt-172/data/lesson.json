@@ -1,0 +1,46 @@
+{
+  "number": 172,
+  "section": "22. Application patterns, testing, and complete projects",
+  "title": "RAG integration",
+  "prompt": "Connect an external retrieval service through a custom tool or MCP, returning source references with every retrieved passage.",
+  "examples": [
+    {
+      "language": "json",
+      "code": "{\n  \"type\": \"custom\",\n  \"name\": \"retrieve_passages\",\n  \"description\": \"Retrieve authorized passages with source references.\",\n  \"input_schema\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"query\": { \"type\": \"string\" }\n    },\n    \"required\": [\"query\"]\n  }\n}",
+      "label": "JSON reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-172-rag-integration-prompt.txt",
+  "fields": [
+    {
+      "key": "query",
+      "label": "Question",
+      "value": "inventory valuation"
+    }
+  ],
+  "actions": [
+    {
+      "id": "retrieve",
+      "label": "Query the authorized retrieval fixture",
+      "op": "retrieval.search"
+    },
+    {
+      "id": "answer",
+      "label": "Generate an answer with source references",
+      "op": "retrieval.answer"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "retrieve"
+    },
+    {
+      "action": "answer"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Connect an external retrieval service through a custom tool or MCP, returning source references with every retrieved passage."
+}

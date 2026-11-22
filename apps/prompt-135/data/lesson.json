@@ -1,0 +1,61 @@
+{
+  "number": 135,
+  "section": "16. Session threads and dynamic workflows",
+  "title": "Stopping workflows",
+  "prompt": "Distinguish interrupting the main agent from ending workflow runs and implement correct completion detection.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.events.send(sessionId, {\n  events: [{ type: \"user.interrupt\" }]\n});",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.events.send(sessionId, {\n  events: [{\n    type: \"user.message\",\n    content: [{\n      type: \"text\",\n      text: \"Stop all open workflow runs and report their results.\"\n    }]\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/workflow-runs"
+  ],
+  "specification": "prompt-135-stopping-workflows-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "start",
+      "label": "Start main and background work",
+      "op": "workflow.start"
+    },
+    {
+      "id": "interrupt",
+      "label": "Interrupt the main agent",
+      "op": "workflow.interruptMain"
+    },
+    {
+      "id": "stop",
+      "label": "End the workflow run",
+      "op": "workflow.stop"
+    },
+    {
+      "id": "verify",
+      "label": "Check complete termination",
+      "op": "workflow.detect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "start"
+    },
+    {
+      "action": "interrupt"
+    },
+    {
+      "action": "stop"
+    },
+    {
+      "action": "verify"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Distinguish interrupting the main agent from ending workflow runs and implement correct completion detection."
+}

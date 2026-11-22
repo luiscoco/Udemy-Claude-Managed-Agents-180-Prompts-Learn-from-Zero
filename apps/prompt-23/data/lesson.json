@@ -1,0 +1,68 @@
+{
+  "number": 23,
+  "section": "3. Cloud environments and sandbox capabilities",
+  "title": "Network exceptions",
+  "prompt": "Demonstrate package-manager and MCP network allowances without granting unnecessary access to other destinations.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "name: scoped-access\nconfig:\n  type: cloud\n  networking:\n    type: limited\n    allowed_hosts: []\n    allow_package_managers: true\n    allow_mcp_servers: true\nCards: package-manager allowance = maintained registry and code-host list; MCP allowance = configured agent MCP endpoints; neither adds web_search/web_fetch result hosts.",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/environments"
+  ],
+  "specification": "prompt-023-network-exceptions-prompt.txt",
+  "fields": [
+    {
+      "key": "allowPackages",
+      "label": "Allow package managers",
+      "value": true
+    },
+    {
+      "key": "allowMcp",
+      "label": "Allow declared MCP servers",
+      "value": true
+    }
+  ],
+  "actions": [
+    {
+      "id": "registry",
+      "label": "Test package registry allowance",
+      "op": "network.check",
+      "args": {
+        "context": "package"
+      }
+    },
+    {
+      "id": "mcp",
+      "label": "Test declared MCP allowance",
+      "op": "network.check",
+      "args": {
+        "context": "mcp"
+      }
+    },
+    {
+      "id": "other",
+      "label": "Test an unrelated destination",
+      "op": "network.check",
+      "args": {
+        "host": "unrelated.example.test"
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "registry"
+    },
+    {
+      "action": "mcp"
+    },
+    {
+      "action": "other"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Demonstrate package-manager and MCP network allowances without granting unnecessary access to other destinations."
+}

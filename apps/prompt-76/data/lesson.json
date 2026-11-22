@@ -1,0 +1,50 @@
+{
+  "number": 76,
+  "section": "9. Permission policies and human approval",
+  "title": "Denials",
+  "prompt": "Return a useful denial message and distinguish human rejection from a server decision that cannot be overridden.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.events.send(sessionId, {\n  events: [{\n    type: \"user.tool_confirmation\",\n    tool_use_id: pendingEvent.id,\n    result: \"deny\",\n    deny_message: \"Use the staging project.\"\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/permission-policies"
+  ],
+  "specification": "prompt-076-denials-prompt.txt",
+  "fields": [
+    {
+      "key": "decision",
+      "label": "Decision",
+      "value": "allow",
+      "options": [
+        "allow",
+        "deny"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "request",
+      "label": "Receive a server-denied call",
+      "op": "approval.serverDeny"
+    },
+    {
+      "id": "override",
+      "label": "Try to override the server denial",
+      "op": "approval.respond"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "request"
+    },
+    {
+      "action": "override"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Return a useful denial message and distinguish human rejection from a server decision that cannot be overridden."
+}

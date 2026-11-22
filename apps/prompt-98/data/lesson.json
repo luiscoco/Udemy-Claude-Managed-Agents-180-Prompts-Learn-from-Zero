@@ -1,0 +1,40 @@
+{
+  "number": 98,
+  "section": "12. Files, multimodal inputs, and GitHub",
+  "title": "Multiple inputs",
+  "prompt": "Mount several input files and produce a report that identifies which file supports each finding.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "resources: [\n  {\n    type: \"file\", file_id: dataFileId,\n    mount_path: \"/data.csv\"\n  },\n  {\n    type: \"file\", file_id: notesFileId,\n    mount_path: \"/notes.txt\"\n  }\n]",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/files"
+  ],
+  "specification": "prompt-098-multiple-inputs-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "mount",
+      "label": "Mount multiple source files",
+      "op": "file.multiple"
+    },
+    {
+      "id": "report",
+      "label": "Produce source-linked findings",
+      "op": "file.summary"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "mount"
+    },
+    {
+      "action": "report"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Mount several input files and produce a report that identifies which file supports each finding."
+}

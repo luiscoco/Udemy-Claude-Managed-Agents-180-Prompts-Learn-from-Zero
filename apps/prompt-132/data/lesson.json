@@ -1,0 +1,45 @@
+{
+  "number": 132,
+  "section": "16. Session threads and dynamic workflows",
+  "title": "First dynamic workflow",
+  "prompt": "Ask the agent to create a workflow that analyses many documents in parallel and synthesizes the findings.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "multiagent:\n  type: multiagent_20261001\n  subagents: { type: disabled }\n  workflows:\n    type: enabled\n    inline_agents: { type: enabled }\n  advisor: { type: disabled }",
+      "label": "YAML reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "const task = \"Create a workflow to analyse the provided \" +\n  \"documents concurrently. Produce evidence-backed findings \" +\n  \"for each document, then reconcile them into a synthesis. \" +\n  \"Report unreadable documents and missing coverage.\";",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/workflow-runs"
+  ],
+  "specification": "prompt-132-first-dynamic-workflow-v2-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "start",
+      "label": "Create a parallel document workflow",
+      "op": "workflow.start"
+    },
+    {
+      "id": "complete",
+      "label": "Collect phase results",
+      "op": "workflow.complete"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "start"
+    },
+    {
+      "action": "complete"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Ask the agent to create a workflow that analyses many documents in parallel and synthesizes the findings."
+}

@@ -1,0 +1,40 @@
+{
+  "number": 129,
+  "section": "16. Session threads and dynamic workflows",
+  "title": "Thread inspection",
+  "prompt": "Display the primary session overview alongside each subagent’s complete event history and live stream.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const events = client.beta.sessions.threads.events;\nconst live = await events.stream(childThreadId, {\n  session_id: sessionId\n});\nconst seen = new Set<string>();",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/session-threads"
+  ],
+  "specification": "prompt-129-thread-inspection-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "threads",
+      "label": "Create thread-specific histories",
+      "op": "thread.create"
+    },
+    {
+      "id": "inspect",
+      "label": "Compare primary and child projections",
+      "op": "thread.inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "threads"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Display the primary session overview alongside each subagent’s complete event history and live stream."
+}

@@ -1,0 +1,54 @@
+{
+  "number": 91,
+  "section": "11. Built-in and custom skills",
+  "title": "Spreadsheets",
+  "prompt": "Attach the Excel skill and produce a workbook with formulas, formatting, and verified calculated results.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "skills:\n  - type: anthropic\n    skill_id: xlsx\n    version: latest",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/skills"
+  ],
+  "specification": "prompt-091-spreadsheets-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "attach",
+      "label": "Attach xlsx skill fixture",
+      "op": "skill.attach",
+      "args": {
+        "format": "xlsx"
+      }
+    },
+    {
+      "id": "create",
+      "label": "Create the checked fixture deliverable",
+      "op": "artifact.generate",
+      "args": {
+        "format": "xlsx"
+      }
+    },
+    {
+      "id": "verify",
+      "label": "Verify its source facts",
+      "op": "artifact.verify"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "attach"
+    },
+    {
+      "action": "create"
+    },
+    {
+      "action": "verify"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Attach the Excel skill and produce a workbook with formulas, formatting, and verified calculated results."
+}

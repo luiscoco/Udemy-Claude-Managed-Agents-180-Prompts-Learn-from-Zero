@@ -1,0 +1,52 @@
+{
+  "number": 102,
+  "section": "12. Files, multimodal inputs, and GitHub",
+  "title": "Output availability",
+  "prompt": "Handle the delay before generated files become downloadable and implement appropriate file cleanup.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const deadline = Date.now() + 15000;",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/files",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-102-output-availability-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "generate",
+      "label": "Generate output fixture",
+      "op": "file.process"
+    },
+    {
+      "id": "poll",
+      "label": "Check output availability",
+      "op": "file.availability"
+    },
+    {
+      "id": "cleanup",
+      "label": "Clean up the disposable file",
+      "op": "file.cleanup"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "generate"
+    },
+    {
+      "action": "poll"
+    },
+    {
+      "action": "poll"
+    },
+    {
+      "action": "cleanup"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Handle the delay before generated files become downloadable and implement appropriate file cleanup."
+}

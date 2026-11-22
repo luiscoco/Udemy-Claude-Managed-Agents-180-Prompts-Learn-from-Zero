@@ -1,0 +1,40 @@
+{
+  "number": 166,
+  "section": "21. Self-hosted sandboxes and cloud-platform variants",
+  "title": "Session isolation",
+  "prompt": "Launch a separate sandbox for each claimed session with distinct working directories and appropriate resource limits.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 166.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'host.sandboxes': {\n        for (const name of ['A', 'B'])\n            await mkdir(new URL(`sandboxes/${name}/`, root), { recursive: true });\n        await writeFile(new URL('sandboxes/A/marker.txt', root), 'Session A');\n        r.localSandboxes = ['A', 'B'];\n        accept({ directories: ['.runtime/sandboxes/A', '.runtime/sandboxes/B'], markerWrittenOnlyIn: 'A' });\n        break;\n    }\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-workers"
+  ],
+  "specification": "prompt-166-session-isolation-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "claim",
+      "label": "Create separate worker sandboxes",
+      "op": "host.sandboxes"
+    },
+    {
+      "id": "verify",
+      "label": "Verify directory isolation",
+      "op": "host.isolation"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "claim"
+    },
+    {
+      "action": "verify"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Launch a separate sandbox for each claimed session with distinct working directories and appropriate resource limits."
+}

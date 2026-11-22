@@ -1,0 +1,62 @@
+{
+  "number": 14,
+  "section": "2. Agent definitions, models, and versions",
+  "title": "Inference geography",
+  "prompt": "Configure supported inference-geography settings and demonstrate validation against workspace policies.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const agent = await client.beta.agents.create({\n  name: \"US inference reviewer\",\n  model: {\n    id: modelId,\n    inference_geo: \"us\"\n  },\n  system: \"Review the supplied document.\"\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/agent-setup"
+  ],
+  "specification": "prompt-014-inference-geography-prompt.txt",
+  "fields": [
+    {
+      "key": "region",
+      "label": "Inference geography",
+      "value": "us",
+      "options": [
+        "us",
+        "global"
+      ]
+    },
+    {
+      "key": "allowed",
+      "label": "Fixture workspace policy",
+      "value": "us",
+      "options": [
+        "us",
+        "global"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "validate",
+      "label": "Validate geography selection",
+      "op": "geo.validate"
+    },
+    {
+      "id": "blocked",
+      "label": "Exercise blocked selection",
+      "op": "geo.validate",
+      "args": {
+        "rejected": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "validate"
+    },
+    {
+      "action": "blocked"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Configure supported inference-geography settings and demonstrate validation against workspace policies."
+}

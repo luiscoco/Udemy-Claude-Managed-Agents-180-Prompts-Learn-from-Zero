@@ -1,0 +1,57 @@
+{
+  "number": 156,
+  "section": "20. Observability, usage, and budgets",
+  "title": "Usage reporting",
+  "prompt": "Report token usage, cache usage, active time, and list cost without double-counting cumulative snapshots.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const session = await client.beta.sessions.retrieve(sessionId);\nconst usage = session.usage;\nconsole.log(usage.input_tokens, usage.output_tokens);\nconsole.log(usage.cache_read_input_tokens);\nconsole.log(usage.cache_creation);\nconsole.log(usage.active_seconds, usage.list_cost);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/session-observability"
+  ],
+  "specification": "prompt-156-usage-reporting-v2-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "first",
+      "label": "Receive first cumulative snapshot",
+      "op": "usage.snapshot",
+      "args": {
+        "value": 100
+      }
+    },
+    {
+      "id": "second",
+      "label": "Receive updated cumulative snapshot",
+      "op": "usage.snapshot",
+      "args": {
+        "value": 150
+      }
+    },
+    {
+      "id": "duplicate",
+      "label": "Replay the updated snapshot",
+      "op": "usage.snapshot",
+      "args": {
+        "value": 150
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "first"
+    },
+    {
+      "action": "second"
+    },
+    {
+      "action": "duplicate"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Report token usage, cache usage, active time, and list cost without double-counting cumulative snapshots."
+}

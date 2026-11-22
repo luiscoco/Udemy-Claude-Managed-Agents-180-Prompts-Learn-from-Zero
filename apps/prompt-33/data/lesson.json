@@ -1,0 +1,63 @@
+{
+  "number": 33,
+  "section": "4. Sessions and lifecycle management",
+  "title": "Runtime reconfiguration",
+  "prompt": "Update a session’s tools and MCP servers while respecting idle-state requirements and open-workflow restrictions.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const session = await client.beta.sessions.retrieve(sessionId);\nif (session.status !== \"idle\") {\n  throw new Error(\"Wait for idle before reconfiguration\");\n}\nawait client.beta.sessions.update(sessionId, {\n  agent: {\n    tools: completeToolList,\n    mcp_servers: completeServerList\n  }\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/sessions",
+    "https://platform.claude.com/docs/en/managed-agents/session-operations",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-033-runtime-reconfiguration-prompt.txt",
+  "fields": [
+    {
+      "key": "idle",
+      "label": "Session is idle",
+      "value": false
+    },
+    {
+      "key": "workflowOpen",
+      "label": "Workflow is open",
+      "value": true
+    }
+  ],
+  "actions": [
+    {
+      "id": "update",
+      "label": "Attempt session reconfiguration",
+      "op": "session.reconfigure"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect saved state",
+      "op": "inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "update"
+    },
+    {
+      "action": "update",
+      "input": {
+        "idle": true
+      }
+    },
+    {
+      "action": "update",
+      "input": {
+        "idle": true,
+        "workflowOpen": false
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Update a session’s tools and MCP servers while respecting idle-state requirements and open-workflow restrictions."
+}

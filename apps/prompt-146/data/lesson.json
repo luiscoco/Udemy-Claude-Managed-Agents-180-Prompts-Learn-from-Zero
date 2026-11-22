@@ -1,0 +1,64 @@
+{
+  "number": 146,
+  "section": "18. Scheduled deployments",
+  "title": "Scheduling controls",
+  "prompt": "Demonstrate pause, unpause, and archive, explaining their effects on future triggers and existing sessions.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.deployments.pause(deploymentId);\nawait client.beta.deployments.unpause(deploymentId);\nawait client.beta.deployments.archive(deploymentId);\nconst state = await client.beta.deployments.retrieve(\n  deploymentId\n);\nconsole.log(state.status, state.archived_at);\nconsole.log(state.paused_reason);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/scheduled-deployments"
+  ],
+  "specification": "prompt-146-scheduling-controls-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "run",
+      "label": "Create an existing scheduled session",
+      "op": "schedule.run"
+    },
+    {
+      "id": "pause",
+      "label": "Pause future triggers",
+      "op": "schedule.pause"
+    },
+    {
+      "id": "trigger",
+      "label": "Attempt a paused trigger",
+      "op": "schedule.run"
+    },
+    {
+      "id": "unpause",
+      "label": "Unpause deployment",
+      "op": "schedule.unpause"
+    },
+    {
+      "id": "archive",
+      "label": "Archive deployment",
+      "op": "schedule.archive"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "run"
+    },
+    {
+      "action": "pause"
+    },
+    {
+      "action": "trigger"
+    },
+    {
+      "action": "unpause"
+    },
+    {
+      "action": "archive"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Demonstrate pause, unpause, and archive, explaining their effects on future triggers and existing sessions."
+}

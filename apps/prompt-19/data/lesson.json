@@ -1,0 +1,48 @@
+{
+  "number": 19,
+  "section": "3. Cloud environments and sandbox capabilities",
+  "title": "Sandbox isolation",
+  "prompt": "Create two sessions using one environment and demonstrate that their files and processes are isolated.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const a = await client.beta.sessions.create({\n  agent: agentId, environment_id: environmentId\n});\nconst b = await client.beta.sessions.create({\n  agent: agentId, environment_id: environmentId\n});\nconsole.log(a.id, b.id);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/environments"
+  ],
+  "specification": "prompt-019-sandbox-isolation-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "create",
+      "label": "Create isolated sessions",
+      "op": "isolation.create"
+    },
+    {
+      "id": "write",
+      "label": "Write a file in session A",
+      "op": "isolation.write"
+    },
+    {
+      "id": "check",
+      "label": "Compare files and processes",
+      "op": "isolation.inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "create"
+    },
+    {
+      "action": "write"
+    },
+    {
+      "action": "check"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Create two sessions using one environment and demonstrate that their files and processes are isolated."
+}

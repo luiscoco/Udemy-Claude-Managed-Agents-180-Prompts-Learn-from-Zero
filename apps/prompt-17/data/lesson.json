@@ -1,0 +1,76 @@
+{
+  "number": 17,
+  "section": "2. Agent definitions, models, and versions",
+  "title": "Version rollout",
+  "prompt": "List agent versions and compare sessions pinned to different versions before promoting a configuration.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const candidate = await client.beta.sessions.create({\n  agent: {\n    type: \"agent\",\n    id: agentId,\n    version: candidateVersion\n  },\n  environment_id: environmentId\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/agent-setup"
+  ],
+  "specification": "prompt-017-version-rollout-prompt.txt",
+  "fields": [
+    {
+      "key": "expectedVersion",
+      "label": "Expected version",
+      "value": 1
+    }
+  ],
+  "actions": [
+    {
+      "id": "read",
+      "label": "Read version one",
+      "op": "agent.retrieve"
+    },
+    {
+      "id": "update",
+      "label": "Publish version two",
+      "op": "agent.update"
+    },
+    {
+      "id": "versions",
+      "label": "List versions",
+      "op": "agent.versions"
+    },
+    {
+      "id": "old",
+      "label": "Pin session to version one",
+      "op": "agent.pin",
+      "args": {
+        "version": 1
+      }
+    },
+    {
+      "id": "new",
+      "label": "Pin session to version two",
+      "op": "agent.pin",
+      "args": {
+        "version": 2
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "read"
+    },
+    {
+      "action": "update"
+    },
+    {
+      "action": "versions"
+    },
+    {
+      "action": "old"
+    },
+    {
+      "action": "new"
+    }
+  ],
+  "initial": {},
+  "takeaway": "List agent versions and compare sessions pinned to different versions before promoting a configuration."
+}

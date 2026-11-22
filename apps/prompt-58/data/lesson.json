@@ -1,0 +1,54 @@
+{
+  "number": 58,
+  "section": "7. Custom tools and application execution",
+  "title": "Execution handler",
+  "prompt": "Handle agent.custom_tool_use, run the matching function, and return the corresponding user.custom_tool_result.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "if (event.type === \"agent.custom_tool_use\") {\n  const result = await runTool(event.name, event.input);\n  await client.beta.sessions.events.send(sessionId, {\n    events: [{\n      type: \"user.custom_tool_result\",\n      custom_tool_use_id: event.id,\n      content: [{ type: \"text\", text: result }]\n    }]\n  });\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-058-execution-handler-prompt.txt",
+  "fields": [
+    {
+      "key": "orderId",
+      "label": "Order ID",
+      "value": "ORD-100"
+    }
+  ],
+  "actions": [
+    {
+      "id": "request",
+      "label": "Receive custom-tool request",
+      "op": "tool.request"
+    },
+    {
+      "id": "execute",
+      "label": "Execute the matching handler",
+      "op": "tool.execute"
+    },
+    {
+      "id": "result",
+      "label": "Return a correlated result",
+      "op": "tool.result"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "request"
+    },
+    {
+      "action": "execute"
+    },
+    {
+      "action": "result"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Handle agent.custom_tool_use, run the matching function, and return the corresponding user.custom_tool_result."
+}

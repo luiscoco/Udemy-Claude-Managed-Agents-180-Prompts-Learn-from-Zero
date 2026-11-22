@@ -1,0 +1,48 @@
+{
+  "number": 134,
+  "section": "16. Session threads and dynamic workflows",
+  "title": "Progress reconstruction",
+  "prompt": "Reconstruct workflow and phase state from event history after the client disconnects.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 134.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'workflow.start':\n        r.workflow = { id: 'demo_workflow', status: 'running', phases: [{ name: 'research', status: 'completed' }, { name: 'verify', status: 'running' }] };\n        r.workflowEvents = [{ phase: 'research', status: 'completed' }, { phase: 'verify', status: 'running' }];\n        accept({ workflow: r.workflow });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/workflow-runs"
+  ],
+  "specification": "prompt-134-progress-reconstruction-v2-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "start",
+      "label": "Record workflow progress events",
+      "op": "workflow.start"
+    },
+    {
+      "id": "disconnect",
+      "label": "Discard client-only progress",
+      "op": "workflow.disconnect"
+    },
+    {
+      "id": "recover",
+      "label": "Reconstruct from persisted events",
+      "op": "workflow.reconstruct"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "start"
+    },
+    {
+      "action": "disconnect"
+    },
+    {
+      "action": "recover"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Reconstruct workflow and phase state from event history after the client disconnects."
+}

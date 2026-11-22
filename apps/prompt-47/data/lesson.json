@@ -1,0 +1,54 @@
+{
+  "number": 47,
+  "section": "6. Built-in tools and web access",
+  "title": "Tool selection",
+  "prompt": "Configure the built-in toolset with only the tools needed for a small file-analysis task.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "tools: [{\n  type: \"agent_toolset_20260401\",\n  default_config: { enabled: false },\n  configs: [\n    { name: \"read\", enabled: true },\n    { name: \"glob\", enabled: true },\n    { name: \"grep\", enabled: true }\n  ]\n}]",
+      "label": "TypeScript configuration fragment"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-047-tool-selection-prompt.txt",
+  "fields": [
+    {
+      "key": "tools",
+      "label": "Enabled tools",
+      "value": "read,glob,grep"
+    }
+  ],
+  "actions": [
+    {
+      "id": "configure",
+      "label": "Build the minimal toolset",
+      "op": "tools.configure"
+    },
+    {
+      "id": "read",
+      "label": "Execute an enabled read",
+      "op": "file.read"
+    },
+    {
+      "id": "disabled",
+      "label": "Try an unavailable write",
+      "op": "tools.disabled"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "configure"
+    },
+    {
+      "action": "read"
+    },
+    {
+      "action": "disabled"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Configure the built-in toolset with only the tools needed for a small file-analysis task."
+}

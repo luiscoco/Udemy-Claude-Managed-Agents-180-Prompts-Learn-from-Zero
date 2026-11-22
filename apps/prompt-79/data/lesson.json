@@ -1,0 +1,58 @@
+{
+  "number": 79,
+  "section": "9. Permission policies and human approval",
+  "title": "Disabling versus approving",
+  "prompt": "Demonstrate the difference between removing a tool and leaving it available behind an approval requirement.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 79.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'approval.disabled':\n        r.tools = ['read'];\n        reject('Write is disabled; approval cannot enable an absent tool.', { effectiveTools: r.tools });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/permission-policies"
+  ],
+  "specification": "prompt-079-disabling-versus-approving-prompt.txt",
+  "fields": [
+    {
+      "key": "decision",
+      "label": "Decision",
+      "value": "deny",
+      "options": [
+        "allow",
+        "deny"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "disabled",
+      "label": "Remove a tool from the configuration",
+      "op": "approval.disabled"
+    },
+    {
+      "id": "ask",
+      "label": "Enable behind confirmation",
+      "op": "approval.seed"
+    },
+    {
+      "id": "respond",
+      "label": "Answer the visible request",
+      "op": "approval.respond"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "disabled"
+    },
+    {
+      "action": "ask"
+    },
+    {
+      "action": "respond"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Demonstrate the difference between removing a tool and leaving it available behind an approval requirement."
+}

@@ -1,0 +1,68 @@
+{
+  "number": 11,
+  "section": "2. Agent definitions, models, and versions",
+  "title": "Model selection",
+  "prompt": "Compare two supported models on one task, measuring output quality, latency, and usage.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "for (const modelId of [modelA, modelB]) {\n  const session = await client.beta.sessions.create({\n    agent: {\n      type: \"agent_with_overrides\",\n      id: agentId,\n      model: { id: modelId }\n    },\n    environment_id: environmentId,\n    initial_events: [{\n      type: \"user.message\",\n      content: [{ type: \"text\", text: task }]\n    }]\n  });\n  console.log(modelId, session.id);\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/session-observability",
+    "https://platform.claude.com/docs/en/managed-agents/agent-setup"
+  ],
+  "specification": "prompt-011-model-selection-prompt.txt",
+  "fields": [
+    {
+      "key": "trials",
+      "label": "Trials per profile",
+      "value": 3
+    },
+    {
+      "key": "settingA",
+      "label": "Profile A",
+      "value": "Model A"
+    },
+    {
+      "key": "settingB",
+      "label": "Profile B",
+      "value": "Model B"
+    }
+  ],
+  "actions": [
+    {
+      "id": "compare",
+      "label": "Compare model fixture trials",
+      "op": "benchmark.run",
+      "args": {
+        "axis": "model"
+      }
+    },
+    {
+      "id": "score",
+      "label": "Score completed fixture outputs",
+      "op": "benchmark.score"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect saved state",
+      "op": "inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "compare"
+    },
+    {
+      "action": "score"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Compare two supported models on one task, measuring output quality, latency, and usage."
+}

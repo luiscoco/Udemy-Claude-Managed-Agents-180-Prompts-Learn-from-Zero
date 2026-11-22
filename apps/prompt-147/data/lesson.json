@@ -1,0 +1,56 @@
+{
+  "number": 147,
+  "section": "18. Scheduled deployments",
+  "title": "Scheduled version rollout",
+  "prompt": "Pin a scheduled deployment to a tested agent version and demonstrate a controlled configuration update.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const before = await client.beta.deployments.retrieve(\n  deploymentId\n);\nawait client.beta.deployments.pause(deploymentId);\nconst updated = await client.beta.deployments.update(\n  deploymentId, {\n    agent: {\n      type: \"agent\",\n      id: testedAgentId,\n      version: testedVersion\n    }\n  }\n);\nconsole.log(before.agent, updated.agent);",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/scheduled-deployments"
+  ],
+  "specification": "prompt-147-scheduled-version-rollout-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "old",
+      "label": "Run version-one deployment",
+      "op": "schedule.run"
+    },
+    {
+      "id": "promote",
+      "label": "Pin a tested version-two agent",
+      "op": "schedule.promote"
+    },
+    {
+      "id": "new",
+      "label": "Create the next version-pinned session",
+      "op": "schedule.run"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect saved state",
+      "op": "inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "old"
+    },
+    {
+      "action": "promote"
+    },
+    {
+      "action": "new"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Pin a scheduled deployment to a tested agent version and demonstrate a controlled configuration update."
+}

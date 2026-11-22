@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Prompt 2 · Architecture Lab</title>
+  <link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/architecture.css"><link rel="stylesheet" href="/code-highlighting.css">
+  <script src="/vendor/prism.js" data-manual></script><script src="/vendor/prism-typescript.js"></script><script src="/vendor/prism-json.js"></script>
+  <script type="module" src="/app.js"></script>
+</head>
+<body><main>
+  <header class="topbar"><a class="course-title" href="/">How <span>Claude Managed Agents</span> Works</a><span class="course-tag">PROMPT 02 · ARCHITECTURE</span></header>
+  <section class="intro"><div><div class="eyebrow">FOUR RESOURCES. ONE WORKFLOW.</div><h1>See how the pieces <span>fit together.</span></h1><p>Select an agent and environment. Create a session.<br>Send a task and follow the events that connect everything.</p></div><div class="hero-art"><img src="/astronaut.png" alt=""><span>PROMPT 02<br>AGENT ARCHITECTURE</span></div></section>
+  <nav class="lesson-flow" aria-label="Lesson workflow"><div><b>01</b><span><strong>Configure</strong><small>Choose reusable resources</small></span></div><i aria-hidden="true">→</i><div><b>02</b><span><strong>Run</strong><small>Start a session turn</small></span></div><i aria-hidden="true">→</i><div><b>03</b><span><strong>Verify</strong><small>Inspect events and history</small></span></div></nav>
+  <nav class="student-nav" aria-label="Lesson sections"><a href="#architecture">Resource map</a><a href="#session-lab" class="lab-link">Session lab ↗</a><a href="#source-code">Code &amp; evidence</a><div class="view-controls"><button id="theme-toggle" class="quiet" aria-pressed="false">Switch to dark mode</button><button id="present" class="quiet" aria-pressed="false">Presentation view</button></div></nav>
+  <section class="toolbar"><div class="mode-control" role="group" aria-label="Execution mode"><button id="demo-mode" class="active" aria-pressed="true">Classroom demo</button><button id="live-mode" aria-pressed="false">Live Managed Agents</button></div><p id="mode-description">Local session simulation · scripted responses · no credentials needed</p><label class="pace">Pace<select id="pace" aria-label="Playback pace"><option value="normal">Teaching</option><option value="fast">Fast</option></select></label></section>
+  <div id="notice" class="notice" role="status" hidden></div>
+  <section id="architecture" aria-labelledby="map-heading"><div class="workbench-heading"><h2 id="map-heading">The architecture in action</h2><span id="map-status" class="course-tag">Choose reusable resources</span></div>
+    <div class="resource-map">
+      <button class="resource-node purple" data-resource="agent"><span class="node-icon">◈</span><strong>Agent</strong><span class="node-definition">Model, instructions and tools</span><small id="agent-reference">Choose an agent below</small><span class="node-scope">Reusable definition</span></button>
+      <span class="map-operator" aria-hidden="true">+</span>
+      <button class="resource-node blue" data-resource="environment"><span class="node-icon">▣</span><strong>Environment</strong><span class="node-definition">Sandbox configuration</span><small id="environment-reference">Choose an environment below</small><span class="node-scope">Reusable definition</span></button>
+      <span class="map-operator" aria-hidden="true">→</span>
+      <button class="resource-node green" data-resource="session"><span class="node-icon">⌘</span><strong>Session</strong><span class="node-definition">An instance with its own history</span><small id="session-reference">Create your first session</small><span class="node-scope">Per-session state</span></button>
+      <span class="map-operator" aria-hidden="true">↔</span>
+      <button class="resource-node blue" data-resource="events"><span class="node-icon">⇄</span><strong>Events</strong><span class="node-definition">Messages and state updates</span><small id="event-reference">Waiting for a task</small><span class="node-scope">Your app exchanges events</span></button>
+    </div>
+  </section>
+  <div id="session-lab" class="architecture-workspace">
+    <section class="lesson-card configuration"><p class="eyebrow">CONFIGURE &amp; CREATE</p><h2>Reuse the building blocks</h2>
+      <label for="agent">Agent</label><select id="agent"></select>
+      <label for="environment">Environment</label><select id="environment"></select>
+      <p id="resource-help" class="helper"></p>
+      <button id="create" class="primary">＋ Create session</button>
+      <div class="saved-heading"><h3>Saved sessions</h3><span id="session-count">0</span></div><div id="sessions" class="session-list"></div>
+      <p class="helper">Create two sessions with the same references. Select each one to compare its conversation history.</p>
+    </section>
+    <section class="lesson-card conversation"><div class="section-title"><div><p class="eyebrow">SESSION WORKSPACE</p><h2>Send a task. Follow the turn.</h2></div><span id="session-status" class="status-pill">No session</span></div>
+      <div id="session-meta" class="session-meta">Create a session to connect the resources.</div>
+      <div id="conversation" class="transcript" aria-label="Conversation"><p class="empty-copy">Your selected session's messages appear here.</p></div>
+      <label for="task-example">Example task</label><select id="task-example"></select>
+      <label for="task">Your task</label><textarea id="task" rows="3" maxlength="4000"></textarea>
+      <div class="message-actions"><span class="helper">The stream opens before the task is sent.</span><button id="send" class="primary" disabled>Send task ↗</button><button id="stop" class="quiet" hidden>Stop turn</button></div>
+      <div class="history-actions"><button id="inspect" class="quiet" disabled>Refresh stored history</button><button id="export" class="quiet" disabled>↓ Export session</button></div>
+    </section>
+  </div>
+  <section class="lesson-card evidence-card" aria-labelledby="events-heading"><div class="section-title"><div><p class="eyebrow">VERIFY THE EVIDENCE</p><h2 id="events-heading">What happened in this session?</h2></div><span id="event-count" class="course-tag">0 stored events</span></div><p class="helper">Select an event to inspect its stored projection. Demo events are labelled separately from provider events.</p><div id="events" class="event-feed"></div></section>
+  <div id="source-code" class="code-evidence-grid">
+    <section class="lesson-card"><div class="workbench-heading"><h2>Minimal runnable flow</h2><div class="tabs" role="group" aria-label="Code example"><button class="active" data-code="create">Create</button><button data-code="stream">Send &amp; stream</button><button data-code="history">History</button></div></div><p class="helper">TypeScript · client and resource IDs are already configured on the server.</p><pre tabindex="0" aria-label="TypeScript example"><code id="typescript" class="language-typescript"></code></pre></section>
+    <section class="lesson-card inspection"><p class="eyebrow">RESOURCE INSPECTOR</p><h2 id="inspector-heading">Agent definition</h2><p id="inspector-description" class="helper"></p><p class="helper">JSON · application projection</p><pre tabindex="0" aria-label="Resource JSON"><code id="json" class="language-json"></code></pre></section>
+  </div>
+  <footer><span>Independent teaching application · Prompt 2 · Managed Agents Beta</span><div><a href="https://platform.claude.com/docs/en/managed-agents/sessions" target="_blank" rel="noreferrer">Sessions documentation ↗</a><a href="https://platform.claude.com/docs/en/managed-agents/events-and-streaming" target="_blank" rel="noreferrer">Events documentation ↗</a></div></footer>
+</main></body></html>

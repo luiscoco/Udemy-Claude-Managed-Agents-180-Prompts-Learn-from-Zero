@@ -1,0 +1,49 @@
+{
+  "number": 55,
+  "section": "6. Built-in tools and web access",
+  "title": "Domain policies",
+  "prompt": "Compare web allowlists and blocklists, including how they interact with organization and environment restrictions.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "{\n  type: \"web_search\",\n  name: \"web_search\",\n  enabled: true,\n  allowed_domains: [\"docs.example.com\"]\n}",
+      "label": "TypeScript configuration fragment"
+    },
+    {
+      "language": "json",
+      "code": "{\n  \"type\": \"limited\",\n  \"allowed_hosts\": [\"docs.example.com\"]\n}",
+      "label": "JSON reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions",
+    "https://platform.claude.com/docs/en/managed-agents/tools"
+  ],
+  "specification": "prompt-055-domain-policies-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "allowed",
+      "label": "Intersect domain policies",
+      "op": "network.policies"
+    },
+    {
+      "id": "blocked",
+      "label": "Check organizational deny rule",
+      "op": "network.policies",
+      "args": {
+        "blocked": true
+      }
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "allowed"
+    },
+    {
+      "action": "blocked"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Compare web allowlists and blocklists, including how they interact with organization and environment restrictions."
+}

@@ -1,0 +1,40 @@
+{
+  "number": 84,
+  "section": "10. Vaults, OAuth, and credential management",
+  "title": "Environment credentials",
+  "prompt": "Call a test API from a cloud sandbox using a vaulted environment-variable credential.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 84.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'vault.placeholder':\n        accept({ sandboxValue: 'VAULT_PLACEHOLDER_credential_1', realCredentialPresent: false });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/vaults"
+  ],
+  "specification": "prompt-084-environment-credentials-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "placeholder",
+      "label": "Inspect sandbox placeholder",
+      "op": "vault.placeholder"
+    },
+    {
+      "id": "call",
+      "label": "Call the approved destination",
+      "op": "vault.substitute"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "placeholder"
+    },
+    {
+      "action": "call"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Call a test API from a cloud sandbox using a vaulted environment-variable credential."
+}

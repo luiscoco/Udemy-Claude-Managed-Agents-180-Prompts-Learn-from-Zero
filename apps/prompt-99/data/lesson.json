@@ -1,0 +1,53 @@
+{
+  "number": 99,
+  "section": "12. Files, multimodal inputs, and GitHub",
+  "title": "Resource changes",
+  "prompt": "Add, list, and remove supported file resources after session creation.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const resource = await client.beta.sessions.resources.add(\n  sessionId, {\n    type: \"file\", file_id: fileId,\n    mount_path: \"/extra.txt\"\n  }\n);",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.resources.delete(resource.id, {\n  session_id: sessionId\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/files"
+  ],
+  "specification": "prompt-099-resource-changes-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "mount",
+      "label": "Add a file resource",
+      "op": "file.mount"
+    },
+    {
+      "id": "list",
+      "label": "List mounted resources",
+      "op": "file.resources"
+    },
+    {
+      "id": "remove",
+      "label": "Remove the supported file resource",
+      "op": "file.remove"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "mount"
+    },
+    {
+      "action": "list"
+    },
+    {
+      "action": "remove"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Add, list, and remove supported file resources after session creation."
+}

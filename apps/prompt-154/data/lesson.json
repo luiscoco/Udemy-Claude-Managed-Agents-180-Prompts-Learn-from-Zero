@@ -1,0 +1,40 @@
+{
+  "number": 154,
+  "section": "19. Webhooks and event-driven integrations",
+  "title": "Event routing",
+  "prompt": "Route session, budget, credential, and deployment notifications while accounting for differences between webhook and SSE event names.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 154.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'webhook.route':\n        s.rows = [{ webhook: 'session.status_idled', stream: 'session.status_idle', handler: 'fetch session' }, { webhook: 'deployment.trigger_failed', stream: null, handler: 'inspect trigger failure' }];\n        accept({ routes: s.rows, notificationNamesAreDistinct: true });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/webhooks"
+  ],
+  "specification": "prompt-154-webhook-event-routing-v2-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "route",
+      "label": "Route lifecycle notification names",
+      "op": "webhook.route"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect saved state",
+      "op": "inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "route"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Route session, budget, credential, and deployment notifications while accounting for differences between webhook and SSE event names."
+}

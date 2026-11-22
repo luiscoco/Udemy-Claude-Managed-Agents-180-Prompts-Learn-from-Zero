@@ -1,0 +1,59 @@
+{
+  "number": 45,
+  "section": "5. Events, streaming, and reconnection",
+  "title": "Interactive events",
+  "prompt": "Process approval requests and custom-tool requests immediately while continuing to consume other session events.",
+  "examples": [
+    {
+      "language": "typescript",
+      "label": "Application-owned local handler excerpt",
+      "code": "// Application-owned local handler for Prompt 45.\n// s is the lesson state; p contains validated classroom controls.\nswitch (action.op) {\n    case 'approval.seed':\n        accept({ requests: approval(s) });\n        break;\n}"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming",
+    "https://platform.claude.com/docs/en/managed-agents/reference"
+  ],
+  "specification": "prompt-045-interactive-events-prompt.txt",
+  "fields": [
+    {
+      "key": "decision",
+      "label": "Decision",
+      "value": "allow",
+      "options": [
+        "allow",
+        "deny"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "receive",
+      "label": "Queue interactive and ordinary events",
+      "op": "approval.seed"
+    },
+    {
+      "id": "respond",
+      "label": "Handle one pending request",
+      "op": "approval.respond"
+    },
+    {
+      "id": "consume",
+      "label": "Continue event consumption",
+      "op": "events.render"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "receive"
+    },
+    {
+      "action": "respond"
+    },
+    {
+      "action": "consume"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Process approval requests and custom-tool requests immediately while continuing to consume other session events."
+}

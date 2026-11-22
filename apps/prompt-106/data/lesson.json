@@ -1,0 +1,53 @@
+{
+  "number": 106,
+  "section": "12. Files, multimodal inputs, and GitHub",
+  "title": "Pull-request workflow",
+  "prompt": "Use repository access and GitHub MCP to prepare a tested change and require approval before publishing it.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "tools:\n  - type: agent_toolset_20260401\n    configs:\n      - name: bash\n        permission_policy: { type: always_ask }\n  - type: mcp_toolset\n    mcp_server_name: github\n    default_config:\n      permission_policy: { type: always_ask }",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/github",
+    "https://platform.claude.com/docs/en/managed-agents/permission-policies"
+  ],
+  "specification": "prompt-106-pull-request-workflow-prompt.txt",
+  "fields": [
+    {
+      "key": "approved",
+      "label": "Publication approved in the fixture",
+      "value": false
+    }
+  ],
+  "actions": [
+    {
+      "id": "prepare",
+      "label": "Prepare and locally verify a change",
+      "op": "repo.change"
+    },
+    {
+      "id": "publish",
+      "label": "Review the simulated publication gate",
+      "op": "repo.publish"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "prepare"
+    },
+    {
+      "action": "publish"
+    },
+    {
+      "action": "publish",
+      "input": {
+        "approved": true
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Use repository access and GitHub MCP to prepare a tested change and require approval before publishing it."
+}

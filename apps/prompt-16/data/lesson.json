@@ -1,0 +1,70 @@
+{
+  "number": 16,
+  "section": "2. Agent definitions, models, and versions",
+  "title": "Concurrent updates",
+  "prompt": "Update an agent using optimistic concurrency and handle a conflicting version without overwriting another change.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "import Anthropic from \"@anthropic-ai/sdk\";\nconst current = await client.beta.agents.retrieve(agentId);\ntry {\n  await client.beta.agents.update(agentId, {\n    version: current.version,\n    description: \"Reviewed configuration\"\n  });\n} catch (error) {\n  if (error instanceof Anthropic.APIError &&\n      error.status === 409) {\n    console.log(\"Reload, reconcile, then retry.\");\n  } else { throw error; }\n}",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/agent-setup"
+  ],
+  "specification": "prompt-016-concurrent-updates-prompt.txt",
+  "fields": [
+    {
+      "key": "expectedVersion",
+      "label": "Expected version",
+      "value": 1
+    },
+    {
+      "key": "description",
+      "label": "Your proposed description",
+      "value": "Reviewed configuration"
+    }
+  ],
+  "actions": [
+    {
+      "id": "read",
+      "label": "Read current version",
+      "op": "agent.retrieve"
+    },
+    {
+      "id": "compete",
+      "label": "Apply a competing edit",
+      "op": "agent.compete"
+    },
+    {
+      "id": "update",
+      "label": "Submit versioned edit",
+      "op": "agent.update"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect saved state",
+      "op": "inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "read"
+    },
+    {
+      "action": "compete"
+    },
+    {
+      "action": "update"
+    },
+    {
+      "action": "update",
+      "input": {
+        "expectedVersion": 2
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Update an agent using optimistic concurrency and handle a conflicting version without overwriting another change."
+}

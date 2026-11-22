@@ -1,0 +1,59 @@
+{
+  "number": 34,
+  "section": "4. Sessions and lifecycle management",
+  "title": "Trusted system context",
+  "prompt": "Append trusted system guidance using system.message on a supported model, keeping end-user input in user messages.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "await client.beta.sessions.events.send(sessionId, {\n  events: [{\n    type: \"system.message\",\n    content: [{ type: \"text\",\n      text: \"Use the revised evidence-review checklist.\" }]\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/sessions",
+    "https://platform.claude.com/docs/en/managed-agents/session-operations",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-034-trusted-system-context-prompt.txt",
+  "fields": [
+    {
+      "key": "trusted",
+      "label": "Input comes from trusted application code",
+      "value": false
+    },
+    {
+      "key": "task",
+      "label": "User task",
+      "value": "Summarize the approved inventory source."
+    }
+  ],
+  "actions": [
+    {
+      "id": "append",
+      "label": "Append system guidance",
+      "op": "session.system"
+    },
+    {
+      "id": "user",
+      "label": "Submit end-user text",
+      "op": "instruction.task"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "append"
+    },
+    {
+      "action": "append",
+      "input": {
+        "trusted": true
+      }
+    },
+    {
+      "action": "user"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Append trusted system guidance using system.message on a supported model, keeping end-user input in user messages."
+}

@@ -1,0 +1,53 @@
+{
+  "number": 95,
+  "section": "11. Built-in and custom skills",
+  "title": "Skill versioning",
+  "prompt": "Publish a new skill version and compare agents pinned to the old and new versions.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const newVersion = await client.skills.versions.create(\n  skillId, { files: updatedFiles }\n);",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "skills: [{\n  type: \"custom\",\n  skill_id: skillId,\n  version: versionId\n}]",
+      "label": "TypeScript configuration fragment"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/skills"
+  ],
+  "specification": "prompt-095-skill-versioning-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "first",
+      "label": "Publish skill version one",
+      "op": "skill.publish"
+    },
+    {
+      "id": "second",
+      "label": "Publish skill version two",
+      "op": "skill.publish"
+    },
+    {
+      "id": "compare",
+      "label": "Compare version-pinned agents",
+      "op": "skill.pin"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "first"
+    },
+    {
+      "action": "second"
+    },
+    {
+      "action": "compare"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Publish a new skill version and compare agents pinned to the old and new versions."
+}

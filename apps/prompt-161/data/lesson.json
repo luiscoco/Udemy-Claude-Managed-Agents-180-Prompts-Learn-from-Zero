@@ -1,0 +1,46 @@
+{
+  "number": 161,
+  "section": "20. Observability, usage, and budgets",
+  "title": "Budget scope",
+  "prompt": "Compare a budget shared by one session’s agents with separate budgets applied to scheduled sessions.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "budget:\n  type: limit\n  max_list_cost:\n    amount: \"500\"\n    currency: USD",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/budgets"
+  ],
+  "specification": "prompt-161-budget-scope-prompt.txt",
+  "fields": [
+    {
+      "key": "amount",
+      "label": "Budget in whole USD cents",
+      "value": "125"
+    }
+  ],
+  "actions": [
+    {
+      "id": "shared",
+      "label": "Compare child usage under one cap",
+      "op": "budget.scope"
+    },
+    {
+      "id": "scheduled",
+      "label": "Create independently budgeted scheduled sessions",
+      "op": "schedule.run"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "shared"
+    },
+    {
+      "action": "scheduled"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Compare a budget shared by one session’s agents with separate budgets applied to scheduled sessions."
+}

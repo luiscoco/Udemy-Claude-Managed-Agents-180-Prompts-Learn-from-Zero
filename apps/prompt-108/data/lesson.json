@@ -1,0 +1,56 @@
+{
+  "number": 108,
+  "section": "13. Persistent memory",
+  "title": "Read and write access",
+  "prompt": "Attach shared reference memory as read-only and user-specific working memory as read-write.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "resources:\n  - type: memory_store\n    memory_store_id: REFERENCE_STORE_ID\n    access: read_only\n    instructions: Consult before drafting reports.\n  - type: memory_store\n    memory_store_id: USER_STORE_ID\n    access: read_write\n    instructions: Save confirmed user preferences here.",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/memory"
+  ],
+  "specification": "prompt-108-read-and-write-access-prompt.txt",
+  "fields": [
+    {
+      "key": "access",
+      "label": "Memory access",
+      "value": "read_only",
+      "options": [
+        "read_only",
+        "read_write"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "read",
+      "label": "Read shared reference memory",
+      "op": "memory.read"
+    },
+    {
+      "id": "write",
+      "label": "Try a read-only write",
+      "op": "memory.write"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "read"
+    },
+    {
+      "action": "write"
+    },
+    {
+      "action": "write",
+      "input": {
+        "access": "read_write"
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Attach shared reference memory as read-only and user-specific working memory as read-write."
+}

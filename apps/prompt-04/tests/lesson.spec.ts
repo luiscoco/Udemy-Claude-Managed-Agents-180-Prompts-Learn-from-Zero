@@ -1,0 +1,38 @@
+import { test, expect } from '@playwright/test';
+
+test('Prompt 4 authentication classroom walkthrough', async ({ page }, testInfo) => {
+  await page.goto('/?presentation=1');
+  await expect(page.locator('#source .token.keyword').first()).toBeAttached();
+  await page.waitForTimeout(2000);
+  await page.locator('#auth-lab').scrollIntoViewIfNeeded();
+  await page.locator('#credential').selectOption('missing');
+  await page.locator('#run').click();
+  await expect(page.locator('#result-status')).toHaveText('Stopped locally');
+  await page.waitForTimeout(2500);
+  await page.locator('#credential').selectOption('invalid');
+  await page.locator('#run').click();
+  await expect(page.locator('#result-status')).toContainText('401');
+  await page.waitForTimeout(2500);
+  await page.locator('#credential').selectOption('valid');
+  await page.locator('#resource').selectOption('forbidden');
+  await page.locator('#run').click();
+  await expect(page.locator('#result-status')).toContainText('403');
+  await page.waitForTimeout(3000);
+  await page.locator('[data-mode="cli-login"]').click();
+  await page.waitForTimeout(1800);
+  await page.locator('#resource').selectOption('allowed');
+  await page.locator('#run').click();
+  await expect(page.locator('#result-status')).toContainText('200');
+  await page.waitForTimeout(3000);
+  await page.locator('#evidence').scrollIntoViewIfNeeded();
+  await expect(page.locator('#evidence .token.property').first()).toBeAttached();
+  await page.waitForTimeout(4000);
+  await page.locator('#source-code').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(4500);
+  await page.locator('[data-file="src/cli-client.ts"]').click();
+  await expect(page.locator('#filename')).toHaveText('src/cli-client.ts');
+  await page.waitForTimeout(4500);
+  await page.screenshot({ path:testInfo.outputPath('highlighted-source.png'), fullPage:true });
+  await page.locator('#terminal-guide').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(4500);
+});

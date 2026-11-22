@@ -1,0 +1,50 @@
+{
+  "number": 27,
+  "section": "4. Sessions and lifecycle management",
+  "title": "Session creation",
+  "prompt": "Create sessions from saved agent and environment IDs, and persist each session ID for later interaction.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "import { writeFile } from \"node:fs/promises\";\nconst session = await client.beta.sessions.create({\n  agent: agentId,\n  environment_id: environmentId\n});\nawait writeFile(\"session.json\", JSON.stringify({\n  sessionId: session.id\n}, null, 2));",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/sessions",
+    "https://platform.claude.com/docs/en/managed-agents/session-operations",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-027-session-creation-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "first",
+      "label": "Create first session",
+      "op": "session.create"
+    },
+    {
+      "id": "second",
+      "label": "Create another session",
+      "op": "session.create"
+    },
+    {
+      "id": "restore",
+      "label": "Inspect persisted session IDs",
+      "op": "session.list"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "first"
+    },
+    {
+      "action": "second"
+    },
+    {
+      "action": "restore"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Create sessions from saved agent and environment IDs, and persist each session ID for later interaction."
+}

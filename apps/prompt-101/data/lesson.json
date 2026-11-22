@@ -1,0 +1,54 @@
+{
+  "number": 101,
+  "section": "12. Files, multimodal inputs, and GitHub",
+  "title": "Output downloads",
+  "prompt": "Generate output files and download them using session-scoped file listing with the required headers.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "import { writeFile } from \"node:fs/promises\";",
+      "label": "TypeScript reference excerpt"
+    },
+    {
+      "language": "typescript",
+      "code": "const response = await client.files.download(outputFileId);\nawait writeFile(\"report.txt\", new Uint8Array(\n  await response.arrayBuffer()\n));",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/files",
+    "https://platform.claude.com/docs/en/managed-agents/events-and-streaming"
+  ],
+  "specification": "prompt-101-output-downloads-prompt.txt",
+  "fields": [],
+  "actions": [
+    {
+      "id": "generate",
+      "label": "Generate session output CSV",
+      "op": "file.process"
+    },
+    {
+      "id": "list",
+      "label": "List session-scoped outputs",
+      "op": "file.outputs"
+    },
+    {
+      "id": "download",
+      "label": "Prepare verified download",
+      "op": "file.download"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "generate"
+    },
+    {
+      "action": "list"
+    },
+    {
+      "action": "download"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Generate output files and download them using session-scoped file listing with the required headers."
+}

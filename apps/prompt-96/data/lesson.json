@@ -1,0 +1,46 @@
+{
+  "number": 96,
+  "section": "11. Built-in and custom skills",
+  "title": "Repository discovery",
+  "prompt": "Load a trusted repository skill from .claude/skills and demonstrate when discovery and skill use occur.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const session = await client.beta.sessions.create({\n  agent: agentId,\n  environment_id: environmentId,\n  resources: [{\n    type: \"github_repository\",\n    url: trustedRepoUrl,\n    mount_path: \"/workspace/repo\"\n  }]\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/skills"
+  ],
+  "specification": "prompt-096-repository-discovery-prompt.txt",
+  "fields": [
+    {
+      "key": "trusted",
+      "label": "Repository is trusted",
+      "value": true
+    }
+  ],
+  "actions": [
+    {
+      "id": "discover",
+      "label": "Discover trusted repository skill",
+      "op": "skill.discover"
+    },
+    {
+      "id": "use",
+      "label": "Load skill for matching work",
+      "op": "skill.load"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "discover"
+    },
+    {
+      "action": "use"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Load a trusted repository skill from .claude/skills and demonstrate when discovery and skill use occur."
+}

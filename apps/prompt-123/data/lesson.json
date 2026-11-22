@@ -1,0 +1,49 @@
+{
+  "number": 123,
+  "section": "15. Multiagent coordination and advisors",
+  "title": "Inline agents",
+  "prompt": "Compare predefined and inline subagents, including restrictions on inline creation and delegation depth.",
+  "examples": [
+    {
+      "language": "yaml",
+      "code": "multiagent:\n  type: multiagent_20261001\n  subagents:\n    type: enabled\n    inline_agents: { type: enabled }\n    predefined_agents: []\n  workflows: { type: disabled }\n  advisor: { type: disabled }",
+      "label": "YAML reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration"
+  ],
+  "specification": "prompt-123-inline-agents-prompt.txt",
+  "fields": [
+    {
+      "key": "depth",
+      "label": "Requested delegation depth",
+      "value": 1
+    },
+    {
+      "key": "capacity",
+      "label": "Injected fixture depth limit",
+      "value": 2
+    }
+  ],
+  "actions": [
+    {
+      "id": "inline",
+      "label": "Validate inline delegation fixture",
+      "op": "orchestration.inline"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "inline"
+    },
+    {
+      "action": "inline",
+      "input": {
+        "depth": 3
+      }
+    }
+  ],
+  "initial": {},
+  "takeaway": "Compare predefined and inline subagents, including restrictions on inline creation and delegation depth."
+}

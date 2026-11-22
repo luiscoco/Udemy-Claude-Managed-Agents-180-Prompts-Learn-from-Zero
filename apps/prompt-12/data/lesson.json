@@ -1,0 +1,68 @@
+{
+  "number": 12,
+  "section": "2. Agent definitions, models, and versions",
+  "title": "Effort settings",
+  "prompt": "Compare supported model effort settings using identical inputs and explain the observed trade-offs.",
+  "examples": [
+    {
+      "language": "typescript",
+      "code": "const agent = await client.beta.agents.create({\n  name: \"Careful reviewer\",\n  model: {\n    id: modelId,\n    effort: { type: \"high\" }\n  },\n  system: \"Review the evidence against the rubric.\"\n});",
+      "label": "TypeScript reference excerpt"
+    }
+  ],
+  "sources": [
+    "https://platform.claude.com/docs/en/build-with-claude/effort",
+    "https://platform.claude.com/docs/en/managed-agents/agent-setup"
+  ],
+  "specification": "prompt-012-effort-settings-prompt.txt",
+  "fields": [
+    {
+      "key": "trials",
+      "label": "Trials per profile",
+      "value": 3
+    },
+    {
+      "key": "settingA",
+      "label": "Profile A",
+      "value": "low"
+    },
+    {
+      "key": "settingB",
+      "label": "Profile B",
+      "value": "high"
+    }
+  ],
+  "actions": [
+    {
+      "id": "compare",
+      "label": "Compare effort fixture trials",
+      "op": "benchmark.run",
+      "args": {
+        "axis": "effort"
+      }
+    },
+    {
+      "id": "score",
+      "label": "Score completed fixture outputs",
+      "op": "benchmark.score"
+    },
+    {
+      "id": "inspect",
+      "label": "Inspect saved state",
+      "op": "inspect"
+    }
+  ],
+  "walkthrough": [
+    {
+      "action": "compare"
+    },
+    {
+      "action": "score"
+    },
+    {
+      "action": "inspect"
+    }
+  ],
+  "initial": {},
+  "takeaway": "Compare supported model effort settings using identical inputs and explain the observed trade-offs."
+}
